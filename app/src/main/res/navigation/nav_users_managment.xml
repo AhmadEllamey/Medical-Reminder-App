@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_users_managment"
+    app:startDestination="@id/login_fragment">
+
+
+    <fragment
+        android:name="com.example.medicalreminder.AskingForName_Email_PhoneFragment"
+        android:id="@+id/sign_up_first_fragment"
+        tools:layout="@layout/fragment_asking_for_name__email__phone">
+
+
+        <action
+            android:id="@+id/to_second_sign_up_page"
+            app:destination="@+id/sign_up_second_fragment"/>
+
+        <action
+            android:id="@+id/to_back_page"
+            app:destination="@+id/login_fragment"/>
+
+
+
+    </fragment>
+
+    <fragment
+        android:name="com.example.medicalreminder.AskingForPasswordFragment"
+        android:id="@+id/sign_up_second_fragment"
+        tools:layout="@layout/fragment_asking_for_password">
+
+        <action
+            android:id="@+id/to_third_sign_up_page"
+            app:destination="@+id/sign_up_third_fragment"/>
+
+        <action
+            android:id="@+id/to_first_sign_up_page"
+            app:destination="@+id/sign_up_first_fragment"/>
+
+
+    </fragment>
+
+    <fragment
+        android:name="com.example.medicalreminder.AskingForGenderAndDOBFragment"
+        android:id="@+id/sign_up_third_fragment"
+        tools:layout="@layout/fragment_asking_for_gender_and_d_o_b">
+
+
+        <action
+            android:id="@+id/to_login_again_x"
+            app:destination="@+id/login_fragment"/>
+
+        <action
+            android:id="@+id/to_previous_page"
+            app:destination="@+id/sign_up_second_fragment"/>
+
+
+
+
+
+    </fragment>
+
+
+
+
+    <fragment
+        android:name="com.example.medicalreminder.LoginFragment"
+        android:id="@+id/login_fragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/to_forgot_password"
+            app:destination="@+id/password_fragment"/>
+
+        <action
+            android:id="@+id/to_sign_up"
+            app:destination="@+id/sign_up_first_fragment"/>
+
+    </fragment>
+
+    <fragment
+        android:name="com.example.medicalreminder.ForgotPasswordFragment"
+        android:id="@+id/password_fragment"
+        tools:layout="@layout/fragment_forgot_password">
+
+        <action
+            android:id="@+id/to_login"
+            app:destination="@+id/login_fragment"/>
+
+    </fragment>
+
+
+
+
+
+</navigation>

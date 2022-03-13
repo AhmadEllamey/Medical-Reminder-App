@@ -18,13 +18,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.Presenter.Presenter;
-import com.example.myhealth.Presenter.PresenterInterface;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+//import com.example.medicalreminder.Presenter.Presenter;
+//import com.example.medicalreminder.Presenter.PresenterInterface;
+import com.example.medicalreminder.R;
 
-public class Med_Left extends Fragment implements PresenterInterface {
-    PresenterInterface presenterInterface;
+public class Med_Left extends Fragment {
+//        implements PresenterInterface {
+    //PresenterInterface presenterInterface;
     Context context = getContext();
 
     TextView medleft;
@@ -57,12 +58,12 @@ public class Med_Left extends Fragment implements PresenterInterface {
         if(medleft!=null){
 
         //sending
-        presenterInterface = (PresenterInterface) new Presenter(context,this);
+//        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
 
         Log.i(TAG, "save: entered");
         Toast.makeText(getContext(), "entered", Toast.LENGTH_SHORT).show();
 
-        NavDirections navDirections = Med_LeftDirections.actionMedLeftFragmentToEnd2();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
         navController.navigate(R.id.end2,Sendbundle);
             System.out.println(
                     medicine.getMed_name()+"\n"+
@@ -101,10 +102,5 @@ public class Med_Left extends Fragment implements PresenterInterface {
         else{
             Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
         }
-    }
-
-    @Override
-    public void AddMedacine(Medicine medicine) {
-
     }
 }

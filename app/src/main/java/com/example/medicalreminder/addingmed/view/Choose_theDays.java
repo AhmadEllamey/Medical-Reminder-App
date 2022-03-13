@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.Fragment;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
     Week_Adapter week_adapter;
     RecyclerView recyclerView;
     List <String> WeeK= new ArrayList<>();
-    Medicine  medicine;
+    Medicine medicine;
     int counter;
     boolean iseveryday;
     @Nullable
@@ -88,7 +88,7 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
 
         NavController navController;
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
     }
 }

@@ -14,8 +14,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class Set_Start_Date extends Fragment {
     DatePicker datePicker;
@@ -57,7 +57,7 @@ public class Set_Start_Date extends Fragment {
 
         NavController navController;
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = Set_Start_DateDirections.actionSetStartDateToTimeInDayFragment();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Start_DateDirections.actionSetStartDateToTimeInDayFragment();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
         Toast.makeText(getContext(), Generate_End_date.End_date, Toast.LENGTH_SHORT).show();
 

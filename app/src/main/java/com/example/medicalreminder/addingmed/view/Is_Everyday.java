@@ -17,8 +17,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,14 +82,14 @@ public class Is_Everyday extends Fragment {
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
 
-            NavDirections navDirections = Is_EverydayDirections.actionIsEveryDayToHowOftenInDay();
+            NavDirections navDirections = com.example.myhealth.addingmed.view.Is_EverydayDirections.actionIsEveryDayToHowOftenInDay();
             navController.navigate(R.id.How_Often_In_Day_fragment,Sendbundle);}
 
         else{
             //not every day has different choose
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
-            NavDirections navDirections = Is_EverydayDirections.actionIsEveryDayFragmentToPlaceholder();
+            NavDirections navDirections = com.example.myhealth.addingmed.view.Is_EverydayDirections.actionIsEveryDayFragmentToPlaceholder();
             navController.navigate(R.id.howoftennoteveryday,Sendbundle);
         }
 

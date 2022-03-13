@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myhealth.R;
-import com.example.myhealth.addingmed.view.Week_Adapter;
+import com.example.medicalreminder.R;
+import com.example.medicalreminder.addingmed.view.Week_Adapter;
 
 import org.w3c.dom.Text;
 

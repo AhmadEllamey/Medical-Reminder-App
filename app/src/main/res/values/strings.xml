@@ -1,4 +1,69 @@
 <resources>
+    <string name="app_name">Myhealth</string>
+    <string name="enter">Enter your name</string>
+    <string name="ADD">What med would you like to add?</string>
+    <string name="hintmednam">Medicine Name</string>
+    <string name="next">Next</string>
+    <string name="fill">What form is the med?</string>
+    <string name="strength">What strength is the med?</string>
+    <string name="why">What are you taking it for?</string>
+    <string name="everyday">Do you need to take this med every day?</string>
+    <string name="threetimes">3 times a day</string>
+    <string name="twotimes">Twice daily</string>
+    <string name="oncedaily">Once daily</string>
+    <string name="fourtimes">4 times a day</string>
+    <string name="sixtimes">6 times a day</string>
+    <string name="sixhours">Every 6 hours</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="Inhaler">Inhaler</string>
+    <string name="Drops">Drops</string>
+    <string name="Powder">Powder</string>
+    <string name="Injection">Injection</string>
+    <string name="Solution">Solution</string>
+    <string name="pill">Pill</string>
+    <string name="timeinday">At what time of day do you take your</string>
+    <string name="firstdose">first dose?</string>
+    <string name="Morning">Morning</string>
+    <string name="Noon">Noon</string>
+    <string name="Evening">evening</string>
+    <string name="Night">Night</string>
+    <string name="set_time">When do you need to take the dose?</string>
+    <string name="Dose">First Dose</string>
+    <string name="medleft">When should we remind you to refill your prescription?</string>
+    <string name="medamount">How many pills do you have left?</string>
+    <string name="Pillsleft">Left</string>
+    <string name="pillsleft">Pill (s) Left</string>
+    <string name="Remindwhen">Remind me when I have :</string>
+    <string name="Lasttaken">Last Taken</string>
+    <string name="date">date</string>
+    <string name="Reminder">Reminder</string>
+    <string name="Condition">Condition</string>
+    <string name="Refilldisplay">Prescripiton Refill</string>
+    <string name="remindertxt">No refill reminder</string>
+    <string name="suspend">Suspend</string>
+    <string name="refilbtn">Refill</string>
+    <string name="adddose">Add dose</string>
+    <string name="howoften">How often do you take it?</string>
+    <string name="onceweek">Once a week</string>
+    <string name="Every2days">Every 2 days</string>
+    <string name="twodaysaweek">2 days a week</string>
+    <string name="threedaysaweek">3 days a week</string>
+    <string name="every28days">Every 28 days</string>
+    <string name="fivedaysaweek">5 days a week</string>
+    <string name="chooseday">On which days(s) do you need to take the med?</string>
+    <string name="setdate">"Set start date - "</string>
+    <string name="medname">Medication Name</string>
+    <string name="ReminderTimes">Reminder Times</string>
+    <string name="edittime">Edit Time</string>
+    <string name="Schedule">Schedule</string>
+    <string name="NumberofDays">number of days</string>
+    <string name="Duration">Duration</string>
+    <string name="Everydaycheckbox">Everyday</string>
+    <string name="Specificdays">Specific days of the week</string>
+    <string name="Strenghttxt">Strength</string>
+    <string name="prescriptionrefill">Prescription Refill</string>
+    <string name="days">Days</string>
 
 
     <string name="nav_open">Open</string>
@@ -8,7 +73,6 @@
     <string name="fb_login_protocol_scheme">fb715478893159079</string>
 
 
-    <string name="app_name">Medical Reminder</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -44,7 +108,6 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="sign_up">Sign Up</string>
-    <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="phone">Phone</string>
     <string name="re_enter_password">Re-Enter Password</string>

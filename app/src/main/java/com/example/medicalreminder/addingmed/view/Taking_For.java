@@ -15,8 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class Taking_For extends Fragment {
     private static final String TAG = "tag";
@@ -53,7 +53,7 @@ public class Taking_For extends Fragment {
             medicine.setWhy_Taken(why.getText().toString());
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
-            NavDirections navDirections = Taking_ForDirections.actionTakenForToIsEveryDay();
+            NavDirections navDirections = com.example.myhealth.addingmed.view.Taking_ForDirections.actionTakenForToIsEveryDay();
             navController.navigate(R.id.IsEveryDayFragment,Sendbundle);}
         else{
             Toast.makeText(getContext(), "Fill the reason", Toast.LENGTH_SHORT).show();

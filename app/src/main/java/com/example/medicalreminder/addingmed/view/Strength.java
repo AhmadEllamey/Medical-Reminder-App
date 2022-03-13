@@ -17,8 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 import java.net.SocketOption;
 import java.security.SecureRandom;
@@ -61,7 +61,7 @@ public class Strength extends Fragment {
         //sending name and form and strenght
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
-        NavDirections navDirections = StrengthDirections.actionStrengthfragmentToTakenFor();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.StrengthDirections.actionStrengthfragmentToTakenFor();
         navController.navigate(R.id.TakenForfragment,Sendbundle);
         }
         else{

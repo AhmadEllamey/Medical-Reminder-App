@@ -14,8 +14,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class MedForm extends Fragment {
     private static final String TAG = "tag";
@@ -57,7 +57,7 @@ public class MedForm extends Fragment {
         Bundle Sendbundle = new Bundle();
 
         Sendbundle.putSerializable("obj",medicine);
-        NavDirections navDirections = MedFormDirections.actionMedFormToStrengthfragment();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.MedFormDirections.actionMedFormToStrengthfragment();
         navController.navigate(R.id.Strengthfragment, Sendbundle);
 
         // navController.navigate(navDirections);

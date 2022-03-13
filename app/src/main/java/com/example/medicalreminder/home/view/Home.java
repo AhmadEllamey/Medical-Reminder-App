@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +13,11 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.medicalreminder.BlankFragment;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.addingmed.view.AddingMed;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
-import com.example.medicalreminder.home.view.home_fragment.view.HomeViewInterface;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 import com.example.medicalreminder.login.model.User;
 import com.google.android.material.navigation.NavigationView;
@@ -29,12 +31,21 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     FrameLayout frameLayout ;
 
 
+    public static FragmentManager fragmentManager;
+
+
+
+    public static FragmentManager getFragmentManagerX() {
+        return fragmentManager;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        fragmentManager = getSupportFragmentManager();
 
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("User");
@@ -77,7 +88,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new ProfileFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_medicine){
             Toast.makeText(this,"Add medicine",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+////            NavHostFragment navAddFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.AddingMed);
+//            NavController navController= Navigation.findNavController((View) item);
+//            NavGraph navGraph = navController.navigate(R.navigation.navig_graph);
+//            navGraph.setStartDestination(R.id.AddingMed);
+//            navController.setGraph(navGraph);
+            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new BlankFragment()).commit();
         }else if(item.getItemId() == R.id.nav_edit_medicine){
             Toast.makeText(this,"Edit Medicine",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();

@@ -14,8 +14,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class howoften_notEveryday extends Fragment {
     NavController navController;
@@ -51,7 +51,7 @@ public class howoften_notEveryday extends Fragment {
         Sendbundle.putInt("count",counter);
 
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = howoften_notEverydayDirections.actionHowoftennoteverydayToChooseTheDays();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydayToChooseTheDays();
         navController.navigate(R.id.choose_theDays,Sendbundle);
     }
 
@@ -60,7 +60,7 @@ public class howoften_notEveryday extends Fragment {
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",2);
-        NavDirections navDirections = howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
         navController.navigate(R.id.SetStartDate,Sendbundle);
     }
 
@@ -69,7 +69,7 @@ public class howoften_notEveryday extends Fragment {
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",28);
-        NavDirections navDirections = howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
         navController.navigate(R.id.SetStartDate,Sendbundle);
     }
 }

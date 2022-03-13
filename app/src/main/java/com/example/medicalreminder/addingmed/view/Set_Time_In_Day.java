@@ -16,10 +16,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.Presenter.Presenter;
-import com.example.myhealth.Presenter.PresenterInterface;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+//import com.example.medicalreminder.Presenter.Presenter;
+import com.example.medicalreminder.Presenter.PresenterInterface;
+import com.example.medicalreminder.R;
 
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,14 +27,15 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
-public class Set_Time_In_Day extends Fragment implements PresenterInterface {
+public class Set_Time_In_Day extends Fragment{
+//        implements PresenterInterface {
 
 
-    DatabaseReference myRef;
-    FirebaseDatabase database;
+//    DatabaseReference myRef;
+//    FirebaseDatabase database;
     Context context= getContext();
 
     private TimePicker timePicker1;
@@ -92,7 +93,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
     private void save(View view) {
 
         String daytime= timePicker1.getCurrentHour().toString()+" "+timePicker1.getCurrentMinute().toString();
-        presenterInterface = (PresenterInterface) new Presenter(context,this);
+//        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
         NavController navController;
         navController = Navigation.findNavController(view);
 
@@ -121,7 +122,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
                     System.out.println("================================================================ sended \n  "+counter);
 
                     Sendbundle.putSerializable("obj",medicine);
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToTimeInDayFragment();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToTimeInDayFragment();
                     navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
                 //}
             }
@@ -138,7 +139,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: ++++++"+medicine.getMed_name());
 
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.Med_amount_fragment,Sendbundle);
                     }
                 else{
@@ -153,7 +154,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.end2,Sendbundle);
                     System.out.println(
                             medicine.getMed_name()+"\n"+
@@ -208,7 +209,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
                     Sendbundle.putInt("count",counter2); //if twice
                     System.out.println(counter+" sended from settime");
                     Sendbundle.putSerializable("obj",medicine);
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToChooseTheDays();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToChooseTheDays();
                     navController.navigate(R.id.choose_theDays,Sendbundle);
                 //}
 
@@ -243,7 +244,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
 
 
                     );
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.Med_amount_fragment,Sendbundle);
                 }
                 else{
@@ -258,7 +259,7 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.end2,Sendbundle);
                     System.out.println(
                             medicine.getMed_name()+"\n"+
@@ -333,7 +334,4 @@ public class Set_Time_In_Day extends Fragment implements PresenterInterface {
         }
     //}
 
-    @Override
-    public void AddMedacine(Medicine medicine) {
-    }
 }

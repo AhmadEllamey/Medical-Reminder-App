@@ -15,8 +15,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class HowOften extends Fragment {
     private static final String TAG ="tag" ;
@@ -70,7 +70,7 @@ public class HowOften extends Fragment {
         Sendbundle.putSerializable("obj",medicine);
 
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = HowOftenDirections.actionHowOftenInDayToTimeInDay();
+        NavDirections navDirections = com.example.myhealth.addingmed.view.HowOftenDirections.actionHowOftenInDayToTimeInDay();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
 
     }

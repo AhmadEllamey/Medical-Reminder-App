@@ -17,8 +17,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 public class Med_Amount extends Fragment {
 
@@ -53,7 +53,7 @@ public class Med_Amount extends Fragment {
             Bundle Sendbundle = new Bundle();
             medicine.setMed_amount(Integer.parseInt(amounttext.getText().toString()));
             Sendbundle.putSerializable("obj", medicine);
-            NavDirections navDirections = Med_AmountDirections.actionMedAmountFragmentToMedLeft();
+            NavDirections navDirections = com.example.myhealth.addingmed.view.Med_AmountDirections.actionMedAmountFragmentToMedLeft();
             navController.navigate(R.id.med_Left_fragment, Sendbundle); }
         else{
             Toast.makeText(getContext(), "Fill the amount", Toast.LENGTH_LONG).show();

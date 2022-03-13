@@ -16,10 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
+import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.myhealth.Model.Medicine;
-import com.example.myhealth.R;
+import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.R;
 
 
 
@@ -28,6 +30,14 @@ public class AddingMed extends Fragment  {
     public Medicine medicine = new Medicine();
     TextView med_name;
     Button nextbtn;
+
+    public AddingMed() {
+
+
+
+
+    }
+
     //connection
     @Nullable
     @Override
@@ -48,7 +58,7 @@ public class AddingMed extends Fragment  {
                 bundle.putSerializable("obj", medicine);
             Log.i(TAG, "onCreateView: 1 " + bundle.toString());
 
-            NavDirections navDirections = AddingMedDirections.actionAddingMedToMedForm();
+            NavDirections navDirections = com.example.myhealth.addingmed.view.AddingMedDirections.actionAddingMedToMedForm();
             navController.navigate(R.id.MedFormfragment, bundle);}
             else {
                 Toast.makeText(getContext(), "Please put the medicine name", Toast.LENGTH_SHORT).show();

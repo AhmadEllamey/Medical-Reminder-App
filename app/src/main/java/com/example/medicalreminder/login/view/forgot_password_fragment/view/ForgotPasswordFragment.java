@@ -1,4 +1,4 @@
-package com.example.medicalreminder;
+package com.example.medicalreminder.login.view.forgot_password_fragment.view;
 
 
 import android.os.Bundle;
@@ -11,10 +11,16 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
+import com.example.medicalreminder.R;
+import com.example.medicalreminder.login.view.forgot_password_fragment.presenter.PasswordFragmentPresenter;
+import com.example.medicalreminder.login.view.forgot_password_fragment.presenter.PasswordFragmentPresenterInterface;
+import com.google.android.material.textfield.TextInputLayout;
 
-public class ForgotPasswordFragment extends Fragment {
+
+public class ForgotPasswordFragment extends Fragment implements PasswordFragmentInterface {
 
 
     public ForgotPasswordFragment() {
@@ -22,6 +28,7 @@ public class ForgotPasswordFragment extends Fragment {
     }
 
 
+    @Override
     public void goBackToLoginScreen(View view){
 
         NavController navController = Navigation.findNavController(view);
@@ -43,7 +50,17 @@ public class ForgotPasswordFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
-        view.findViewById(R.id.okButtonToSendForgotPasswordRequestButton).setOnClickListener(this::goBackToLoginScreen);
+        view.findViewById(R.id.okButtonToSendForgotPasswordRequestButton).setOnClickListener(view1 -> {
+
+            EditText editText =  view.findViewById(R.id.etForgotEmail) ;
+            String mail = editText.getText().toString().trim();
+            if(!mail.equals("")){
+                PasswordFragmentPresenterInterface passwordFragmentPresenterInterface =
+                        new PasswordFragmentPresenter(this,view1);
+                passwordFragmentPresenterInterface.sendMailToUserWithHisPassword(mail);
+            }
+
+        });
 
         view.findViewById(R.id.cancelButtonToSendForgotPasswordRequestButton).setOnClickListener(this::goBackToLoginScreen);
 
@@ -62,6 +79,9 @@ public class ForgotPasswordFragment extends Fragment {
 
         return view ;
     }
+
+
+
 
 
 

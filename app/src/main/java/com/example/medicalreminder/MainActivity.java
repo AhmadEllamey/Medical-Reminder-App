@@ -1,16 +1,27 @@
 package com.example.medicalreminder;
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.content.Context;
 import android.os.Bundle;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
+    public MainActivity() {
+    }
+
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
 
 
     @Override
@@ -18,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // load the first screen programmatically
 
-        System.out.println("we are here !");
+
+        context = this ;
+
+        // load the first screen programmatically
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.container);
         if(navHostFragment!=null){
             System.out.println("we are here !");
@@ -34,9 +47,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     @Override
     public void onBackPressed() {
-
         //super.onBackPressed();
     }
+
 }

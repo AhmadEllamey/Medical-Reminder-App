@@ -7,7 +7,7 @@
 
 
     <fragment
-        android:name="com.example.medicalreminder.AskingForName_Email_PhoneFragment"
+        android:name="com.example.medicalreminder.login.view.name_email_phone_fragment.view.AskingForName_Email_PhoneFragment"
         android:id="@+id/sign_up_first_fragment"
         tools:layout="@layout/fragment_asking_for_name__email__phone">
 
@@ -25,7 +25,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.medicalreminder.AskingForPasswordFragment"
+        android:name="com.example.medicalreminder.login.view.password_fragment.view.AskingForPasswordFragment"
         android:id="@+id/sign_up_second_fragment"
         tools:layout="@layout/fragment_asking_for_password">
 
@@ -41,7 +41,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.medicalreminder.AskingForGenderAndDOBFragment"
+        android:name="com.example.medicalreminder.login.view.gender_dob_fragment.view.AskingForGenderAndDOBFragment"
         android:id="@+id/sign_up_third_fragment"
         tools:layout="@layout/fragment_asking_for_gender_and_d_o_b">
 
@@ -64,7 +64,7 @@
 
 
     <fragment
-        android:name="com.example.medicalreminder.LoginFragment"
+        android:name="com.example.medicalreminder.login.view.login_fragment.view.LoginFragment"
         android:id="@+id/login_fragment"
         tools:layout="@layout/fragment_login">
 
@@ -79,7 +79,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.medicalreminder.ForgotPasswordFragment"
+        android:name="com.example.medicalreminder.login.view.forgot_password_fragment.view.ForgotPasswordFragment"
         android:id="@+id/password_fragment"
         tools:layout="@layout/fragment_forgot_password">
 

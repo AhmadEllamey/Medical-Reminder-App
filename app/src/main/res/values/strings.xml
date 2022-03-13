@@ -1,4 +1,13 @@
 <resources>
+
+
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
+    <string name="facebook_app_id">715478893159079</string>
+    <string name="fb_login_protocol_scheme">fb715478893159079</string>
+
+
     <string name="app_name">Medical Reminder</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

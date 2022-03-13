@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "189778012268",
+    "project_id": "apt-tracker-298501",
+    "storage_bucket": "apt-tracker-298501.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189778012268:android:2b4eccb4b21e832f659049",
+        "android_client_info": {
+          "package_name": "com.example.medicalreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189778012268-v3h5dl9npcsmj4nnof56qtv55gu5kqe7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicalreminder",
+            "certificate_hash": "1b0fe2376b6a425f9a309769f0625887bc947681"
+          }
+        },
+        {
+          "client_id": "189778012268-t3v4g4qcrq2tca7njeg33csagjp51ur0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeN55kywQt6PV-YvQLkrJd6CaRKGwRSUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189778012268-t3v4g4qcrq2tca7njeg33csagjp51ur0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

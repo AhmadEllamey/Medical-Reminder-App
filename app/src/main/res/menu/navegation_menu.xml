@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <group  android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/nav_add_medicine"
+            android:title="Add medicine " />
+
+        <item
+            android:id="@+id/nav_edit_medicine"
+            android:title="Edit medicine " />
+
+        <item
+            android:id="@+id/nav_add_health_takers"
+            android:title="Add health takers " />
+
+        <item
+            android:id="@+id/nav_manage_health_takers"
+            android:title="Manage health takers " />
+
+        <item
+            android:id="@+id/nav_sittings"
+            android:title="Sittings" />
+
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="Log out " />
+
+
+    </group>
+
+
+
+
+</menu>

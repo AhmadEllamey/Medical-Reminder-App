@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AskingForName_Email_PhoneFragment">
+    tools:context=".login.view.name_email_phone_fragment.view.AskingForName_Email_PhoneFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

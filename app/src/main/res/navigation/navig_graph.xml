@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navig_graph"
+    app:startDestination="@id/AddingMed">
+    <fragment
+        android:id="@+id/AddingMed"
+        android:name="com.example.myhealth.addingmed.view.AddingMed"
+        android:label="AddingMed">
+<!--        el fragment mstnia eh mn eli 2blha   // awel w7da mash mstya 7aga-->
+        <action
+            android:id="@+id/action_AddingMed_to_MedForm"
+            app:destination="@id/MedFormfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MedFormfragment"
+        android:name="com.example.myhealth.addingmed.view.MedForm"
+        android:label="MedForm" >
+        <action
+            android:id="@+id/action_MedForm_to_Strengthfragment"
+            app:destination="@id/Strengthfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/Strengthfragment"
+        android:name="com.example.myhealth.addingmed.view.Strength"
+        android:label="strengthfragment" >
+<!--        mstnia name w el form -->
+
+        <action
+            android:id="@+id/action_Strengthfragment_to_TakenFor"
+            app:destination="@id/TakenForfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TakenForfragment"
+        android:name="com.example.myhealth.addingmed.view.Taking_For"
+        android:label="TakenFor" >
+
+        <action
+            android:id="@+id/action_TakenFor_to_IsEveryDay"
+            app:destination="@id/IsEveryDayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/IsEveryDayFragment"
+        android:name="com.example.myhealth.addingmed.view.Is_Everyday"
+        android:label="IsEveryDay" >
+<!--        name and form and strenght and why-->
+
+        <action
+            android:id="@+id/action_IsEveryDay_to_How_Often_In_Day"
+            app:destination="@id/How_Often_In_Day_fragment" />
+        <action
+            android:id="@+id/action_IsEveryDayFragment_to_placeholder"
+            app:destination="@id/howoftennoteveryday" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/How_Often_In_Day_fragment"
+        android:name="com.example.myhealth.addingmed.view.HowOften"
+        android:label="How_Often_In_Day" >
+        <action
+            android:id="@+id/action_How_Often_In_Day_to_Time_In_Day"
+            app:destination="@id/Time_In_Day_fragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/Time_In_Day_fragment"
+        android:name="com.example.myhealth.addingmed.view.TIme_within_day"
+        android:label="Time_In_Day" >
+        <action
+            android:id="@+id/action_Time_In_Day_to_set_time"
+            app:destination="@id/set_time_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/set_time_fragment"
+        android:name="com.example.myhealth.addingmed.view.Set_Time_In_Day"
+        android:label="Set_time" >
+
+        <action
+            android:id="@+id/action_set_time_fragment_to_placeholder"
+            app:destination="@id/Med_amount_fragment" />
+        <action
+            android:id="@+id/action_set_time_fragment_to_Time_In_Day_fragment"
+            app:destination="@id/Time_In_Day_fragment" />
+        <action
+            android:id="@+id/action_set_time_fragment_to_choose_theDays"
+            app:destination="@id/choose_theDays" />
+    </fragment>
+<!--    <fragment-->
+    <!--        name and form and strenght and why and IS  and how often and counter -->
+    <!--        android:id="@+id/Save"-->
+<!--        android:name="com.example.myhealth.Save"-->
+<!--        android:label="Save" >-->
+<!--    </fragment>-->
+
+    <fragment
+        android:id="@+id/SetStartDate"
+        android:name="com.example.myhealth.addingmed.view.Set_Start_Date"
+        android:label="SetStartDate" >
+        <action
+            android:id="@+id/action_SetStartDate_to_Time_In_Day_fragment"
+            app:destination="@id/Time_In_Day_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/Med_amount_fragment"
+        android:name="com.example.myhealth.addingmed.view.Med_Amount"
+        android:label="Med_amount" >
+        <action
+            android:id="@+id/action_Med_amount_fragment_to_med_Left"
+            app:destination="@id/med_Left_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/med_Left_fragment"
+        android:name="com.example.myhealth.addingmed.view.Med_Left"
+        android:label="Med_Left" >
+        <action
+            android:id="@+id/action_med_Left_fragment_to_end2"
+            app:destination="@id/end2" />
+    </fragment>
+    <fragment
+        android:id="@+id/end2"
+        android:name="com.example.myhealth.addingmed.view.End"
+        android:label="End" >
+        <action
+            android:id="@+id/action_end2_to_displaymed"
+            app:destination="@id/displaymed" />
+    </fragment>
+    <fragment
+        android:id="@+id/howoftennoteveryday"
+        android:name="com.example.myhealth.addingmed.view.howoften_notEveryday"
+        android:label="howoftennoteveryday">
+        <action
+            android:id="@+id/action_howoftennoteverydat_to_SetStartDate"
+            app:destination="@id/SetStartDate" />
+        <action
+            android:id="@+id/action_howoftennoteveryday_to_choose_theDays"
+            app:destination="@id/choose_theDays" />
+    </fragment>
+    <fragment
+        android:id="@+id/choose_theDays"
+        android:name="com.example.myhealth.addingmed.view.Choose_theDays"
+        android:label="Choose_theDays" >
+        <action
+            android:id="@+id/action_choose_theDays_to_Time_In_Day_fragment"
+            app:destination="@id/Time_In_Day_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displaymed"
+        android:name="com.example.myhealth.displaymedicin.Displaymed"
+        android:label="Displaymed" />
+
+</navigation>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4f5bd5"
+    android:backgroundTint="#4f5bd5"
+    android:rotation="-360"
+    android:rotationX="-360"
+    android:rotationY="-360">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="427dp"
+        android:layout_height="509dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/background" />
+
+    <TimePicker
+        android:id="@+id/datepicker"
+        android:layout_width="306dp"
+        android:layout_height="277dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:amPmTextColor="@color/white"
+        android:contextClickable="false"
+        android:headerAmPmTextAppearance="@style/TimePickerTheme"
+        android:headerTimeTextAppearance="@style/TimePickerTheme"
+        android:numbersInnerTextColor="@color/white"
+        android:numbersTextColor="@color/white"
+        android:theme="@style/TimePickerTheme"
+        android:timePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/nextbtnn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/nextbtnn"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#4f5bd5"
+        android:text="@string/next"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="345dp"
+        android:layout_height="94dp"
+        android:text="@string/timeinday"
+        android:textAlignment="inherit"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.296" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pills" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4f5bd5"
+    android:backgroundTint="#4F5BD5"
+    android:rotation="-360"
+    android:rotationX="-360"
+    android:rotationY="-360">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="428dp"
+        android:layout_height="475dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="353dp"
+        android:layout_height="74dp"
+        android:text="@string/howoften"
+        android:textAlignment="inherit"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pills" />
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/yes_or_no"-->
+    <!--        android:layout_width="361dp"-->
+    <!--        android:layout_height="363dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/imageView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/imageView"-->
+    <!--        app:layout_constraintVertical_bias="0.269" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/tohowoften"-->
+    <!--        android:layout_width="248dp"-->
+    <!--        android:layout_height="38dp"-->
+    <!--        android:layout_marginEnd="80dp"-->
+    <!--        android:layout_marginBottom="32dp"-->
+    <!--        android:backgroundTint="#4f5bd5"-->
+    <!--        android:text="@string/next"-->
+    <!--        android:textColor="#FFFFFF"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <Button
+        android:id="@+id/threedaysaweek"
+        android:layout_width="329dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="68dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/threedaysaweek"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/two_days_aweek"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/two_days_aweek"
+        app:layout_constraintTop_toTopOf="@+id/two_days_aweek" />
+
+    <Button
+        android:id="@+id/once_a_week"
+        android:layout_width="327dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/onceweek"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#F1ECEC"
+        android:textColorLink="#F3ECEC"
+        app:layout_constraintBottom_toTopOf="@+id/every2days"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.843" />
+
+    <Button
+        android:id="@+id/every2days"
+        android:layout_width="328dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/Every2days"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/two_days_aweek"
+        app:layout_constraintEnd_toEndOf="@+id/once_a_week"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/once_a_week" />
+
+    <Button
+        android:id="@+id/two_days_aweek"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="216dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/twodaysaweek"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/every2days"
+        app:layout_constraintStart_toStartOf="@+id/every2days"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/every28day"
+        android:layout_width="327dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/every28days"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/two_days_aweek"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/two_days_aweek"
+        app:layout_constraintTop_toBottomOf="@+id/threedaysaweek"
+        app:layout_constraintVertical_bias="0.308" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

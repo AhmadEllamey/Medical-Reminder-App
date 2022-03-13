@@ -1,0 +1,59 @@
+package com.example.medicalreminder.addingmed.view;
+
+import static android.content.ContentValues.TAG;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
+import com.example.myhealth.Model.Medicine;
+import com.example.myhealth.R;
+
+
+
+public class AddingMed extends Fragment  {
+
+    public Medicine medicine = new Medicine();
+    TextView med_name;
+    Button nextbtn;
+    //connection
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        View view= inflater.inflate(R.layout.adding_med,container,false);
+    //to be stored
+        med_name=view.findViewById(R.id.Medname);
+        nextbtn=view.findViewById(R.id.savebtn);
+        nextbtn.setOnClickListener(btnView -> {
+
+            if(!med_name.getText().toString().equals("")){
+            NavController navController= Navigation.findNavController(btnView);
+            medicine.setMed_name(med_name.getText().toString().trim());
+            Bundle bundle = new Bundle();
+            //bundle.putString("medname", med_name.getText().toString());
+                bundle.putSerializable("obj", medicine);
+            Log.i(TAG, "onCreateView: 1 " + bundle.toString());
+
+            NavDirections navDirections = AddingMedDirections.actionAddingMedToMedForm();
+            navController.navigate(R.id.MedFormfragment, bundle);}
+            else {
+                Toast.makeText(getContext(), "Please put the medicine name", Toast.LENGTH_SHORT).show();
+            }
+        });
+        return  view;
+    }
+}

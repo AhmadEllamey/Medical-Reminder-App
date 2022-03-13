@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4f5bd5"
+    android:backgroundTint="#4F5BD5"
+    android:rotation="-360"
+    android:rotationX="-360"
+    android:rotationY="-360">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="427dp"
+        android:layout_height="509dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/background" />
+
+    <Button
+        android:id="@+id/Inhaler"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="132dp"
+        android:backgroundTint="#4f5bd5"
+        android:text="@string/Inhaler"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/Pill"
+        app:layout_constraintStart_toStartOf="@+id/Pill" />
+
+    <Button
+        android:id="@+id/Pill"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/pill"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/Solution"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#4f5bd5"
+        android:onClick="gonext"
+        android:text="@string/Solution"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/Injection"
+        app:layout_constraintEnd_toEndOf="@+id/Injection"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Pill"
+        app:layout_constraintTop_toBottomOf="@+id/Pill"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <Button
+        android:id="@+id/Injection"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#4f5bd5"
+        android:text="@string/Injection"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/Powder"
+        app:layout_constraintEnd_toEndOf="@+id/Powder"
+        app:layout_constraintStart_toStartOf="@+id/Pill" />
+
+    <Button
+        android:id="@+id/Drops"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#4f5bd5"
+        android:text="@string/Drops"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/Inhaler"
+        app:layout_constraintEnd_toEndOf="@+id/Inhaler"
+        app:layout_constraintStart_toStartOf="@+id/Pill" />
+
+    <Button
+        android:id="@+id/Powder"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#4f5bd5"
+        android:text="@string/Powder"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/Drops"
+        app:layout_constraintEnd_toEndOf="@+id/Drops"
+        app:layout_constraintStart_toStartOf="@+id/Pill" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:text="@string/fill"
+        android:textAlignment="inherit"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.296" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pills" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

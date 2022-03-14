@@ -58,7 +58,7 @@ public class AddingMed extends Fragment  {
                 bundle.putSerializable("obj", medicine);
             Log.i(TAG, "onCreateView: 1 " + bundle.toString());
 
-            NavDirections navDirections = com.example.myhealth.addingmed.view.AddingMedDirections.actionAddingMedToMedForm();
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.AddingMedDirections.actionAddingMedToMedForm();
             navController.navigate(R.id.MedFormfragment, bundle);}
             else {
                 Toast.makeText(getContext(), "Please put the medicine name", Toast.LENGTH_SHORT).show();

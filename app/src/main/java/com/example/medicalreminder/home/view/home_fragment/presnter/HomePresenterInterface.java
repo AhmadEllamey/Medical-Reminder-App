@@ -13,6 +13,9 @@ public interface HomePresenterInterface {
 
     void getTheMovies(List<Medicine> medicines);
 
+    void getDataFromFireStoreAndStoreItIntoRoom();
+
+    void transformTheIncomingDataToReadyToShowData();
 
 
 }

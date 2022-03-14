@@ -6,16 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-
 import com.example.medicalreminder.BlankFragment;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.addingmed.view.AddingMed;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
@@ -27,7 +24,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView ;
-
+    User user;
+    static User userX;
     FrameLayout frameLayout ;
 
 
@@ -39,6 +37,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         return fragmentManager;
     }
 
+    public static User getTheCurrentUser(){
+        return userX;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +48,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         fragmentManager = getSupportFragmentManager();
-
         Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("User");
-
+        user = (User) intent.getSerializableExtra("User");
+        userX = user;
         frameLayout = findViewById(R.id.container);
         drawerLayout = findViewById(R.id.my_drawer_layout);
         navigationView = findViewById(R.id.menuItems);
@@ -60,6 +61,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         getSupportActionBar().setTitle(user.getName());
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        // load the data (that the start date is before the current day plus 20 days ) from the fireStore to the local room
+
+
 
         getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new HomeFragment()).commit();
 
@@ -88,11 +93,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new ProfileFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_medicine){
             Toast.makeText(this,"Add medicine",Toast.LENGTH_SHORT).show();
-////            NavHostFragment navAddFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.AddingMed);
-//            NavController navController= Navigation.findNavController((View) item);
-//            NavGraph navGraph = navController.navigate(R.navigation.navig_graph);
-//            navGraph.setStartDestination(R.id.AddingMed);
-//            navController.setGraph(navGraph);
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new BlankFragment()).commit();
         }else if(item.getItemId() == R.id.nav_edit_medicine){
             Toast.makeText(this,"Edit Medicine",Toast.LENGTH_SHORT).show();

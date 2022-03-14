@@ -88,7 +88,7 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
 
         NavController navController;
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
     }
 }

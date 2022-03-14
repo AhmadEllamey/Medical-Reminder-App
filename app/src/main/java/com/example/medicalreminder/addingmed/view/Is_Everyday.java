@@ -82,14 +82,14 @@ public class Is_Everyday extends Fragment {
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
 
-            NavDirections navDirections = com.example.myhealth.addingmed.view.Is_EverydayDirections.actionIsEveryDayToHowOftenInDay();
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.Is_EverydayDirections.actionIsEveryDayToHowOftenInDay();
             navController.navigate(R.id.How_Often_In_Day_fragment,Sendbundle);}
 
         else{
             //not every day has different choose
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
-            NavDirections navDirections = com.example.myhealth.addingmed.view.Is_EverydayDirections.actionIsEveryDayFragmentToPlaceholder();
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.Is_EverydayDirections.actionIsEveryDayFragmentToPlaceholder();
             navController.navigate(R.id.howoftennoteveryday,Sendbundle);
         }
 

@@ -57,7 +57,7 @@ public class Set_Start_Date extends Fragment {
 
         NavController navController;
         navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Start_DateDirections.actionSetStartDateToTimeInDayFragment();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Start_DateDirections.actionSetStartDateToTimeInDayFragment();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
         Toast.makeText(getContext(), Generate_End_date.End_date, Toast.LENGTH_SHORT).show();
 

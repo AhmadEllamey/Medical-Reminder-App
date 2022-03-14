@@ -6,13 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BlankFragment">
 
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/containerX"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="false">
-
+        app:navGraph="@navigation/navig_graph"
+        >
     </androidx.fragment.app.FragmentContainerView>
+
+
 
 </FrameLayout>

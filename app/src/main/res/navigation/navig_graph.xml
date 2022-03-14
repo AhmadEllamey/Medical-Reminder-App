@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navig_graph"
-    app:startDestination="@id/AddingMed">
+    app:startDestination="@+id/AddingMed">
+
     <fragment
         android:id="@+id/AddingMed"
-        android:name="com.example.myhealth.addingmed.view.AddingMed"
+        android:name="com.example.medicalreminder.addingmed.view.AddingMed"
         android:label="AddingMed">
 <!--        el fragment mstnia eh mn eli 2blha   // awel w7da mash mstya 7aga-->
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/MedFormfragment"
-        android:name="com.example.myhealth.addingmed.view.MedForm"
+        android:name="com.example.medicalreminder.addingmed.view.MedForm"
         android:label="MedForm" >
         <action
             android:id="@+id/action_MedForm_to_Strengthfragment"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/Strengthfragment"
-        android:name="com.example.myhealth.addingmed.view.Strength"
+        android:name="com.example.medicalreminder.addingmed.view.Strength"
         android:label="strengthfragment" >
 <!--        mstnia name w el form -->
 
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/TakenForfragment"
-        android:name="com.example.myhealth.addingmed.view.Taking_For"
+        android:name="com.example.medicalreminder.addingmed.view.Taking_For"
         android:label="TakenFor" >
 
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/IsEveryDayFragment"
-        android:name="com.example.myhealth.addingmed.view.Is_Everyday"
+        android:name="com.example.medicalreminder.addingmed.view.Is_Everyday"
         android:label="IsEveryDay" >
 <!--        name and form and strenght and why-->
 
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/How_Often_In_Day_fragment"
-        android:name="com.example.myhealth.addingmed.view.HowOften"
+        android:name="com.example.medicalreminder.addingmed.view.HowOften"
         android:label="How_Often_In_Day" >
         <action
             android:id="@+id/action_How_Often_In_Day_to_Time_In_Day"
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/Time_In_Day_fragment"
-        android:name="com.example.myhealth.addingmed.view.TIme_within_day"
+        android:name="com.example.medicalreminder.addingmed.view.TIme_within_day"
         android:label="Time_In_Day" >
         <action
             android:id="@+id/action_Time_In_Day_to_set_time"
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/set_time_fragment"
-        android:name="com.example.myhealth.addingmed.view.Set_Time_In_Day"
+        android:name="com.example.medicalreminder.addingmed.view.Set_Time_In_Day"
         android:label="Set_time" >
 
         <action
@@ -96,7 +96,7 @@
 
     <fragment
         android:id="@+id/SetStartDate"
-        android:name="com.example.myhealth.addingmed.view.Set_Start_Date"
+        android:name="com.example.medicalreminder.addingmed.view.Set_Start_Date"
         android:label="SetStartDate" >
         <action
             android:id="@+id/action_SetStartDate_to_Time_In_Day_fragment"
@@ -104,7 +104,7 @@
     </fragment>
     <fragment
         android:id="@+id/Med_amount_fragment"
-        android:name="com.example.myhealth.addingmed.view.Med_Amount"
+        android:name="com.example.medicalreminder.addingmed.view.Med_Amount"
         android:label="Med_amount" >
         <action
             android:id="@+id/action_Med_amount_fragment_to_med_Left"
@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/med_Left_fragment"
-        android:name="com.example.myhealth.addingmed.view.Med_Left"
+        android:name="com.example.medicalreminder.addingmed.view.Med_Left"
         android:label="Med_Left" >
         <action
             android:id="@+id/action_med_Left_fragment_to_end2"
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/end2"
-        android:name="com.example.myhealth.addingmed.view.End"
+        android:name="com.example.medicalreminder.addingmed.view.End"
         android:label="End" >
         <action
             android:id="@+id/action_end2_to_displaymed"
@@ -128,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/howoftennoteveryday"
-        android:name="com.example.myhealth.addingmed.view.howoften_notEveryday"
+        android:name="com.example.medicalreminder.addingmed.view.howoften_notEveryday"
         android:label="howoftennoteveryday">
         <action
             android:id="@+id/action_howoftennoteverydat_to_SetStartDate"
@@ -139,7 +139,7 @@
     </fragment>
     <fragment
         android:id="@+id/choose_theDays"
-        android:name="com.example.myhealth.addingmed.view.Choose_theDays"
+        android:name="com.example.medicalreminder.addingmed.view.Choose_theDays"
         android:label="Choose_theDays" >
         <action
             android:id="@+id/action_choose_theDays_to_Time_In_Day_fragment"
@@ -147,7 +147,7 @@
     </fragment>
     <fragment
         android:id="@+id/displaymed"
-        android:name="com.example.myhealth.displaymedicin.Displaymed"
+        android:name="com.example.medicalreminder.displaymedicin.Displaymed"
         android:label="Displaymed" />
 
 </navigation>

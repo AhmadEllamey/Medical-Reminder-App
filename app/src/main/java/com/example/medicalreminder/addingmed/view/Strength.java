@@ -61,7 +61,7 @@ public class Strength extends Fragment {
         //sending name and form and strenght
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.StrengthDirections.actionStrengthfragmentToTakenFor();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.StrengthDirections.actionStrengthfragmentToTakenFor();
         navController.navigate(R.id.TakenForfragment,Sendbundle);
         }
         else{

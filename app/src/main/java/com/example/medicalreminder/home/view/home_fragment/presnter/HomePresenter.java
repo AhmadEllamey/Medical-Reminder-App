@@ -1,6 +1,8 @@
 package com.example.medicalreminder.home.view.home_fragment.presnter;
 
-import com.example.medicalreminder.database.DatabaseFunctions;
+
+
+
 import com.example.medicalreminder.database.Repo;
 import com.example.medicalreminder.home.view.home_fragment.model.Medicine;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeViewInterface;
@@ -29,6 +31,13 @@ public class HomePresenter implements HomePresenterInterface {
         homeViewInterface.updateTheListOfMedicines(medicines);
     }
 
+    @Override
+    public void getDataFromFireStoreAndStoreItIntoRoom() {
+         // get the fire store data and store them locally in a room
+
+
+
+    }
 
 
 }

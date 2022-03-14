@@ -93,7 +93,7 @@ public class TIme_within_day extends Fragment {
 
         Sendbundle.putSerializable("obj",medicine);
         NavController navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
         navController.navigate(R.id.set_time_fragment,Sendbundle);
     }
 
@@ -105,7 +105,7 @@ public class TIme_within_day extends Fragment {
 
         Sendbundle.putSerializable("obj",medicine);
         NavController navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
         navController.navigate(R.id.set_time_fragment,Sendbundle);
     }
 
@@ -117,7 +117,7 @@ public class TIme_within_day extends Fragment {
 
         Sendbundle.putSerializable("obj",medicine);
         NavController navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
+        NavDirections navDirections =com.example.medicalreminder.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
         navController.navigate(R.id.set_time_fragment,Sendbundle);
     }
 
@@ -129,7 +129,7 @@ public class TIme_within_day extends Fragment {
 
         Sendbundle.putSerializable("obj",medicine);
         NavController navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.myhealth.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.TIme_within_dayDirections.actionTimeInDayToSetTime();
         navController.navigate(R.id.set_time_fragment,Sendbundle);
     }
 }

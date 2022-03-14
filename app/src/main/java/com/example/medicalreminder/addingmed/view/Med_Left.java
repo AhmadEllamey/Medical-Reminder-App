@@ -63,7 +63,7 @@ public class Med_Left extends Fragment {
         Log.i(TAG, "save: entered");
         Toast.makeText(getContext(), "entered", Toast.LENGTH_SHORT).show();
 
-        NavDirections navDirections = com.example.myhealth.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
         navController.navigate(R.id.end2,Sendbundle);
             System.out.println(
                     medicine.getMed_name()+"\n"+

@@ -53,7 +53,7 @@ public class Taking_For extends Fragment {
             medicine.setWhy_Taken(why.getText().toString());
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);
-            NavDirections navDirections = com.example.myhealth.addingmed.view.Taking_ForDirections.actionTakenForToIsEveryDay();
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.Taking_ForDirections.actionTakenForToIsEveryDay();
             navController.navigate(R.id.IsEveryDayFragment,Sendbundle);}
         else{
             Toast.makeText(getContext(), "Fill the reason", Toast.LENGTH_SHORT).show();

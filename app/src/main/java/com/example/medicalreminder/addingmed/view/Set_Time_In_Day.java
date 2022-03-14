@@ -122,7 +122,7 @@ public class Set_Time_In_Day extends Fragment{
                     System.out.println("================================================================ sended \n  "+counter);
 
                     Sendbundle.putSerializable("obj",medicine);
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToTimeInDayFragment();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToTimeInDayFragment();
                     navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
                 //}
             }
@@ -139,7 +139,7 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: ++++++"+medicine.getMed_name());
 
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.Med_amount_fragment,Sendbundle);
                     }
                 else{
@@ -154,7 +154,7 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.end2,Sendbundle);
                     System.out.println(
                             medicine.getMed_name()+"\n"+
@@ -209,7 +209,7 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putInt("count",counter2); //if twice
                     System.out.println(counter+" sended from settime");
                     Sendbundle.putSerializable("obj",medicine);
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToChooseTheDays();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToChooseTheDays();
                     navController.navigate(R.id.choose_theDays,Sendbundle);
                 //}
 
@@ -244,7 +244,7 @@ public class Set_Time_In_Day extends Fragment{
 
 
                     );
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.Med_amount_fragment,Sendbundle);
                 }
                 else{
@@ -259,7 +259,7 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = com.example.myhealth.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
                     navController.navigate(R.id.end2,Sendbundle);
                     System.out.println(
                             medicine.getMed_name()+"\n"+

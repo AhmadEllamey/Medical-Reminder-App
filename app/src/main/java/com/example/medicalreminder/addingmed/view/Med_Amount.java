@@ -53,7 +53,7 @@ public class Med_Amount extends Fragment {
             Bundle Sendbundle = new Bundle();
             medicine.setMed_amount(Integer.parseInt(amounttext.getText().toString()));
             Sendbundle.putSerializable("obj", medicine);
-            NavDirections navDirections = com.example.myhealth.addingmed.view.Med_AmountDirections.actionMedAmountFragmentToMedLeft();
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_AmountDirections.actionMedAmountFragmentToMedLeft();
             navController.navigate(R.id.med_Left_fragment, Sendbundle); }
         else{
             Toast.makeText(getContext(), "Fill the amount", Toast.LENGTH_LONG).show();

@@ -792,7 +792,7 @@ public class Edit_View extends Fragment {
                     System.out.println("okay");
                     everyday.setChecked(false);
                     periodofdays.setChecked(false);
-                    medicine.setFlage("Specific days");
+                    medicine.setFlage("Specific_Days");
                     medicine.setStart_date(null);
                     medicine.setEnd_date(null);
                     SetDialoge();
@@ -808,7 +808,7 @@ public class Edit_View extends Fragment {
                 if(periodofdays.isChecked()){
                     specificdays.setChecked(false);
                     everyday.setChecked(false);
-                    medicine.setFlage("period of days");
+                    medicine.setFlage("period_of_days");
                     setperiodofdaysDilaoge();
 
 //

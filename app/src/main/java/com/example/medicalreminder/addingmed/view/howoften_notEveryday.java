@@ -43,14 +43,15 @@ public class howoften_notEveryday extends Fragment {
         Button holder = view.findViewById(view.getId());
         count= holder.getText().toString();
         medicine.setHow_often(count);
+        medicine.setFlage("Specific_Days");
         int counter=0;
         if(view.getId() == R.id.two_days_aweek ) {
             counter = 2;
-            medicine.setFlage("Two days a week");
+            medicine.setFlage("Specific_Days");
         }
         if(view.getId() == R.id.threedaysaweek ){
             counter = 3;
-            medicine.setFlage("Three days a week");
+            medicine.setFlage("Specific_Days");
         }
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
@@ -64,7 +65,7 @@ public class howoften_notEveryday extends Fragment {
     private void every2day(View view) {
         navController = Navigation.findNavController(view);
         Bundle Sendbundle = new Bundle();
-        medicine.setFlage("Every two days");
+        medicine.setFlage("Every_two_days");
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",2);
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
@@ -74,7 +75,7 @@ public class howoften_notEveryday extends Fragment {
     private void every28day(View view) {
         navController = Navigation.findNavController(view);
         Bundle Sendbundle = new Bundle();
-        medicine.setFlage("Every 28 days");
+        medicine.setFlage("period_of_days");
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",28);
 

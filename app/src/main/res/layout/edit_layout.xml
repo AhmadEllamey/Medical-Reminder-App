@@ -29,8 +29,8 @@
                 android:id="@+id/eveningtime"
                 android:layout_width="114dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="116dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="12dp"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/Morningtime"
                 app:layout_constraintTop_toBottomOf="@+id/spinner1" />
@@ -74,10 +74,8 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="396dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="11dp"
+                android:layout_width="350dp"
+                android:layout_height="35dp"
                 android:text="@string/medname"
                 android:textAlignment="textStart"
                 android:textColor="#4f5bd5"
@@ -85,22 +83,22 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.372"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.053" />
+                app:layout_constraintVertical_bias="0.035" />
 
             <EditText
                 android:id="@+id/mednameedit"
                 android:layout_width="354dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="@string/medname"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintHorizontal_bias="0.428"
+                app:layout_constraintHorizontal_bias="0.25"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -204,7 +202,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/specificcheckbox" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/Unit"
                 android:layout_width="29dp"
                 android:layout_height="39dp"
                 android:text="g"
@@ -236,7 +234,7 @@
                 android:layout_width="92dp"
                 android:layout_height="33dp"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="12dp"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner1" />

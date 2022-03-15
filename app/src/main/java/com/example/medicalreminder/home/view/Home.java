@@ -26,11 +26,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     NavigationView navigationView ;
     User user;
     static User userX;
-    FrameLayout frameLayout ;
+    static FrameLayout frameLayout ;
 
 
     public static FragmentManager fragmentManager;
-
+    public static FrameLayout getFrameLayout(){
+        return frameLayout;
+    }
 
 
     public static FragmentManager getFragmentManagerX() {
@@ -64,13 +66,16 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         // load the data (that the start date is before the current day plus 20 days ) from the fireStore to the local room
 
-
-
         getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new HomeFragment()).commit();
 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -104,7 +109,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(this,"Manage health takers",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_sittings){
-            Toast.makeText(this,"Sittings",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Settings",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_log_out){
             Toast.makeText(this,"Log Out",Toast.LENGTH_SHORT).show();

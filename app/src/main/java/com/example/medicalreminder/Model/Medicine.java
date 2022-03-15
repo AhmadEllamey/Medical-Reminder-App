@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Medicine implements Serializable {
+    private  String User_name;
 
     private String Med_name;
 
@@ -14,8 +15,9 @@ public class Medicine implements Serializable {
 
     private String Why_Taken;
 
-    private Boolean Is_Every_Day;
+    private String Flage;
 
+    private  String S_Unit;
     private  String Morning;
     private  String hour_of_Morning;
 
@@ -56,6 +58,16 @@ public class Medicine implements Serializable {
     private boolean Thursday;
     private boolean Friday;
 
+    public boolean isIs_Every_Day() {
+        return Is_Every_Day;
+    }
+
+    public void setIs_Every_Day(boolean is_Every_Day) {
+        Is_Every_Day = is_Every_Day;
+    }
+
+    private boolean Is_Every_Day;
+
 
     public Medicine() {
     }
@@ -92,12 +104,12 @@ public class Medicine implements Serializable {
         Why_Taken = why_Taken;
     }
 
-    public Boolean getIs_Every_Day() {
-        return Is_Every_Day;
+    public String getFlage() {
+        return Flage;
     }
 
-    public void setIs_Every_Day(Boolean is_Every_Day) {
-        Is_Every_Day = is_Every_Day;
+    public void setFlage(String flage) {
+        Flage = flage;
     }
 
     public String getMorning() {
@@ -290,5 +302,21 @@ public class Medicine implements Serializable {
 
     public void setFriday(boolean friday) {
         Friday = friday;
+    }
+
+    public String getUser_name() {
+        return User_name;
+    }
+
+    public void setUser_name(String user_name) {
+        User_name = user_name;
+    }
+
+    public String getS_Unit() {
+        return S_Unit;
+    }
+
+    public void setS_Unit(String s_Unit) {
+        S_Unit = s_Unit;
     }
 }

@@ -66,7 +66,7 @@ public class Set_Start_Date extends Fragment {
                         medicine.getMed_form()+"\n"+
                         medicine.getStrength()+"\n"+
                         medicine.getHow_often()+"\n"+
-                        medicine.getFlage()+"\n"+
+                        medicine.getFlag()+"\n"+
                         medicine.getWhy_Taken()+"\n"+
                         medicine.getMed_amount()+"\n"+
                         medicine.getMed_left()+"\n"+

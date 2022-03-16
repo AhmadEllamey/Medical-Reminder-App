@@ -25,7 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.home.view.home_fragment.model.Medicine;
+import com.example.medicalreminder.home.view.Home;
+import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenter;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
 
@@ -39,13 +40,15 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
     RecyclerView recyclerView ;
     Context context ;
-    static List<Medicine> medicines ;
+    static List<MedicineReadyToShow> medicineReadyToShows;
     Communicator communicator;
     FragmentManager fragmentManager;
     MedicineAdapter medicineAdapter;
 
 
     HomePresenterInterface homePresenterInterface ;
+
+    com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenterInterfaceParent;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -65,8 +68,10 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        homePresenterInterfaceParent
+                = new com.example.medicalreminder.home.presenter.HomePresenter(this);
 
-        medicines = new ArrayList<>();
+        medicineReadyToShows = new ArrayList<>();
         context = view.getContext();
         recyclerView = view.findViewById(R.id.recycleView);
         recyclerView.setHasFixedSize(true);
@@ -74,24 +79,11 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         communicator = (Communicator) getActivity();
-        medicineAdapter = new MedicineAdapter(context,medicines,communicator,fragmentManager);
+        medicineAdapter = new MedicineAdapter(context, medicineReadyToShows,communicator,fragmentManager);
         recyclerView.setAdapter(medicineAdapter);
 
-        homePresenterInterface = new HomePresenter(this);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println("--------------->>>>>" + dtf.format(now));
 
-        homePresenterInterface.requestUpdateMedicineList(dtf.format(now));
-
-
-
-
-
-
-
-
-
+        homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -131,7 +123,7 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
                     e.printStackTrace();
                 }
 
-                String formateDate = new SimpleDateFormat("MM/dd/yyyy").format(dateWithNormalFormat);
+                String formateDate = new SimpleDateFormat("dd/MM/yyyy").format(dateWithNormalFormat);
                 System.out.println(formateDate);
 
 
@@ -140,15 +132,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
                 homePresenterInterface.requestUpdateMedicineList(formateDate);
 
-
-
-
-
             }
         });
-
-
-
 
 
         return view ;
@@ -156,11 +141,22 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
 
     @Override
-    public void updateTheListOfMedicines(List<Medicine> medicines) {
-        MedicineAdapter.setMedicines(medicines);
+    public void updateTheListOfMedicines(List<MedicineReadyToShow> medicineReadyToShows) {
+        // update the list of the day
+        MedicineAdapter.setMedicineReadyToShows(medicineReadyToShows);
         System.out.println("--------------------------------------------------------------------------------------------------------------");
         //System.out.println(medicines.get(0));
         medicineAdapter.notifyDataSetChanged();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void updateTheUI() {
+        homePresenterInterface = new HomePresenter(this);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("--------------->>>>>" + dtf.format(now));
+        homePresenterInterface.requestUpdateMedicineList(dtf.format(now));
     }
 
 

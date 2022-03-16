@@ -2,7 +2,6 @@ package com.example.medicalreminder.addingmed.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,7 @@ public class HowOften extends Fragment {
                     medicine.getMed_form()+"\n"+
                     medicine.getStrength()+"\n"+
                     medicine.getWhy_Taken()+"\n"+
-                    medicine.getFlage());
+                    medicine.getFlag());
         }
 
         view.findViewById(R.id.once).setOnClickListener(this::gonext);

@@ -88,6 +88,7 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
         sharedpreferences = view.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
+
         /*
         if(!sharedpreferences.getString("email","NA").equals("NA")){
             // the user is already signed in before , then go to the home with his stored info

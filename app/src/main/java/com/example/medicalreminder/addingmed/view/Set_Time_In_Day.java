@@ -161,7 +161,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getHow_often()+"\n"+
-                                    medicine.getFlage()+"\n"+
+                                    medicine.getFlag()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
                                     medicine.getMed_amount()+"\n"+
                                     medicine.getMed_left()+"\n"+
@@ -229,7 +229,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
-                                    medicine.getFlage()+"\n"+
+                                    medicine.getFlag()+"\n"+
                                     medicine.getHow_often()+"\n"+
                                     medicine.getMorning()+"\n"+
                                     medicine.getHour_of_Morning()+"\n"+
@@ -266,7 +266,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getHow_often()+"\n"+
-                                    medicine.getFlage()+"\n"+
+                                    medicine.getFlag()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
                                     medicine.getMed_amount()+"\n"+
                                     medicine.getMed_left()+"\n"+

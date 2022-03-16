@@ -1,61 +1,102 @@
 package com.example.medicalreminder.Model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+
+
+//@Entity(tableName = "Medicine Info")
+@Entity( tableName = "MedicineInfo" , primaryKeys = {"user_name","med_name"})
 public class Medicine implements Serializable {
+
+    @ColumnInfo(name = "user_name")
+    @NonNull
     private  String User_name;
-
+    @NonNull
+    @ColumnInfo(name = "med_name")
     private String Med_name;
-
+    @ColumnInfo(name = "med_form")
     private String Med_form;
-
+    @ColumnInfo(name = "strength")
     private String Strength;
 
+    @ColumnInfo(name = "Why_Taken")
     private String Why_Taken;
 
-    private String Flage;
+    @ColumnInfo(name = "flag")
+    private String Flag;
 
+
+    @ColumnInfo(name = "s_Unit")
     private  String S_Unit;
+
+
+    @ColumnInfo(name = "morning")
     private  String Morning;
+    @ColumnInfo(name = "hour_of_morning")
     private  String hour_of_Morning;
 
+    @ColumnInfo(name = "noon")
     private  String Noon;
+    @ColumnInfo(name = "hour_of_noon")
     private  String hour_of_Noon;
 
+    @ColumnInfo(name = "evening")
     private  String Evening;
+    @ColumnInfo(name = "hour_of_evening")
     private  String hour_of_Evening;
 
+    @ColumnInfo(name = "night")
     private  String Night;
+    @ColumnInfo(name = "hour_of_night")
     private  String hour_of_Night;
 
+    @ColumnInfo(name = "how_often")
     private String How_often; //once twice
 
+    @ColumnInfo(name = "count")
     private int count;//
 
+    @ColumnInfo(name = "med_amount")
     private int med_amount;
 
+    @ColumnInfo(name = "med_left")
     private int med_left;
 
+    @ColumnInfo(name = "at_what_time")
     private String At_what_time;
 
+    @ColumnInfo(name = "start_date")
     private  String start_date;
 
+    @ColumnInfo(name = "end_date")
     private String end_date;
 
+    @ColumnInfo(name = "active")
     private Boolean active;
 
+    @ColumnInfo(name = "last_time_taken")
     private String Last_time_taken;
 
-    //fixeddays
+    //fixed days
 
+
+    @ColumnInfo(name = "Sunday")
     private boolean Sunday;
+    @ColumnInfo(name = "Saturday")
     private boolean Saturday;
+    @ColumnInfo(name = "Monday")
     private boolean Monday;
+    @ColumnInfo(name = "Tuesday")
     private boolean Tuesday;
+    @ColumnInfo(name = "Wedensday")
     private boolean Wedensday;
+    @ColumnInfo(name = "Thursday")
     private boolean Thursday;
+    @ColumnInfo(name = "Friday")
     private boolean Friday;
 
     public boolean isIs_Every_Day() {
@@ -66,6 +107,7 @@ public class Medicine implements Serializable {
         Is_Every_Day = is_Every_Day;
     }
 
+    @ColumnInfo(name = "is_every_day")
     private boolean Is_Every_Day;
 
 
@@ -104,12 +146,12 @@ public class Medicine implements Serializable {
         Why_Taken = why_Taken;
     }
 
-    public String getFlage() {
-        return Flage;
+    public String getFlag() {
+        return Flag;
     }
 
-    public void setFlage(String flage) {
-        Flage = flage;
+    public void setFlag(String flag) {
+        Flag = flag;
     }
 
     public String getMorning() {

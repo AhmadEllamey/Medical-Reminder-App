@@ -6,10 +6,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "medicines_ready_to_view")
-public class Medicine {
+import org.jetbrains.annotations.NotNull;
 
-    @PrimaryKey
+@Entity(tableName = "medicines_ready_to_view" , primaryKeys = {"name","time","user_name","date"})
+public class MedicineReadyToShow {
+
     @ColumnInfo(name = "name")
     @NonNull
     private String name ;
@@ -17,7 +18,11 @@ public class Medicine {
     @NonNull
     private String time ;
     @ColumnInfo(name = "date")
+    @NonNull
     private String date ;
+    @ColumnInfo(name = "user_name")
+    @NonNull
+    private String user_name ;
     @ColumnInfo(name = "pills")
     private String pills_to_take ;
     @ColumnInfo(name = "states")
@@ -25,29 +30,32 @@ public class Medicine {
     @ColumnInfo(name = "action")
     private String action ; // missed or done
 
-    public Medicine(String name, String time, String date, String pills_to_take, String states, String action) {
+    public MedicineReadyToShow(@NonNull String name, @NonNull String time, String date, String user_name, String pills_to_take, String states, String action) {
         this.name = name;
         this.time = time;
         this.date = date;
+        this.user_name = user_name;
         this.pills_to_take = pills_to_take;
         this.states = states;
         this.action = action;
     }
 
 
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
+    @NonNull
     public String getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(@NonNull String time) {
         this.time = time;
     }
 
@@ -57,6 +65,14 @@ public class Medicine {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getPills_to_take() {

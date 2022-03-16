@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -33,6 +35,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+
+    static Context context ;
+
+    public static Context getContext() {
+        return context;
+    }
+
     public static FragmentManager getFragmentManagerX() {
         return fragmentManager;
     }
@@ -46,6 +55,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        context = this;
 
         fragmentManager = getSupportFragmentManager();
         Intent intent = getIntent();

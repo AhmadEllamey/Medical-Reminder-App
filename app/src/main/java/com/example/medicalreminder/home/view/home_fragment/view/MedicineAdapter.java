@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.home.view.home_fragment.model.Medicine;
+import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 
 import java.util.List;
 
@@ -21,20 +21,20 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
 
     Context context ;
-    static List<Medicine> medicines ;
+    static List<MedicineReadyToShow> medicineReadyToShows;
     Communicator communicator;
     FragmentManager fragmentManager;
 
 
-    public MedicineAdapter(Context context, List<Medicine> medicines, Communicator communicator, FragmentManager fragmentManager) {
+    public MedicineAdapter(Context context, List<MedicineReadyToShow> medicineReadyToShows, Communicator communicator, FragmentManager fragmentManager) {
         this.context = context;
-        this.medicines = medicines;
+        this.medicineReadyToShows = medicineReadyToShows;
         this.communicator = communicator;
         this.fragmentManager = fragmentManager;
     }
 
-    public static void setMedicines(List<Medicine> medicines) {
-        MedicineAdapter.medicines = medicines;
+    public static void setMedicineReadyToShows(List<MedicineReadyToShow> medicineReadyToShows) {
+        MedicineAdapter.medicineReadyToShows = medicineReadyToShows;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -73,15 +73,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public void onBindViewHolder(@NonNull MedicineAdapter.ViewHolder holder, int position) {
 
 
-        holder.medicineName.setText(medicines.get(position).getName());
-        holder.medicineState.setText(medicines.get(position).getStates());
-        holder.medicineAction.setText(medicines.get(position).getAction());
-        holder.medicineTime.setText(medicines.get(position).getTime());
+        holder.medicineName.setText(medicineReadyToShows.get(position).getName());
+        holder.medicineState.setText(medicineReadyToShows.get(position).getStates());
+        holder.medicineAction.setText(medicineReadyToShows.get(position).getAction());
+        holder.medicineTime.setText(medicineReadyToShows.get(position).getTime());
 
     }
 
     @Override
     public int getItemCount() {
-        return medicines.size();
+        return medicineReadyToShows.size();
     }
 }

@@ -115,7 +115,7 @@ public class Med_Left extends Fragment {
         db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
                 .set(medicine).addOnSuccessListener(aVoid -> {
             //Log.d(TAG, "DocumentSnapshot successfully written!");
-            getParentFragmentManager().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+            //getParentFragmentManager().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

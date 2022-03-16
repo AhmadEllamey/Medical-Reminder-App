@@ -359,12 +359,10 @@
 //
 //}
 package com.example.medicalreminder.editmedicin;
-import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
@@ -372,21 +370,15 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.icu.util.Calendar;
-import android.icu.util.LocaleData;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.PopupWindow;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -395,13 +387,9 @@ import android.widget.Toast;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addingmed.view.Generate_End_date;
-import com.example.medicalreminder.editmedicin.Edit_Adapter;
-
-import org.w3c.dom.Text;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 //import java.util.Calendar;
@@ -778,7 +766,7 @@ public class Edit_View extends Fragment {
                     System.out.println("okay");
                     specificdays.setChecked(false);
                     periodofdays.setChecked(false);
-                    medicine.setFlage("Everyday");;
+                    medicine.setFlag("Everyday");;
                     medicine.setStart_date(null);
                     medicine.setEnd_date(null);
 
@@ -792,7 +780,7 @@ public class Edit_View extends Fragment {
                     System.out.println("okay");
                     everyday.setChecked(false);
                     periodofdays.setChecked(false);
-                    medicine.setFlage("Specific_Days");
+                    medicine.setFlag("Specific_Days");
                     medicine.setStart_date(null);
                     medicine.setEnd_date(null);
                     SetDialoge();
@@ -808,7 +796,7 @@ public class Edit_View extends Fragment {
                 if(periodofdays.isChecked()){
                     specificdays.setChecked(false);
                     everyday.setChecked(false);
-                    medicine.setFlage("period_of_days");
+                    medicine.setFlag("period_of_days");
                     setperiodofdaysDilaoge();
 
 //
@@ -946,7 +934,7 @@ public class Edit_View extends Fragment {
                 counter=Integer.parseInt(num_of_days.getText().toString());
                 if (Integer.parseInt(num_of_days.getText().toString())>=365) {
                     Toast.makeText(getContext(), "Set it everyday", Toast.LENGTH_SHORT).show();
-                    medicine.setFlage("Everyday");
+                    medicine.setFlag("Everyday");
                 }
 //                System.out.println(Selecteddays);
                 medicine.setStart_date(date);
@@ -1098,7 +1086,7 @@ public class Edit_View extends Fragment {
         System.out.println(medicine.getHour_of_Night());
         System.out.println(medicine.getStrength());
         System.out.println(medicine.getMed_left());
-        System.out.println(medicine.getFlage());
+        System.out.println(medicine.getFlag());
 
     }
 

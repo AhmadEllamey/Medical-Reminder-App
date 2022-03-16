@@ -15,13 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Is_Everyday extends Fragment {
     Button yes;
@@ -57,7 +53,7 @@ public class Is_Everyday extends Fragment {
             public void onClick(View view) {
                 is = true;
                 navController = Navigation.findNavController(yes);
-                medicine.setFlage("Everyday");
+                medicine.setFlag("Everyday");
                 medicine.setIs_Every_Day(true);
                 gonext(view);
             }

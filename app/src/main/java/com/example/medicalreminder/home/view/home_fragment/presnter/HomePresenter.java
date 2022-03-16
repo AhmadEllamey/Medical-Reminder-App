@@ -4,7 +4,7 @@ package com.example.medicalreminder.home.view.home_fragment.presnter;
 
 
 import com.example.medicalreminder.database.Repo;
-import com.example.medicalreminder.home.view.home_fragment.model.Medicine;
+import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeViewInterface;
 
 import java.util.List;
@@ -27,8 +27,8 @@ public class HomePresenter implements HomePresenterInterface {
     }
 
     @Override
-    public void getTheMovies(List<Medicine> medicines) {
-        homeViewInterface.updateTheListOfMedicines(medicines);
+    public void getTheMovies(List<MedicineReadyToShow> medicineReadyToShows) {
+        homeViewInterface.updateTheListOfMedicines(medicineReadyToShows);
     }
 
     @Override

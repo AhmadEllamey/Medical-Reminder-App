@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/numberofdays"
+        android:id="@+id/refilldisplay"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_marginStart="29dp"
@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toEndOf="@+id/numberofdays"
+        app:layout_constraintStart_toEndOf="@+id/refilldisplay"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.131" />
 
@@ -53,7 +53,7 @@
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/numberofdays"
+        app:layout_constraintEnd_toStartOf="@+id/refilldisplay"
         app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

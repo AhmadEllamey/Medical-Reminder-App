@@ -116,4 +116,5 @@
     <string name="specificdays">Specific Days</string>
     <string name="instructionadd">Do you want to add any instructions?</string>
     <string name="Save">Save</string>
+    <string name="Refilldisplaytxt">Refill your prescription</string>
 </resources>

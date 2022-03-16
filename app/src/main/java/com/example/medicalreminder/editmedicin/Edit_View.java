@@ -901,7 +901,7 @@ public class Edit_View extends Fragment {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         // ...Irrelevant code for customizing the buttons and title
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.popupcounter, null);
-        num_of_days = dialogView.findViewById(R.id.numberofdays);
+        num_of_days = dialogView.findViewById(R.id.refilldisplay);
 //        dialogView.findViewById(R.id.Setbtn).setOnClickListener(new View.OnClickListener() {
 //                        @Override
 //                        public void onClick(View view) {

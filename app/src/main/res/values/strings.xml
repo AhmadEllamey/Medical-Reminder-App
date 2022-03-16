@@ -113,4 +113,7 @@
     <string name="re_enter_password">Re-Enter Password</string>
     <string name="date_of_birth">Date Of Birth</string>
     <string name="finish">Finish</string>
+    <string name="specificdays">Specific Days</string>
+    <string name="instructionadd">Do you want to add any instructions?</string>
+    <string name="Save">Save</string>
 </resources>

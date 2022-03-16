@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_set_time_fragment_to_choose_theDays"
             app:destination="@id/choose_theDays" />
+        <action
+            android:id="@+id/action_set_time_fragment_to_instructions2"
+            app:destination="@id/instructions2" />
     </fragment>
 <!--    <fragment-->
     <!--        name and form and strenght and why and IS  and how often and counter -->
@@ -115,17 +118,13 @@
         android:name="com.example.medicalreminder.addingmed.view.Med_Left"
         android:label="Med_Left" >
         <action
-            android:id="@+id/action_med_Left_fragment_to_end2"
-            app:destination="@id/end2" />
+            android:id="@+id/action_med_Left_fragment_to_instructions2"
+            app:destination="@id/instructions2" />
     </fragment>
     <fragment
         android:id="@+id/end2"
         android:name="com.example.medicalreminder.addingmed.view.End"
-        android:label="End" >
-        <action
-            android:id="@+id/action_end2_to_displaymed"
-            app:destination="@id/displaymed" />
-    </fragment>
+        android:label="End" />
     <fragment
         android:id="@+id/howoftennoteveryday"
         android:name="com.example.medicalreminder.addingmed.view.howoften_notEveryday"
@@ -149,5 +148,9 @@
         android:id="@+id/displaymed"
         android:name="com.example.medicalreminder.displaymedicin.Displaymed"
         android:label="Displaymed" />
+    <fragment
+        android:id="@+id/instructions2"
+        android:name="com.example.medicalreminder.addingmed.view.Instructions"
+        android:label="Instructions" />
 
 </navigation>

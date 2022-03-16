@@ -1,6 +1,5 @@
 package com.example.medicalreminder.addingmed.view;
 
-import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +21,6 @@ import androidx.navigation.Navigation;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
 
-import java.net.SocketOption;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +40,7 @@ public class Strength extends Fragment {
         //to be stored
         strength=view.findViewById(R.id.strenghtid);
 
-        view.findViewById(R.id.totakenfor).setOnClickListener(this::next);
+        view.findViewById(R.id.saveMedicine).setOnClickListener(this::next);
         List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("mg");
         spinnerArray.add("g");

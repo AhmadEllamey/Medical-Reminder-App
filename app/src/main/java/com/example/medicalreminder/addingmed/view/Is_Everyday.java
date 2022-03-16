@@ -2,6 +2,7 @@ package com.example.medicalreminder.addingmed.view;
 
 import static android.content.ContentValues.TAG;
 
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,10 @@ import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Is_Everyday extends Fragment {
     Button yes;
@@ -55,6 +60,16 @@ public class Is_Everyday extends Fragment {
                 navController = Navigation.findNavController(yes);
                 medicine.setFlag("Everyday");
                 medicine.setIs_Every_Day(true);
+
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                String formattedDate = df.format(c);
+
+                //for calender in home
+                medicine.setStart_date(formattedDate);
+
+                medicine.setLast_time_taken(formattedDate);
+
                 gonext(view);
             }
         });

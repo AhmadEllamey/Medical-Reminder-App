@@ -70,77 +70,47 @@
     <!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
     <Button
-        android:id="@+id/threedaysaweek"
-        android:layout_width="329dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="#4f5bd5"
-        android:onClick="gonext"
-        android:text="@string/threedaysaweek"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/two_days_aweek"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/two_days_aweek"
-        app:layout_constraintTop_toTopOf="@+id/two_days_aweek" />
-
-    <Button
         android:id="@+id/once_a_week"
         android:layout_width="327dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="84dp"
         android:backgroundTint="#4f5bd5"
         android:onClick="gonext"
-        android:text="@string/onceweek"
+        android:text="@string/specificdays"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#F1ECEC"
         android:textColorLink="#F3ECEC"
-        app:layout_constraintBottom_toTopOf="@+id/every2days"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.843" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
         android:id="@+id/every2days"
         android:layout_width="328dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#4f5bd5"
         android:onClick="gonext"
         android:text="@string/Every2days"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/two_days_aweek"
-        app:layout_constraintEnd_toEndOf="@+id/once_a_week"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/once_a_week" />
-
-    <Button
-        android:id="@+id/two_days_aweek"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="216dp"
-        android:backgroundTint="#4f5bd5"
-        android:onClick="gonext"
-        android:text="@string/twodaysaweek"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/every2days"
-        app:layout_constraintStart_toStartOf="@+id/every2days"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/once_a_week" />
 
     <Button
         android:id="@+id/every28day"
         android:layout_width="327dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="132dp"
         android:backgroundTint="#4f5bd5"
         android:onClick="gonext"
         android:text="@string/every28days"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/two_days_aweek"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="@+id/two_days_aweek"
-        app:layout_constraintTop_toBottomOf="@+id/threedaysaweek"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/every2days"
+        app:layout_constraintVertical_bias="0.585" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.medicalreminder.addingmed.view;
 
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ import androidx.navigation.Navigation;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class howoften_notEveryday extends Fragment {
     NavController navController;
     Medicine medicine;
@@ -30,8 +35,8 @@ public class howoften_notEveryday extends Fragment {
 
         view.findViewById(R.id.once_a_week).setOnClickListener(this::nexttochooseday);
         view.findViewById(R.id.every2days).setOnClickListener(this::every2day);
-        view.findViewById(R.id.two_days_aweek).setOnClickListener(this::nexttochooseday);
-        view.findViewById(R.id.threedaysaweek).setOnClickListener(this::nexttochooseday);
+//        view.findViewById(R.id.two_days_aweek).setOnClickListener(this::nexttochooseday);
+//        view.findViewById(R.id.threedaysaweek).setOnClickListener(this::nexttochooseday);
         view.findViewById(R.id.every28day).setOnClickListener(this::every28day);
 
         return  view;
@@ -41,20 +46,34 @@ public class howoften_notEveryday extends Fragment {
         String count;
         Button holder = view.findViewById(view.getId());
         count= holder.getText().toString();
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        //for calender in home
+        medicine.setStart_date(formattedDate);
+
+        medicine.setLast_time_taken(formattedDate);
+
         medicine.setHow_often(count);
+
         medicine.setFlag("Specific_Days");
-        int counter=0;
-        if(view.getId() == R.id.two_days_aweek ) {
-            counter = 2;
-            medicine.setFlag("Specific_Days");
-        }
-        if(view.getId() == R.id.threedaysaweek ){
-            counter = 3;
-            medicine.setFlag("Specific_Days");
-        }
+
+//        int counter=0;
+
+//        if(view.getId() == R.id.two_days_aweek ) {
+//            counter = 2;
+//            medicine.setFlag("Specific_Days");
+//        }
+//        if(view.getId() == R.id.threedaysaweek ){
+//            counter = 3;
+//            medicine.setFlag("Specific_Days");
+//        }
+
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
-        Sendbundle.putInt("count",counter);
+//        Sendbundle.putInt("count",counter);
 
         navController = Navigation.findNavController(view);
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydayToChooseTheDays();
@@ -64,9 +83,19 @@ public class howoften_notEveryday extends Fragment {
     private void every2day(View view) {
         navController = Navigation.findNavController(view);
         Bundle Sendbundle = new Bundle();
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        //for calender in home
+        medicine.setStart_date(formattedDate);
+
+        medicine.setLast_time_taken(formattedDate);
+
         medicine.setFlag("Every_two_days");
+
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",2);
+
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydatToSetStartDate();
         navController.navigate(R.id.SetStartDate,Sendbundle);
     }
@@ -74,7 +103,10 @@ public class howoften_notEveryday extends Fragment {
     private void every28day(View view) {
         navController = Navigation.findNavController(view);
         Bundle Sendbundle = new Bundle();
+
+
         medicine.setFlag("period_of_days");
+
         Sendbundle.putSerializable("obj",medicine);
         Sendbundle.putInt("intervaloftime",28);
 

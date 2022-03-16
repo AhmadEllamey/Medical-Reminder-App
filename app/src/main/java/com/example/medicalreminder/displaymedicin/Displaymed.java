@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,11 +52,22 @@ public class Displaymed extends Fragment {
 
         Bundle bundle = this.getArguments();
         medicine= (Medicine) bundle.getSerializable("obj");
+
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
         Condition=view.findViewById(R.id.conditiondisplay);
         Refill=view.findViewById(R.id.Refilldisplay);
+
+        view.findViewById(R.id.suspend_id).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                medicine.setActive(false);
+                Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        view.findViewById(R.id.Refillbtn);
 
         medicinname.setText(medicine.getMed_name());
         Lasttaken.setText(medicine.getLast_time_taken());

@@ -1,6 +1,7 @@
 package com.example.medicalreminder.addingmed.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class Week_Adapter extends RecyclerView.Adapter<Week_Adapter.WeekHandler>
         private TextView day;
         onclickday onclickday;
         String DAY;
+        Boolean flage =true;
         public WeekHandler(@NonNull View convertView , onclickday onclickday) {
             super(convertView);
             row=convertView;
@@ -50,7 +52,16 @@ public class Week_Adapter extends RecyclerView.Adapter<Week_Adapter.WeekHandler>
 
         @Override
         public void onClick(View view) {
-            TextView holder = day.findViewById(row.getId());
+            if(flage){
+                flage=false;
+                day.setBackgroundColor(Color.parseColor("#4F5BD5"));
+
+            }
+            else{
+                day.setBackgroundColor(Color.parseColor("#0d0d0d"));
+                flage=true;
+
+            }
 //            DAY= holder.getText().toString();
             onclickday.OnClickDay(getAdapterPosition(),view);}
     }

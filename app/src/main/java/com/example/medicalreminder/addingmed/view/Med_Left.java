@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
@@ -53,21 +54,32 @@ public class Med_Left extends Fragment {
     private void nextend(View view) {
         NavController navController;
         navController = Navigation.findNavController(view);
-        medicine.setMed_left(Integer.parseInt(medleft.getText().toString()));
+        if(!medleft.getText().toString().equals("")){
+                if (Integer.parseInt(medleft.getText().toString())>=medicine.getMed_amount()){
+                    Toast.makeText(getContext(), "Must be less than the medicine amount", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                    medicine.setMed_left(Integer.parseInt(medleft.getText().toString()));
+//                    addMedicine(medicine);
+                }
+        }
+        else{
+                Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
+
+        }
+////
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
-        if(medleft!=null){
 
         //sending
 //        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
 
-        Log.i(TAG, "save: entered");
-        Toast.makeText(getContext(), "entered", Toast.LENGTH_SHORT).show();
-        //NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
-       // navController.navigate(R.id.end2,Sendbundle);
-            medicine.setActive(true);
+        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToInstructions2();
+        navController.navigate(R.id.instructions2,Sendbundle);
 
-            addMedicine(medicine);
+
+        //addMedicine(medicine);
 //            System.out.println(
 //                    medicine.getMed_name()+"\n"+
 //                            medicine.getMed_form()+"\n"+
@@ -101,26 +113,25 @@ public class Med_Left extends Fragment {
 //                            medicine.isWedensday()+"\n"+
 //                            medicine.isThursday()
 //            );
-        }
-        else{
-            Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
-        }
-    }
-    public void addMedicine(Medicine medicine){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
-                .set(medicine).addOnSuccessListener(aVoid -> {
-            //Log.d(TAG, "DocumentSnapshot successfully written!");
-            //getChildFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
 
-            Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+        }
 
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Log.w(TAG, "Error writing document", e);
-            }
-        });
-    }
+//
+//    public void addMedicine(Medicine medicine){
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
+//                .set(medicine).addOnSuccessListener(aVoid -> {
+//            //Log.d(TAG, "DocumentSnapshot successfully written!");
+//            //getChildFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
+//
+//            Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+//
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                //Log.w(TAG, "Error writing document", e);
+//            }
+//        });
+//    }
 
 }

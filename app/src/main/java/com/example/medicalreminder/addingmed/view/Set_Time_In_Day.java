@@ -3,6 +3,7 @@ package com.example.medicalreminder.addingmed.view;
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,6 +55,8 @@ public class Set_Time_In_Day extends Fragment{
 
         View view= inflater.inflate(R.layout.set_time,container,false);
         timePicker1 = view.findViewById(R.id.datepicker);
+        timePicker1.setIs24HourView(true);
+
         view.findViewById(R.id.save).setOnClickListener(this::save);
         // name form strenght takenfor iseveryday howoften counter  timewithinday
 
@@ -92,7 +95,27 @@ public class Set_Time_In_Day extends Fragment{
 
     private void save(View view) {
 
-        String daytime= timePicker1.getCurrentHour().toString()+" "+timePicker1.getCurrentMinute().toString();
+//        String daytime =timePicker1.getCurrentHour().toString()+":"+timePicker1.getCurrentMinute().toString();
+        String daytime;
+        int hour, minute;
+        String am_pm;
+        if (Build.VERSION.SDK_INT >= 23 ){
+            hour = timePicker1.getHour();
+            minute = timePicker1.getMinute();
+        }
+        else{
+            hour = timePicker1.getCurrentHour();
+            minute = timePicker1.getCurrentMinute();
+        }
+        if(hour > 12) {
+            am_pm = "PM";
+            hour = hour - 12;
+        }
+        else
+        {
+            am_pm="AM";
+        }
+        daytime= hour +":"+ minute+am_pm;
 //        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
         NavController navController;
         navController = Navigation.findNavController(view);
@@ -154,41 +177,41 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
-                    navController.navigate(R.id.end2,Sendbundle);
-                    System.out.println(
-                            medicine.getMed_name()+"\n"+
-                                    medicine.getMed_form()+"\n"+
-                                    medicine.getStrength()+"\n"+
-                                    medicine.getHow_often()+"\n"+
-                                    medicine.getFlag()+"\n"+
-                                    medicine.getWhy_Taken()+"\n"+
-                                    medicine.getMed_amount()+"\n"+
-                                    medicine.getMed_left()+"\n"+
-
-                                    medicine.getMorning()+"\n"+
-                                    medicine.getHour_of_Morning()+"\n"+
-
-                                    medicine.getEvening()+"\n"+
-                                    medicine.getHour_of_Evening()+"\n"+
-
-                                    medicine.getNoon()+"\n"+
-                                    medicine.getHour_of_Noon()+"\n"+
-
-                                    medicine.getNight()+"\n"+
-                                    medicine.getHour_of_Night()+"\n"+
-
-                                    medicine.getStart_date()+"\n"+
-                                    medicine.getEnd_date()+"\n"+
-
-                                    medicine.isFriday()+"\n"+
-                                    medicine.isSaturday()+"\n"+
-                                    medicine.isSunday()+"\n"+
-                                    medicine.isMonday()+"\n"+
-                                    medicine.isTuesday()+"\n"+
-                                    medicine.isWedensday()+"\n"+
-                                    medicine.isThursday()+"\n"
-                    );
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToInstructions2();
+                    navController.navigate(R.id.instructions2,Sendbundle);
+//                    System.out.println(
+//                            medicine.getMed_name()+"\n"+
+//                                    medicine.getMed_form()+"\n"+
+//                                    medicine.getStrength()+"\n"+
+//                                    medicine.getHow_often()+"\n"+
+//                                    medicine.getFlag()+"\n"+
+//                                    medicine.getWhy_Taken()+"\n"+
+//                                    medicine.getMed_amount()+"\n"+
+//                                    medicine.getMed_left()+"\n"+
+//
+//                                    medicine.getMorning()+"\n"+
+//                                    medicine.getHour_of_Morning()+"\n"+
+//
+//                                    medicine.getEvening()+"\n"+
+//                                    medicine.getHour_of_Evening()+"\n"+
+//
+//                                    medicine.getNoon()+"\n"+
+//                                    medicine.getHour_of_Noon()+"\n"+
+//
+//                                    medicine.getNight()+"\n"+
+//                                    medicine.getHour_of_Night()+"\n"+
+//
+//                                    medicine.getStart_date()+"\n"+
+//                                    medicine.getEnd_date()+"\n"+
+//
+//                                    medicine.isFriday()+"\n"+
+//                                    medicine.isSaturday()+"\n"+
+//                                    medicine.isSunday()+"\n"+
+//                                    medicine.isMonday()+"\n"+
+//                                    medicine.isTuesday()+"\n"+
+//                                    medicine.isWedensday()+"\n"+
+//                                    medicine.isThursday()+"\n"
+//                    );
                 }
 
 
@@ -259,8 +282,8 @@ public class Set_Time_In_Day extends Fragment{
                     Sendbundle.putInt("count",counter); //if twice
                     Sendbundle.putSerializable("obj",medicine);
                     Log.i(TAG, "save: "+Sendbundle);
-                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToPlaceholder();
-                    navController.navigate(R.id.end2,Sendbundle);
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToInstructions2();
+                    navController.navigate(R.id.instructions2,Sendbundle);
                     System.out.println(
                             medicine.getMed_name()+"\n"+
                                     medicine.getMed_form()+"\n"+

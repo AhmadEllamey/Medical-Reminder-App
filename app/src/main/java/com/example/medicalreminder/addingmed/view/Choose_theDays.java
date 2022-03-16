@@ -33,6 +33,7 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view= inflater.inflate(R.layout.choosetheday,container,false);
+        view.findViewById(R.id.nextbtn2).setOnClickListener(this::next);
         WeeK.add("Saturday");
         WeeK.add("Sunday");
         WeeK.add("Monday");
@@ -68,27 +69,64 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
 
     }
 
+    private void next(View view) {
+
+        if (!medicine.isFriday() && !medicine.isMonday() && !medicine.isSaturday() && !medicine.isSunday()
+                && !medicine.isThursday() && !medicine.isWedensday() && !medicine.isTuesday()) {
+            Toast.makeText(getContext(), "Select a day", Toast.LENGTH_SHORT).show();
+        } else {
+            Bundle Sendbundle = new Bundle();
+            //Sendbundle.putInt("count",counter);
+            Sendbundle.putSerializable("obj", medicine);
+
+            NavController navController;
+            navController = Navigation.findNavController(view);
+            NavDirections navDirections = com.example.medicalreminder.addingmed.view.Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
+            navController.navigate(R.id.Time_In_Day_fragment, Sendbundle);
+        }
+    }
     @Override
     public void OnClickDay(int position ,View view) {
 
 
         Toast.makeText(getContext(), WeeK.get(position), Toast.LENGTH_SHORT).show();
 
-        if(WeeK.get(position).equals("Sunday"))  medicine.setSunday(true);
-        if(WeeK.get(position).equals("Saturday"))  medicine.setSaturday(true);
-        if(WeeK.get(position).equals("Monday"))  medicine.setMonday(true);
-        if(WeeK.get(position).equals("Tuesday"))  medicine.setTuesday(true);
-        if(WeeK.get(position).equals("Wednesday"))  medicine.setWedensday(true);
-        if(WeeK.get(position).equals("Thursday"))  medicine.setThursday(true);
-        if(WeeK.get(position).equals("Friday"))  medicine.setFriday(true);
+        if(WeeK.get(position).equals("Sunday"))
+        {
+            if(medicine.isSunday()) medicine.setSunday(false);
+            else{
+                medicine.setSunday(true);
+            }
+            System .out.println(medicine.isSunday());
+        }
+        if(WeeK.get(position).equals("Saturday"))
+        {
+            if(medicine.isSaturday()) medicine.setSaturday(false);
+            else{
+                medicine.setSaturday(true);}
+        }
 
-        Bundle Sendbundle = new Bundle();
-        Sendbundle.putInt("count",counter);
-        Sendbundle.putSerializable("obj",medicine);
+        if(WeeK.get(position).equals("Monday")) {
+            if(medicine.isMonday()) medicine.setMonday(false);
+            else  medicine.setMonday(true);}
 
-        NavController navController;
-        navController = Navigation.findNavController(view);
-        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Choose_theDaysDirections.actionChooseTheDaysToTimeInDayFragment();
-        navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
+        if(WeeK.get(position).equals("Tuesday"))
+        {
+            if(medicine.isTuesday()) medicine.setTuesday(false);
+            else medicine.setTuesday(true);}
+        if(WeeK.get(position).equals("Wednesday")) {
+            if(medicine.isWedensday()) medicine.setWedensday(false);
+            else medicine.setWedensday(true);}
+
+
+        if(WeeK.get(position).equals("Thursday")) {
+            if (medicine.isThursday()) medicine.setThursday(false);
+            else medicine.setThursday(true);
+        }
+        if(WeeK.get(position).equals("Friday")){
+            if(medicine.isFriday()) medicine.setFriday(false);
+            else medicine.setFriday(true);}
+
     }
+//
 }

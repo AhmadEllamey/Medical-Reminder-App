@@ -1,5 +1,6 @@
 package com.example.medicalreminder.addingmed.view;
 
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Set_Start_Date extends Fragment {
     DatePicker datePicker;
@@ -43,10 +48,16 @@ public class Set_Start_Date extends Fragment {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth() + 1;
         int year = datePicker.getYear();
+        String date;
 
-        String date= day+"-"+month+"-"+year;
+        if (month<=9)  date= day+"/0"+month+"/"+year;
+        else{
+            date=day+"/"+month+"/"+year;
+        }
 
         medicine.setStart_date(date);
+        medicine.setLast_time_taken(date);
+
         if(intervaloftime==28){
             Generate_End_date generate_end_date=new Generate_End_date(day,month, year ,28);
             medicine.setEnd_date(Generate_End_date.End_date);

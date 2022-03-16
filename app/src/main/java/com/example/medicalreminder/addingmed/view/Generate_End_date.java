@@ -121,10 +121,18 @@ public class Generate_End_date {
                 }
                 offset2 = x;
             }
+
+
             revoffsetDays(offset2, y2);
 //            System.out.println("d2 = " + d2 + ", m2 = " +
 //                    m2 + ", y2 = " + y2);
-            String End_date= d2+"-"+m2+"-"+y2;
+//            String End_date;
+            if(m2<=9){
+                End_date= d2+"/0"+m2+"/"+y2;
+            }
+            else {
+                End_date = d2 + "/" + m2 + "/" + y2;
+            }
             return End_date;
         }
 

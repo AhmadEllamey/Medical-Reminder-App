@@ -33,6 +33,9 @@ public class Medicine implements Serializable {
     @ColumnInfo(name = "s_Unit")
     private  String S_Unit;
 
+    @ColumnInfo(name = "instructions")
+    private  String instructions;
+
 
     @ColumnInfo(name = "morning")
     private  String Morning;
@@ -360,5 +363,13 @@ public class Medicine implements Serializable {
 
     public void setS_Unit(String s_Unit) {
         S_Unit = s_Unit;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 }

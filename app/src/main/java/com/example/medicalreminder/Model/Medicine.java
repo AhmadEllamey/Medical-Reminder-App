@@ -1,104 +1,72 @@
 package com.example.medicalreminder.Model;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Entity(tableName = "medicines_data")
 public class Medicine implements Serializable {
+    private  String User_name;
 
-
-    @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = "name")
     private String Med_name;
 
-    @ColumnInfo(name = "username")
-    private String userName;
-
-    @ColumnInfo(name = "form")
-    @NonNull
     private String Med_form;
 
-    @ColumnInfo(name = "strength")
-    @NonNull
     private String Strength;
 
-    @ColumnInfo(name = "condition")
-    @NonNull
     private String Why_Taken;
 
-    @ColumnInfo(name = "Is_Every_Day")
-    @NonNull
-    private Boolean Is_Every_Day;
+    private String Flage;
 
-    @ColumnInfo(name = "Morning")
+    private  String S_Unit;
     private  String Morning;
-
-    @ColumnInfo(name = "hour_of_Morning")
     private  String hour_of_Morning;
 
-    @ColumnInfo(name = "Noon")
     private  String Noon;
-    @ColumnInfo(name = "hour_of_Noon")
     private  String hour_of_Noon;
 
-    @ColumnInfo(name = "Evening")
     private  String Evening;
-    @ColumnInfo(name = "hour_of_Evening")
     private  String hour_of_Evening;
 
-    @ColumnInfo(name = "Night")
     private  String Night;
-    @ColumnInfo(name = "hour_of_Night")
     private  String hour_of_Night;
 
-    @ColumnInfo(name = "Frequency")
     private String How_often; //once twice
-
 
     private int count;//
 
-    @ColumnInfo(name = "med_amount")
     private int med_amount;
 
-    @ColumnInfo(name = "med_left")
     private int med_left;
 
-    @ColumnInfo(name = "Night")
+    private String At_what_time;
+
     private  String start_date;
 
-    @ColumnInfo(name = "end_date")
     private String end_date;
 
-    @ColumnInfo(name = "active")
     private Boolean active;
 
-    @ColumnInfo(name = "Last_time_taken")
     private String Last_time_taken;
 
     //fixeddays
 
-    @ColumnInfo(name = "Sunday")
     private boolean Sunday;
-    @ColumnInfo(name = "Saturday")
     private boolean Saturday;
-    @ColumnInfo(name = "Monday")
     private boolean Monday;
-    @ColumnInfo(name = "Tuesday")
     private boolean Tuesday;
-    @ColumnInfo(name = "Wedensday")
     private boolean Wedensday;
-    @ColumnInfo(name = "Thursday")
     private boolean Thursday;
-    @ColumnInfo(name = "Friday")
     private boolean Friday;
+
+    public boolean isIs_Every_Day() {
+        return Is_Every_Day;
+    }
+
+    public void setIs_Every_Day(boolean is_Every_Day) {
+        Is_Every_Day = is_Every_Day;
+    }
+
+    private boolean Is_Every_Day;
 
 
     public Medicine() {
@@ -136,12 +104,12 @@ public class Medicine implements Serializable {
         Why_Taken = why_Taken;
     }
 
-    public Boolean getIs_Every_Day() {
-        return Is_Every_Day;
+    public String getFlage() {
+        return Flage;
     }
 
-    public void setIs_Every_Day(Boolean is_Every_Day) {
-        Is_Every_Day = is_Every_Day;
+    public void setFlage(String flage) {
+        Flage = flage;
     }
 
     public String getMorning() {
@@ -240,6 +208,13 @@ public class Medicine implements Serializable {
         this.med_left = med_left;
     }
 
+    public String getAt_what_time() {
+        return At_what_time;
+    }
+
+    public void setAt_what_time(String at_what_time) {
+        At_what_time = at_what_time;
+    }
 
     public String getStart_date() {
         return start_date;
@@ -327,5 +302,21 @@ public class Medicine implements Serializable {
 
     public void setFriday(boolean friday) {
         Friday = friday;
+    }
+
+    public String getUser_name() {
+        return User_name;
+    }
+
+    public void setUser_name(String user_name) {
+        User_name = user_name;
+    }
+
+    public String getS_Unit() {
+        return S_Unit;
+    }
+
+    public void setS_Unit(String s_Unit) {
+        S_Unit = s_Unit;
     }
 }

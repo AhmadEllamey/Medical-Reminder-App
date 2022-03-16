@@ -12,7 +12,17 @@ public class Generate_End_date {
     public Generate_End_date(int day, int month, int year, int i) {
         End_date= addDays(day, month, year, i);
     }
+   public Generate_End_date(String date , int i ) {
+        String[] datesplitted= date.split("-");
+        int day= Integer.parseInt(datesplitted[0]);
+        int month= Integer.parseInt(datesplitted[1]);
+        int year= Integer.parseInt(datesplitted[2]);
+        End_date= addDays(day, month, year, i);
+    }
 
+    public String getEnd_date(){
+        return  End_date;
+    }
     // Return if year is leap year or not.
     static boolean isLeap(int y)
     {
@@ -112,8 +122,8 @@ public class Generate_End_date {
                 offset2 = x;
             }
             revoffsetDays(offset2, y2);
-            System.out.println("d2 = " + d2 + ", m2 = " +
-                    m2 + ", y2 = " + y2);
+//            System.out.println("d2 = " + d2 + ", m2 = " +
+//                    m2 + ", y2 = " + y2);
             String End_date= d2+"-"+m2+"-"+y2;
             return End_date;
         }

@@ -22,21 +22,16 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
-
+import com.example.medicalreminder.home.view.Home;
 
 
 public class AddingMed extends Fragment  {
 
-    public Medicine medicine = new Medicine();
+    Medicine medicine = new Medicine();
     TextView med_name;
     Button nextbtn;
 
-    public AddingMed() {
-
-
-
-
-    }
+    public AddingMed() {}
 
     //connection
     @Nullable
@@ -53,8 +48,10 @@ public class AddingMed extends Fragment  {
             if(!med_name.getText().toString().equals("")){
             NavController navController= Navigation.findNavController(btnView);
             medicine.setMed_name(med_name.getText().toString().trim());
+            medicine.setUser_name(Home.getTheCurrentUser().getEmail());
             Bundle bundle = new Bundle();
             //bundle.putString("medname", med_name.getText().toString());
+
                 bundle.putSerializable("obj", medicine);
             Log.i(TAG, "onCreateView: 1 " + bundle.toString());
 

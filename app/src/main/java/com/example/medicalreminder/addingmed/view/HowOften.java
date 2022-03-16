@@ -38,7 +38,7 @@ public class HowOften extends Fragment {
                     medicine.getMed_form()+"\n"+
                     medicine.getStrength()+"\n"+
                     medicine.getWhy_Taken()+"\n"+
-                    medicine.getIs_Every_Day());
+                    medicine.getFlage());
         }
 
         view.findViewById(R.id.once).setOnClickListener(this::gonext);

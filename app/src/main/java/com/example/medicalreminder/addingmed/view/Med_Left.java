@@ -22,6 +22,11 @@ import com.example.medicalreminder.Model.Medicine;
 //import com.example.medicalreminder.Presenter.Presenter;
 //import com.example.medicalreminder.Presenter.PresenterInterface;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.home.view.Home;
+import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 public class Med_Left extends Fragment {
 //        implements PresenterInterface {
@@ -62,45 +67,61 @@ public class Med_Left extends Fragment {
 
         Log.i(TAG, "save: entered");
         Toast.makeText(getContext(), "entered", Toast.LENGTH_SHORT).show();
+        //NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
+       // navController.navigate(R.id.end2,Sendbundle);
+            medicine.setActive(true);
 
-        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToEnd2();
-        navController.navigate(R.id.end2,Sendbundle);
-            System.out.println(
-                    medicine.getMed_name()+"\n"+
-                            medicine.getMed_form()+"\n"+
-                            medicine.getStrength()+"\n"+
-                            medicine.getHow_often()+"\n"+
-                            medicine.getIs_Every_Day()+"\n"+
-                            medicine.getWhy_Taken()+"\n"+
-                            medicine.getMed_amount()+"\n"+
-                            medicine.getMed_left()+"\n"+
-
-                            medicine.getMorning()+"\n"+
-                            medicine.getHour_of_Morning()+"\n"+
-
-                            medicine.getEvening()+"\n"+
-                            medicine.getHour_of_Evening()+"\n"+
-
-                            medicine.getNoon()+"\n"+
-                            medicine.getHour_of_Noon()+"\n"+
-
-                            medicine.getNight()+"\n"+
-                            medicine.getHour_of_Night()+"\n"+
-
-                            medicine.getStart_date()+"\n"+
-                            medicine.getEnd_date()+"\n"+
-
-                            medicine.isFriday()+"\n"+
-                            medicine.isSaturday()+"\n"+
-                            medicine.isSunday()+"\n"+
-                            medicine.isMonday()+"\n"+
-                            medicine.isTuesday()+"\n"+
-                            medicine.isWedensday()+"\n"+
-                            medicine.isThursday()+"\n"
-            );
+            addMedicine(medicine);
+//            System.out.println(
+//                    medicine.getMed_name()+"\n"+
+//                            medicine.getMed_form()+"\n"+
+//                            medicine.getStrength()+"\n"+
+//                            medicine.getHow_often()+"\n"+
+//                            medicine.getIs_Every_Day()+"\n"+
+//                            medicine.getWhy_Taken()+"\n"+
+//                            medicine.getMed_amount()+"\n"+
+//                            medicine.getMed_left()+"\n"+
+//
+//                            medicine.getMorning()+"\n"+
+//                            medicine.getHour_of_Morning()+"\n"+
+//
+//                            medicine.getEvening()+"\n"+
+//                            medicine.getHour_of_Evening()+"\n"+
+//
+//                            medicine.getNoon()+"\n"+
+//                            medicine.getHour_of_Noon()+"\n"+
+//
+//                            medicine.getNight()+"\n"+
+//                            medicine.getHour_of_Night()+"\n"+
+//
+//                            medicine.getStart_date()+"\n"+
+//                            medicine.getEnd_date()+"\n"+
+//
+//                            medicine.isFriday()+"\n"+
+//                            medicine.isSaturday()+"\n"+
+//                            medicine.isSunday()+"\n"+
+//                            medicine.isMonday()+"\n"+
+//                            medicine.isTuesday()+"\n"+
+//                            medicine.isWedensday()+"\n"+
+//                            medicine.isThursday()
+//            );
         }
         else{
             Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
         }
     }
+    public void addMedicine(Medicine medicine){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
+                .set(medicine).addOnSuccessListener(aVoid -> {
+            //Log.d(TAG, "DocumentSnapshot successfully written!");
+            getParentFragmentManager().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //Log.w(TAG, "Error writing document", e);
+            }
+        });
+    }
+
 }

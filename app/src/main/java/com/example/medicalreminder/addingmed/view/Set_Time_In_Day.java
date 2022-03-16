@@ -97,7 +97,7 @@ public class Set_Time_In_Day extends Fragment{
         NavController navController;
         navController = Navigation.findNavController(view);
 
-        if(medicine.getIs_Every_Day()){
+        if(medicine.isIs_Every_Day()){
             System.out.println(" before counter !=0 test 3 "+counter);
             if(counter!=0)
             {
@@ -161,7 +161,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getHow_often()+"\n"+
-                                    medicine.getIs_Every_Day()+"\n"+
+                                    medicine.getFlage()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
                                     medicine.getMed_amount()+"\n"+
                                     medicine.getMed_left()+"\n"+
@@ -195,7 +195,7 @@ public class Set_Time_In_Day extends Fragment{
                 }
         }
 
-        if(!medicine.getIs_Every_Day()){
+        if(!medicine.isIs_Every_Day()){
             if(counter!=0)
             {
                 //int looping=counter-1;
@@ -229,7 +229,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
-                                    medicine.getIs_Every_Day()+"\n"+
+                                    medicine.getFlage()+"\n"+
                                     medicine.getHow_often()+"\n"+
                                     medicine.getMorning()+"\n"+
                                     medicine.getHour_of_Morning()+"\n"+
@@ -266,7 +266,7 @@ public class Set_Time_In_Day extends Fragment{
                                     medicine.getMed_form()+"\n"+
                                     medicine.getStrength()+"\n"+
                                     medicine.getHow_often()+"\n"+
-                                    medicine.getIs_Every_Day()+"\n"+
+                                    medicine.getFlage()+"\n"+
                                     medicine.getWhy_Taken()+"\n"+
                                     medicine.getMed_amount()+"\n"+
                                     medicine.getMed_left()+"\n"+

@@ -57,6 +57,8 @@ public class Is_Everyday extends Fragment {
             public void onClick(View view) {
                 is = true;
                 navController = Navigation.findNavController(yes);
+                medicine.setFlage("Everyday");
+                medicine.setIs_Every_Day(true);
                 gonext(view);
             }
         });
@@ -66,6 +68,8 @@ public class Is_Everyday extends Fragment {
             public void onClick(View view) {
                 is = false;
                 navController = Navigation.findNavController(no);
+                medicine.setIs_Every_Day(false);
+
                 gonext(view);
 
             }
@@ -77,7 +81,7 @@ public class Is_Everyday extends Fragment {
     private void gonext(View view) {
 
         navController = Navigation.findNavController(view);
-        medicine.setIs_Every_Day(is);
+//        medicine.setIs_Every_Day(is);
         if(is==true){
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);

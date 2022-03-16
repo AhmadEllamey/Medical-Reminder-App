@@ -28,7 +28,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     NavigationView navigationView ;
     User user;
     static User userX;
-    FrameLayout frameLayout ;
+    static FrameLayout frameLayout ;
 
 
     public static FragmentManager fragmentManager;
@@ -37,6 +37,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     static Context context ;
+
+
+    public static FrameLayout getFrameLayout(){
+        return frameLayout ;
+    }
 
     public static Context getContext() {
         return context;

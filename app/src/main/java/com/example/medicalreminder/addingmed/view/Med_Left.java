@@ -15,18 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
-//import com.example.medicalreminder.Presenter.Presenter;
-//import com.example.medicalreminder.Presenter.PresenterInterface;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 public class Med_Left extends Fragment {
 //        implements PresenterInterface {
@@ -115,7 +111,10 @@ public class Med_Left extends Fragment {
         db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
                 .set(medicine).addOnSuccessListener(aVoid -> {
             //Log.d(TAG, "DocumentSnapshot successfully written!");
-            //getParentFragmentManager().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+            //getChildFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
+
+            Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {

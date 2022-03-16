@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "medicines")
+@Entity(tableName = "medicines_ready_to_view")
 public class Medicine {
 
     @PrimaryKey

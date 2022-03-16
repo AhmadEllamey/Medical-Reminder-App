@@ -13,15 +13,16 @@ import java.util.List;
 @Dao
 public interface DatabaseFunctions {
 
-    @Query("SELECT * FROM medicines WHERE date = :dateToGet")
+    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet")
     List<Medicine> getCurrentDayMedicines(String dateToGet);
 
     @Insert
     void insertMedicine(Medicine medicine);
 
 
-    @Query("DELETE FROM medicines")
+    @Query("DELETE FROM medicines_ready_to_view")
     void clearTheMedicines();
+
 
 
 

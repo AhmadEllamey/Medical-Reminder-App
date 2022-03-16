@@ -59,11 +59,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(user.getName());
-
         navigationView.setNavigationItemSelectedListener(this);
 
         // load the data (that the start date is before the current day plus 20 days ) from the fireStore to the local room
 
+        // if start date older than a month ago then start date last time he took the med
 
 
         getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new HomeFragment()).commit();

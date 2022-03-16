@@ -39,5 +39,10 @@ public class HomePresenter implements HomePresenterInterface {
 
     }
 
+    @Override
+    public void transformTheIncomingDataToReadyToShowData() {
+
+    }
+
 
 }

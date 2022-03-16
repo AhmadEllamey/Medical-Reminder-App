@@ -1,59 +1,103 @@
 package com.example.medicalreminder.Model;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity(tableName = "medicines_data")
 public class Medicine implements Serializable {
 
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "name")
     private String Med_name;
 
+    @ColumnInfo(name = "username")
+    private String userName;
+
+    @ColumnInfo(name = "form")
+    @NonNull
     private String Med_form;
 
+    @ColumnInfo(name = "strength")
+    @NonNull
     private String Strength;
 
+    @ColumnInfo(name = "condition")
+    @NonNull
     private String Why_Taken;
 
+    @ColumnInfo(name = "Is_Every_Day")
+    @NonNull
     private Boolean Is_Every_Day;
 
+    @ColumnInfo(name = "Morning")
     private  String Morning;
+
+    @ColumnInfo(name = "hour_of_Morning")
     private  String hour_of_Morning;
 
+    @ColumnInfo(name = "Noon")
     private  String Noon;
+    @ColumnInfo(name = "hour_of_Noon")
     private  String hour_of_Noon;
 
+    @ColumnInfo(name = "Evening")
     private  String Evening;
+    @ColumnInfo(name = "hour_of_Evening")
     private  String hour_of_Evening;
 
+    @ColumnInfo(name = "Night")
     private  String Night;
+    @ColumnInfo(name = "hour_of_Night")
     private  String hour_of_Night;
 
+    @ColumnInfo(name = "Frequency")
     private String How_often; //once twice
+
 
     private int count;//
 
+    @ColumnInfo(name = "med_amount")
     private int med_amount;
 
+    @ColumnInfo(name = "med_left")
     private int med_left;
 
-    private String At_what_time;
-
+    @ColumnInfo(name = "Night")
     private  String start_date;
 
+    @ColumnInfo(name = "end_date")
     private String end_date;
 
+    @ColumnInfo(name = "active")
     private Boolean active;
 
+    @ColumnInfo(name = "Last_time_taken")
     private String Last_time_taken;
 
     //fixeddays
 
+    @ColumnInfo(name = "Sunday")
     private boolean Sunday;
+    @ColumnInfo(name = "Saturday")
     private boolean Saturday;
+    @ColumnInfo(name = "Monday")
     private boolean Monday;
+    @ColumnInfo(name = "Tuesday")
     private boolean Tuesday;
+    @ColumnInfo(name = "Wedensday")
     private boolean Wedensday;
+    @ColumnInfo(name = "Thursday")
     private boolean Thursday;
+    @ColumnInfo(name = "Friday")
     private boolean Friday;
 
 
@@ -196,13 +240,6 @@ public class Medicine implements Serializable {
         this.med_left = med_left;
     }
 
-    public String getAt_what_time() {
-        return At_what_time;
-    }
-
-    public void setAt_what_time(String at_what_time) {
-        At_what_time = at_what_time;
-    }
 
     public String getStart_date() {
         return start_date;

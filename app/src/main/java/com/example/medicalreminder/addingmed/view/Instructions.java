@@ -20,6 +20,8 @@ import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.addingmed.presenter.Presenter;
+import com.example.medicalreminder.addingmed.presenter.PresenterInterface;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,19 +30,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Instructions extends Fragment {
+public class Instructions extends Fragment implements ViewInterface {
     private static final String TAG ="tag" ;
     public TextView strength;
     String medname;
     String medform;
     Medicine medicine;
     Spinner unit;
+    PresenterInterface presenterInterface;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View view= inflater.inflate(R.layout.instructions,container,false);
+
+
+
         //to be stored
         view.findViewById(R.id.saveMedicine).setOnClickListener(this::save);
         List<String> spinnerArray =  new ArrayList<String>();
@@ -84,24 +91,34 @@ public class Instructions extends Fragment {
         if(bundle!=null) {
             medicine = (Medicine) bundle.getSerializable("obj");
         }
+
+
+        System.out.println( "2abl m ab3t morning"+medicine.getHour_of_Morning()+"\n  evening "+
+                medicine.getHour_of_Evening()+"\n night"+
+                medicine.getHour_of_Night()+"\n  noon"+
+                medicine.getHour_of_Noon());
+
         return view;
 }
 
     private void save(View view) {
         medicine.setActive(true);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
-                .set(medicine).addOnSuccessListener(aVoid -> {
-            //Log.d(TAG, "DocumentSnapshot successfully written!");
-            //getChildFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
+        //MVP
+        //implementaion in the presenter
+        presenterInterface = new Presenter(this);
 
-            Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+        presenterInterface.insert(medicine);
 
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Log.w(TAG, "Error writing document", e);
-            }
-        });
     }
+
+    @Override
+    public void show_Med() {
+        Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+
     }
+
+    @Override
+    public void show_faild(String msg) {
+        Toast.makeText(getContext(), msg , Toast.LENGTH_SHORT).show();
+    }
+}

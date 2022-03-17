@@ -1,7 +1,6 @@
 package com.example.medicalreminder.addingmed.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.addingmed.presenter.Presenter;
-import com.example.medicalreminder.addingmed.presenter.PresenterInterface;
+import com.example.medicalreminder.addingmed.presenter.AddingPresenter;
+import com.example.medicalreminder.addingmed.presenter.AddingPresenterInterface;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +31,7 @@ public class Instructions extends Fragment implements ViewInterface {
     String medform;
     Medicine medicine;
     Spinner unit;
-    PresenterInterface presenterInterface;
+    AddingPresenterInterface addingPresenterInterface;
 
     @Nullable
     @Override
@@ -92,11 +86,10 @@ public class Instructions extends Fragment implements ViewInterface {
             medicine = (Medicine) bundle.getSerializable("obj");
         }
 
-
-        System.out.println( "2abl m ab3t morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                medicine.getHour_of_Evening()+"\n night"+
-                medicine.getHour_of_Night()+"\n  noon"+
-                medicine.getHour_of_Noon());
+//        System.out.println( "2abl m ab3t morning"+medicine.getHour_of_Morning()+"\n  evening "+
+//                medicine.getHour_of_Evening()+"\n night"+
+//                medicine.getHour_of_Night()+"\n  noon"+
+//                medicine.getHour_of_Noon());
 
         return view;
 }
@@ -105,9 +98,9 @@ public class Instructions extends Fragment implements ViewInterface {
         medicine.setActive(true);
         //MVP
         //implementaion in the presenter
-        presenterInterface = new Presenter(this);
+        addingPresenterInterface = new AddingPresenter(this);
 
-        presenterInterface.insert(medicine);
+        addingPresenterInterface.insert(medicine);
 
     }
 

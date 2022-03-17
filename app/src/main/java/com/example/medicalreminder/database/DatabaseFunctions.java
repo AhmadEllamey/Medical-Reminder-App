@@ -22,7 +22,6 @@ public interface DatabaseFunctions {
     @Insert
     void insertMedicine(MedicineReadyToShow medicineReadyToShow);
 
-
     //ADDLOCAL
     @Insert
     void insertLocalMedicine(Local_Medicine_DB local_medicine_db);

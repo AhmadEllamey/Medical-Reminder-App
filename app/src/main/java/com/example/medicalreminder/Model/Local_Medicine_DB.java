@@ -83,8 +83,6 @@ public class Local_Medicine_DB implements Serializable {
     private String Last_time_taken;
 
     //fixed days
-
-
     @ColumnInfo(name = "Sunday")
     private boolean Sunday;
     @ColumnInfo(name = "Saturday")
@@ -99,6 +97,40 @@ public class Local_Medicine_DB implements Serializable {
     private boolean Thursday;
     @ColumnInfo(name = "Friday")
     private boolean Friday;
+    public Local_Medicine_DB(Medicine medicine) {
+        this.active=medicine.getActive();
+        this.Flag=medicine.getFlag();
+        this.At_what_time=medicine.getAt_what_time();
+        this.count=medicine.getCount();
+        this.end_date=medicine.getEnd_date();
+        this.Last_time_taken=medicine.getLast_time_taken();
+        this.start_date=medicine.getStart_date();
+        this.Evening=medicine.getEvening();
+        this.Morning=medicine.getMorning();
+        this.Noon=medicine.getNoon();
+        this.Night=medicine.getNight();
+        this.Strength=medicine.getStrength();
+        this.User_name=medicine.getUser_name();
+        this.med_amount=medicine.getMed_amount();
+        this.med_left=medicine.getMed_left();
+        this.Med_name=medicine.getMed_name();
+        this.Med_form=medicine.getMed_form();
+        this.Saturday=medicine.isSaturday();
+        this.Sunday=medicine.isSunday();
+        this.Monday=medicine.isMonday();
+        this.Thursday=medicine.isThursday();
+        this.Wedensday=medicine.isWedensday();
+        this.Tuesday=medicine.isTuesday();
+        this.Friday=medicine.isFriday();
+        this.Why_Taken=medicine.getWhy_Taken();
+        this.S_Unit=medicine.getS_Unit();
+        this.instructions=medicine.getInstructions();
+        this.hour_of_Morning=medicine.getHour_of_Morning();
+        this.hour_of_Noon=medicine.getHour_of_Noon();
+        this.hour_of_Evening=medicine.getHour_of_Evening();
+        this.hour_of_Night=medicine.getHour_of_Night();
+        this.How_often= medicine.getHow_often();
+    }
 
     public boolean isIs_Every_Day() {
         return Is_Every_Day;

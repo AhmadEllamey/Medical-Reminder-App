@@ -125,39 +125,39 @@ public class Set_Time_In_Day extends Fragment{
         if (medicine.isIs_Every_Day()) {
             System.out.println(" before counter !=0 test 3 " + counter);
             if (counter != 0) {
-                if (medicine.getMorning() != null && medicine.getHour_of_Morning()==null) {
+                if (medicine.getMorning() != null && medicine.getHour_of_Morning() == null) {
                     medicine.setHour_of_Morning(daytime);
-                    System.out.println( "goa el morning-> morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                            medicine.getHour_of_Evening()+"\n night"+
-                            medicine.getHour_of_Night()+"\n  noon"+
+                    System.out.println("goa el morning-> morning" + medicine.getHour_of_Morning() + "\n  evening " +
+                            medicine.getHour_of_Evening() + "\n night" +
+                            medicine.getHour_of_Night() + "\n  noon" +
                             medicine.getHour_of_Noon());
-                    daytime="";
-                } else if (medicine.getEvening() != null &&  medicine.getHour_of_Evening()==null) {
+                    daytime = "";
+                } else if (medicine.getEvening() != null && medicine.getHour_of_Evening() == null) {
                     medicine.setHour_of_Evening(daytime);
 
-                    System.out.println( "goa el evening-> morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                            medicine.getHour_of_Evening()+"\n night"+
-                            medicine.getHour_of_Night()+"\n  noon"+
+                    System.out.println("goa el evening-> morning" + medicine.getHour_of_Morning() + "\n  evening " +
+                            medicine.getHour_of_Evening() + "\n night" +
+                            medicine.getHour_of_Night() + "\n  noon" +
                             medicine.getHour_of_Noon());
-                } else if (medicine.getNight() != null &&  medicine.getHour_of_Night()==null) {
+                } else if (medicine.getNight() != null && medicine.getHour_of_Night() == null) {
                     medicine.setHour_of_Night(daytime);
 
-                    System.out.println( "goa el night-> morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                            medicine.getHour_of_Evening()+"\n night"+
-                            medicine.getHour_of_Night()+"\n  noon"+
+                    System.out.println("goa el night-> morning" + medicine.getHour_of_Morning() + "\n  evening " +
+                            medicine.getHour_of_Evening() + "\n night" +
+                            medicine.getHour_of_Night() + "\n  noon" +
                             medicine.getHour_of_Noon());
 
-                } else if (medicine.getNoon() != null &&  medicine.getHour_of_Noon()==null) {
+                } else if (medicine.getNoon() != null && medicine.getHour_of_Noon() == null) {
                     medicine.setHour_of_Noon(daytime);
 
-                    System.out.println( "goa el noon-> morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                            medicine.getHour_of_Evening()+"\n night"+
-                            medicine.getHour_of_Night()+"\n  noon"+
+                    System.out.println("goa el noon-> morning" + medicine.getHour_of_Morning() + "\n  evening " +
+                            medicine.getHour_of_Evening() + "\n night" +
+                            medicine.getHour_of_Night() + "\n  noon" +
                             medicine.getHour_of_Noon());
                 }
-                System.out.println( "2abl m ab3t morning"+medicine.getHour_of_Morning()+"\n  evening "+
-                        medicine.getHour_of_Evening()+"\n night"+
-                        medicine.getHour_of_Night()+"\n  noon"+
+                System.out.println("2abl m ab3t morning" + medicine.getHour_of_Morning() + "\n  evening " +
+                        medicine.getHour_of_Evening() + "\n night" +
+                        medicine.getHour_of_Night() + "\n  noon" +
                         medicine.getHour_of_Noon());
 
 
@@ -165,15 +165,15 @@ public class Set_Time_In_Day extends Fragment{
 
                 System.out.println("================================================================ sended \n  " + counter);
 
-                    Bundle Sendbundle = new Bundle();
-                    Sendbundle.putInt("count", counter); //if twice
+                Bundle Sendbundle = new Bundle();
+                Sendbundle.putInt("count", counter); //if twice
 
-                    Sendbundle.putSerializable("obj", medicine);
+                Sendbundle.putSerializable("obj", medicine);
                 NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Time_In_DayDirections.actionSetTimeFragmentToTimeInDayFragment();
                 navController.navigate(R.id.Time_In_Day_fragment, Sendbundle);
                 //}
             }
-
+        }
             //once a day
             if (counter == 0) {
                 if (medicine.getMed_form().equals("Pill")) {
@@ -193,10 +193,6 @@ public class Set_Time_In_Day extends Fragment{
                     //reduce the counter
                     //if once and not a pill
                     Bundle Sendbundle = new Bundle();
-//                    if (medicine.getMorning() != null) medicine.setHour_of_Morning(daytime);
-//                    if (medicine.getEvening() != null) medicine.setHour_of_Evening(daytime);
-//                    if (medicine.getNight() != null) medicine.setHour_of_Night(daytime);
-//                    if (medicine.getNoon() != null) medicine.setHour_of_Noon(daytime);
                     Sendbundle.putInt("count", counter); //if twice
                     Sendbundle.putSerializable("obj", medicine);
                     Log.i(TAG, "save: " + Sendbundle);
@@ -237,7 +233,7 @@ public class Set_Time_In_Day extends Fragment{
 //                    );
                 }
             }
-        }
+
     }
 //        if(!medicine.isIs_Every_Day()){
 //            if(counter!=0)

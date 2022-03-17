@@ -358,7 +358,7 @@
 //
 //
 //}
-package com.example.medicalreminder.editmedicin;
+package com.example.medicalreminder.editmedicin.EditView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -377,7 +377,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -386,7 +385,12 @@ import android.widget.Toast;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.addingmed.presenter.AddingPresenter;
+import com.example.medicalreminder.addingmed.presenter.AddingPresenterInterface;
 import com.example.medicalreminder.addingmed.view.Generate_End_date;
+import com.example.medicalreminder.addingmed.view.ViewInterface;
+import com.example.medicalreminder.editmedicin.EditPresenter.EditPresenter;
+import com.example.medicalreminder.editmedicin.EditPresenter.EditPresenterInterface;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -398,7 +402,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Edit_View extends Fragment {
+public class Edit_View extends Fragment  implements EditViewInterface {
 
     List <String> Selecteddays= new ArrayList<>();
     Medicine medicine = new Medicine();
@@ -410,37 +414,28 @@ public class Edit_View extends Fragment {
     TextView Second;
     TextView Third;
     TextView Forth;
+    TextView refill;
+    TextView medname;
+    TextView strenght;
+    TextView unit;
+    TextView num_of_days;
 
     RadioButton everyday;
     RadioButton specificdays;
     RadioButton periodofdays;
 
-    TextView refill;
-    TextView medname;
-    TextView strenght;
+
     int counter = 0;
-    TextView num_of_days;
-    Button save;
-    View popupView;
 
     String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-//    DatabaseReference myRef;
-//    FirebaseDatabase database;
-    TextView unit;
-    //after press add
+
     @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view= inflater.inflate(R.layout.edit_layout,container,false);
 //        setContentView(R.layout.edit_layout);
-//send the times that the user selected
-
-        //test
-//        Times_Selected.add("12:30");
-//        Times_Selected.add("14:30");
-//        Times_Selected.add("20:30");
 
         //test
         // Edit the Time
@@ -455,16 +450,23 @@ public class Edit_View extends Fragment {
         medicine.setMed_left(3);
         medicine.setStrength("35");
         medicine.setS_Unit("mg");
+
+        //display the unit
         unit=view.findViewById(R.id.spinner_unit);
         unit.setText(medicine.getS_Unit());
 
+        //saving the edit
+        //update in the medicine info (AHMED) and firestore
         view.findViewById(R.id.savebtn).setOnClickListener(this::save);
+
 
         medname=view.findViewById(R.id.mednameedit);
         refill=view.findViewById(R.id.refill_edit);
         strenght=view.findViewById(R.id.strenghtEdit);
         First=view.findViewById(R.id.Morningtime);
         First.setText(medicine.getHour_of_Morning());
+
+
 
         view.findViewById(R.id.Morningtime).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -698,6 +700,9 @@ public class Edit_View extends Fragment {
 
         //test snipper
         //  Edit Frequency --> SPINNER________________________________________________________________________________________________
+
+        //Spiner
+
         List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("once");
         spinnerArray.add("Twice");
@@ -1059,9 +1064,12 @@ public class Edit_View extends Fragment {
         alertDialog.show();
     }
 
-
-
     private void save(View view) {
+
+        //saving
+        EditPresenterInterface editpresenterInterface= new EditPresenter(this);
+
+
         medicine.setMed_name(medname.getText().toString());
         if(!refill.getText().toString().equals(""))
         {
@@ -1074,20 +1082,31 @@ public class Edit_View extends Fragment {
         medicine.setHour_of_Noon(Third.getText().toString());
         medicine.setHour_of_Night(Forth.getText().toString());
 
+        // to generate the end_date
         Generate_End_date generate_end_date= new Generate_End_date(date,counter);
         System.out.println(generate_end_date.getEnd_date());
         medicine.setEnd_date(generate_end_date.getEnd_date());
-//        medicine.setStart_date();
-        System.out.println(medicine.getMed_name());
-        System.out.println(medicine.getHow_often());
-        System.out.println(medicine.getHour_of_Evening());
-        System.out.println(medicine.getHour_of_Morning());
-        System.out.println(medicine.getHour_of_Noon());
-        System.out.println(medicine.getHour_of_Night());
-        System.out.println(medicine.getStrength());
-        System.out.println(medicine.getMed_left());
-        System.out.println(medicine.getFlag());
 
+
+        //passing medicine to Edit Presenter
+        editpresenterInterface.update(medicine);
+
+
+//        System.out.println(medicine.getMed_name());
+//        System.out.println(medicine.getHow_often());
+//        System.out.println(medicine.getHour_of_Evening());
+//        System.out.println(medicine.getHour_of_Morning());
+//        System.out.println(medicine.getHour_of_Noon());
+//        System.out.println(medicine.getHour_of_Night());
+//        System.out.println(medicine.getStrength());
+//        System.out.println(medicine.getMed_left());
+//        System.out.println(medicine.getFlag());
+
+    }
+
+    @Override
+    public void ShowToast() {
+        Toast.makeText(getContext(), "Edit Successfully", Toast.LENGTH_SHORT).show();
     }
 
     ///for last taken

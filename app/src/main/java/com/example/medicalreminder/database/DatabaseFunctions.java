@@ -52,4 +52,17 @@ public interface DatabaseFunctions {
     }).start();
      */
 
+
+//hend...............................................................
+
+    @Query("Select * from MedicineInfo")
+    List<Medicine> getAllMedications();
+
+    @Query("SELECT * FROM MedicineInfo WHERE  active=1")
+    List<Medicine> getActiveMedications();
+
+    @Query("SELECT * FROM MedicineInfo WHERE  active=0")
+    List<Medicine> getInactiveMedications();
+
+
 }

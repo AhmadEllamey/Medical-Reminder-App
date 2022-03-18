@@ -117,4 +117,7 @@
     <string name="instructionadd">Do you want to add any instructions?</string>
     <string name="Save">Save</string>
     <string name="Refilldisplaytxt">Refill your prescription</string>
+    <string name="txt_active_medicines">Active Medicines</string>
+    <string name="txt_inactive_meds_rv_title">Inactive Medicines</string>
+    <string name="add_medicine_btn_medList">Add Medicine</string>
 </resources>

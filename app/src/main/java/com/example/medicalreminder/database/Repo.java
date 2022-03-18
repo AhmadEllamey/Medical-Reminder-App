@@ -7,6 +7,12 @@ import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
+import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
+import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
+import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
+import com.example.medicalreminder.medicineslist.view.ActiveViewInterface;
+import com.example.medicalreminder.medicineslist.view.InactiveViewInterface;
+
 import java.util.List;
 
 public class Repo {
@@ -15,12 +21,21 @@ public class Repo {
 
     List<MedicineReadyToShow> medicineReadyToShows;
     DatabaseFunctions databaseFunctions;
-
-
     HomePresenterInterface homePresenterInterface ;
-
     com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenter ;
-
+//hend ..........................................................................................Start
+    List<Medicine>medicines;
+    ActivePresenter activePresenter;
+    ActivePresenterInterface activePresenterInterface;
+    InactivePresenter inactivePresenter;
+    InactiveViewInterface  inactiveViewInterface;
+    public Repo(ActivePresenter activePresenter){
+        this.activePresenter=activePresenter;
+    }
+    public Repo(InactivePresenter inactivePresenter){
+        this.inactivePresenter=inactivePresenter;
+    }
+   // hend.........................................................................................End
     public Repo(HomePresenterInterface homePresenterInterface) {
         this.homePresenterInterface = homePresenterInterface;
     }
@@ -167,6 +182,62 @@ public class Repo {
 
 
     }
+
+
+    //hend...................................................................................
+    public void getActiveMedications (){
+        System.out.println("inside getActiveMedications ");
+
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                activePresenterInterface.getActiveMeds(medicines);
+
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                medicines = databaseFunctions.getActiveMedications();
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+
+    }
+    public void getInactiveMedications(){
+        System.out.println("inside getInactiveMedications ");
+
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                inactiveViewInterface.getInactiveMeds(medicines);
+
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                medicines = databaseFunctions.getInactiveMedications();
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+
+    }
+
+
 
 
 

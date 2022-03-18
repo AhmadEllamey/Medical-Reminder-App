@@ -135,6 +135,7 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         view.findViewById(R.id.deletebtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 deletePresenter(medicine);
             }
         });

@@ -425,6 +425,10 @@ public class Edit_View extends Fragment  implements EditViewInterface {
     RadioButton periodofdays;
 
 
+    public Edit_View(Medicine medicine){
+        this.medicine = medicine;
+    }
+
     int counter = 0;
 
     String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());

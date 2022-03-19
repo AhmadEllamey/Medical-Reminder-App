@@ -19,6 +19,7 @@ import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 import com.example.medicalreminder.login.model.User;
+import com.example.medicalreminder.medicineslist.view.MedicationsListFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , Communicator {
@@ -110,8 +111,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(this,"Add medicine",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new BlankFragment()).commit();
         }else if(item.getItemId() == R.id.nav_edit_medicine){
-            Toast.makeText(this,"Edit Medicine",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+            Toast.makeText(this,"Show Medicines",Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_health_takers){
             Toast.makeText(this,"Add health takers",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();

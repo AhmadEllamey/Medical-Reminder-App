@@ -2,44 +2,21 @@ package com.example.medicalreminder;
 
 
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-
-import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.alarm.WorkManagerClass;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static android.content.ContentValues.TAG;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         long startTime = 0;
         try {
-            dTime = formatter.parse("8:55");
+            dTime = formatter.parse("17:00");
             cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
             cal.set(Calendar.MINUTE,dTime.getMinutes());
             cal.set(Calendar.SECOND,0);

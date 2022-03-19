@@ -28,6 +28,11 @@ public class MyCustomDialoge extends AppCompatDialogFragment {
     *
     *
     * */
+
+
+
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -51,8 +56,8 @@ public class MyCustomDialoge extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // minus one from med_amount
                         // update the last_taken date
-                        //update the fire_store
-                        //update the medicine info || medicine ready to show
+                        // update the fire_store
+                        // update the medicine info || medicine ready to show
                         Toast.makeText(getContext(), "Take", Toast.LENGTH_SHORT).show();
                     }
                 })

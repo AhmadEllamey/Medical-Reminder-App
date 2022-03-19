@@ -12,7 +12,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.displaymedicin.DisplayView.Displaymed;
+import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
+import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 
 import java.util.List;
 
@@ -77,6 +80,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.medicineState.setText(medicineReadyToShows.get(position).getStates());
         holder.medicineAction.setText(medicineReadyToShows.get(position).getAction());
         holder.medicineTime.setText(medicineReadyToShows.get(position).getTime());
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new Displaymed(medicineReadyToShows.get(holder.getAdapterPosition()))).commit();
+            }
+        });
+
+
+
 
     }
 

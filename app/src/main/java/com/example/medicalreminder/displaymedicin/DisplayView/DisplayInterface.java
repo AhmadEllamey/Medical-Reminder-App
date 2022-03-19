@@ -8,4 +8,6 @@ public interface DisplayInterface {
     void deletesuccess();
 
     void deletefailed();
+
+    void iGotTheMed(Medicine medicine);
 }

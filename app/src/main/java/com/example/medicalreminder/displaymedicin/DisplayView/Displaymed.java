@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,8 +22,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.database.Repo;
 import com.example.medicalreminder.displaymedicin.DisplayPresenter.DisplayPresenter;
 import com.example.medicalreminder.displaymedicin.DisplayPresenter.DisplayPresenterInterface;
+import com.example.medicalreminder.editmedicin.EditView.Edit_View;
+import com.example.medicalreminder.home.view.Home;
+import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,11 +51,24 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     TextView Lasttaken;
     TextView Reminder;
     TextView Condition;
+    Button btn;
     TextView Refill;
     ImageButton edit;
     ImageButton delete;
     int counter = 0;
+
+
+    String username;
+    String medName;
+
     DisplayPresenterInterface displayPresenterInterface;
+
+    public Displaymed(MedicineReadyToShow medicineReadyToShow){
+        username = medicineReadyToShow.getUser_name();
+        medName = medicineReadyToShow.getName();
+    }
+
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -61,48 +79,72 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         image.setClipToOutline(true);
 
 
-        Bundle bundle = this.getArguments();
-        medicine= (Medicine) bundle.getSerializable("obj");
+        // get the medicine
+        // we sent a request asking for the current medicine
+        Repo repo = new Repo(this);
+        repo.getMedicineFor(medName,username);
+
+
+
+//
+//        Bundle bundle = this.getArguments();
+//        medicine= (Medicine) bundle.getSerializable("obj");
 
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
         Condition=view.findViewById(R.id.conditiondisplay);
         Refill=view.findViewById(R.id.Refilldisplay);
+        btn = view.findViewById(R.id.suspend_id);
 
 
-        //setting the component
 
-        medicinname.setText(medicine.getMed_name());
-        Lasttaken.setText(medicine.getLast_time_taken());
-        Condition.setText(medicine.getWhy_Taken());
 
-        Refill.setText("remind you when "+medicine.getMed_left()+"pills  left");
 
-        //if not null
-        Reminder.setText(medicine.getHour_of_Morning() + medicine.getHour_of_Night()
-        +medicine.getHour_of_Noon()+medicine.getHour_of_Evening()
-        );
 
+        // todo -- > set the on action click listeners only <<<
 
         //suspend
         view.findViewById(R.id.suspend_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                medicine.setActive(false);
 
-                //set the end date with the  current date
-                Date c = Calendar.getInstance().getTime();
-                System.out.println("Current time => " + c);
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                String formattedDate = df.format(c);
-                medicine.setEnd_date(formattedDate);
+                if(btn.getText().equals("Suspend")){
+                    medicine.setActive(false);
+                    //set the end date with the  current date
+                    Date c = Calendar.getInstance().getTime();
+                    System.out.println("Current time => " + c);
+                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    String formattedDate = df.format(c);
+                    medicine.setEnd_date(formattedDate);
 
-                //send to preseneter to update the record
-                sendtopresenter( medicine);
+                    //send to preseneter to update the record
+                    sendtopresenter( medicine);
 
-                Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
+                    btn.setText("Activate");
+                }else {
+                    //set the end date with the  current date
+                    Date c = Calendar.getInstance().getTime();
+                    System.out.println("Current time => " + c);
+                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    String formattedDate = df.format(c);
+                    medicine.setStart_date(formattedDate);
+
+                    //send to preseneter to update the record
+                    sendtopresenter( medicine);
+
+                    Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
+                    medicine.setActive(true);
+                    btn.setText("Suspend");
+                }
+
+
+
+
+
+
             }
         });
 
@@ -126,6 +168,8 @@ public class Displaymed extends Fragment implements  DisplayInterface{
             public void onClick(View view) {
 
                 // moving to edit fragment
+                Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new Edit_View(medicine)).commit();
+
 
             }
         });
@@ -217,6 +261,33 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     @Override
     public void deletefailed() {
         Toast.makeText(getContext(), "Failed to delete it try again", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void iGotTheMed(Medicine medicine) {
+        // todo -- > what to do after you got the medicine
+        // like update the ui and other staff that depend on the medicine info
+
+        //setting the component
+         this.medicine = medicine;
+
+          if(!medicine.getActive()){
+              btn.setText("Activate");
+          }
+
+
+        medicinname.setText(medicine.getMed_name());
+        Lasttaken.setText(medicine.getLast_time_taken());
+        Condition.setText(medicine.getWhy_Taken());
+
+        Refill.setText("remind you when "+medicine.getMed_left()+"pills  left");
+
+        //if not null
+        Reminder.setText(medicine.getHour_of_Morning() + medicine.getHour_of_Night()
+        +medicine.getHour_of_Noon()+medicine.getHour_of_Evening()
+        );
+
 
     }
 }

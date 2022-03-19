@@ -22,10 +22,11 @@
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/popupcounter.xml" value="0.254981884057971" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/reminder_layout.xml" value="0.67" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/strength.xml" value="0.254981884057971" />
+        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/medicine_reminder.xml" value="0.11041666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

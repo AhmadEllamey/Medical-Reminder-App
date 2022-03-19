@@ -16,6 +16,7 @@ import com.example.medicalreminder.databinding.FragmentActiveMedicationsBinding;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActiveViewMedicationsFragment extends Fragment implements ActiveViewInterface {
@@ -51,6 +52,7 @@ public class ActiveViewMedicationsFragment extends Fragment implements ActiveVie
         fragmentActiveMedicationsBinding.ActiveRecyclerView.setLayoutManager(layoutManager);
 
         activePresenterInterface =new ActivePresenter(this);
+        medicines = new ArrayList<>();
         activePresenterInterface.getActiveMeds(medicines);
     }
     @Override

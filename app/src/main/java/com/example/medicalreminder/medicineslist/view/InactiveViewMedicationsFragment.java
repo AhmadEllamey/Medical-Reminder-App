@@ -16,6 +16,7 @@ import com.example.medicalreminder.databinding.FragmentInactiveMedicationsBindin
 import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
 import com.example.medicalreminder.medicineslist.presenter.InactivePresenterInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InactiveViewMedicationsFragment extends Fragment implements InactiveViewInterface {
@@ -49,6 +50,10 @@ public class InactiveViewMedicationsFragment extends Fragment implements Inactiv
         LinearLayoutManager layoutManager = new LinearLayoutManager(InactiveViewMedicationsFragment.this.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         fragmentInactiveMedicationsBinding.inActiveRecyclerView.setLayoutManager(layoutManager);
+
+
+
+        medicines = new ArrayList<>();
 
         inactivePresenterInterface =new InactivePresenter(this);
         inactivePresenterInterface.getInactiveMeds(medicines);

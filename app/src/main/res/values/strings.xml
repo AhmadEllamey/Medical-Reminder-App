@@ -120,4 +120,7 @@
     <string name="txt_active_medicines">Active Medicines</string>
     <string name="txt_inactive_meds_rv_title">Inactive Medicines</string>
     <string name="add_medicine_btn_medList">Add Medicine</string>
+    <string name="snooze">Snooze</string>
+    <string name="Skip">Skip</string>
+    <string name="btntake">Take</string>
 </resources>

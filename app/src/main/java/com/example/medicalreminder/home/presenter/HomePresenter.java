@@ -160,7 +160,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Morning"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -173,7 +175,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Noon"
+                                                    , i.getInstructions());
 
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
@@ -187,7 +191,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Evening"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -200,7 +206,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Night"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -221,7 +229,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Morning"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -234,7 +244,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Noon"
+                                                    , i.getInstructions());
 
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
@@ -248,7 +260,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Evening"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -261,7 +275,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Night"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -296,7 +312,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getUser_name()
                                                         , i.getS_Unit()
                                                         , i.getActive().toString()
-                                                        , "waiting");
+                                                        , "waiting"
+                                                        ,"Morning"
+                                                        , i.getInstructions());
                                         // todo save this record
                                         saveTheRecord(medicineReadyToShow);
                                     }
@@ -309,7 +327,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getUser_name()
                                                         , i.getS_Unit()
                                                         , i.getActive().toString()
-                                                        , "waiting");
+                                                        , "waiting"
+                                                        ,"Noon"
+                                                        , i.getInstructions());
 
                                         // todo save this record
                                         saveTheRecord(medicineReadyToShow);
@@ -323,7 +343,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getUser_name()
                                                         , i.getS_Unit()
                                                         , i.getActive().toString()
-                                                        , "waiting");
+                                                        , "waiting"
+                                                        ,"Evening"
+                                                        , i.getInstructions());
                                         // todo save this record
                                         saveTheRecord(medicineReadyToShow);
                                     }
@@ -336,7 +358,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getUser_name()
                                                         , i.getS_Unit()
                                                         , i.getActive().toString()
-                                                        , "waiting");
+                                                        , "waiting"
+                                                        ,"Night"
+                                                        , i.getInstructions());
                                         // todo save this record
                                         saveTheRecord(medicineReadyToShow);
                                     }
@@ -359,7 +383,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Morning"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -372,7 +398,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Noon"
+                                                    , i.getInstructions());
 
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
@@ -386,7 +414,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Evening"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }
@@ -399,7 +429,9 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getUser_name()
                                                     , i.getS_Unit()
                                                     , i.getActive().toString()
-                                                    , "waiting");
+                                                    , "waiting"
+                                                    ,"Night"
+                                                    , i.getInstructions());
                                     // todo save this record
                                     saveTheRecord(medicineReadyToShow);
                                 }

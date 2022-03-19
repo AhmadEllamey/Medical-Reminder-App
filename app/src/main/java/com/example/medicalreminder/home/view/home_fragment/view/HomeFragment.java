@@ -1,5 +1,6 @@
 package com.example.medicalreminder.home.view.home_fragment.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.text.ParseException;
@@ -20,11 +21,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.alarm.WorkManagerClass;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenter;
@@ -33,6 +39,7 @@ import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresente
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment implements HomeViewInterface {
@@ -81,7 +88,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         communicator = (Communicator) getActivity();
         medicineAdapter = new MedicineAdapter(context, medicineReadyToShows,communicator,fragmentManager);
         recyclerView.setAdapter(medicineAdapter);
-
 
         homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
 
@@ -140,6 +146,99 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
     }
 
 
+
+    @Override
+    public void setTheAlarm(MedicineReadyToShow medicineReadyToShow){
+
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        Date dTime ;
+        Date date ;
+        Calendar cal = Calendar.getInstance();
+        long startTime = 0;
+        try {
+            dTime = formatter.parse(medicineReadyToShow.getTime());
+            cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
+            cal.set(Calendar.MINUTE,dTime.getMinutes());
+            cal.set(Calendar.SECOND,0);
+            cal.set(Calendar.MILLISECOND,0);
+            date = cal.getTime();
+            startTime = date.getTime();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+        // set the alarm to the medicine object
+
+        Data data = new Data.Builder()
+                .putString("Medicine Name",medicineReadyToShow.getName())
+                .putString("Pills ToTake",medicineReadyToShow.getPills_to_take())
+                .putString("Time Per Day",medicineReadyToShow.getWhen())
+                .putString("Date Of The Day",medicineReadyToShow.getDate())
+                .putString("Time Of The Day",medicineReadyToShow.getTime())
+                .putString("Instructions",medicineReadyToShow.getInstruction())
+                .build();
+
+        @SuppressLint("RestrictedApi") OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(WorkManagerClass.class)
+                .setInputData(data)
+                //.setInitialDelay(startTime,TimeUnit.MILLISECONDS)
+                .setScheduleRequestedAt(startTime, TimeUnit.MILLISECONDS)
+                .build();
+
+        WorkManager.getInstance(this.getContext()).enqueue(oneTimeWorkRequest);
+
+
+    }
+
+
+    public Date getNearestDate(List<Date> dates, Date currentDate) {
+        long minDiff = -1, currentTime = currentDate.getTime();
+        Date minDate = null;
+        for (Date date : dates) {
+            long diff = Math.abs(currentTime - date.getTime());
+            if ((minDiff == -1) || (diff < minDiff)) {
+                minDiff = diff;
+                minDate = date;
+            }
+        }
+        return minDate;
+    }
+
+    public MedicineReadyToShow getTheMedicineToAlarm(List<MedicineReadyToShow> medicineReadyToShows){
+
+
+        List<Date> dates = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        Date dTime ;
+        Date date ;
+        Calendar cal = Calendar.getInstance();
+        Date currentTime = new Date();
+
+        // first we need to find the nearest time from now
+
+
+        for (MedicineReadyToShow i : medicineReadyToShows) {
+            try {
+                dTime = formatter.parse(i.getTime());
+                cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
+                cal.set(Calendar.MINUTE,dTime.getMinutes());
+                cal.set(Calendar.SECOND,0);
+                cal.set(Calendar.MILLISECOND,0);
+                date = cal.getTime();
+                dates.add(date);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        return medicineReadyToShows.get(dates.indexOf(getNearestDate(dates,currentTime)));
+    }
+
+
+
+
+
     @Override
     public void updateTheListOfMedicines(List<MedicineReadyToShow> medicineReadyToShows) {
         // update the list of the day
@@ -147,6 +246,11 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         System.out.println("--------------------------------------------------------------------------------------------------------------");
         //System.out.println(medicines.get(0));
         medicineAdapter.notifyDataSetChanged();
+
+        // todo -- > here we should calculate the nearest medicine to alert with. (Set The Alarm)
+
+        setTheAlarm(getTheMedicineToAlarm(medicineReadyToShows));
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

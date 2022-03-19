@@ -125,8 +125,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(this,"Log Out",Toast.LENGTH_SHORT).show();
 
             // todo >>> here the steps of logging out of the account and go back to the login screen
-
-
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }
 

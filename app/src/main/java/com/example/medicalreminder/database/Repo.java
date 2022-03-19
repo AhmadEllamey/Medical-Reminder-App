@@ -149,7 +149,7 @@ public class Repo {
             public void handleMessage(Message msg)
             {
                 //  Do SomeThings
-                homePresenterInterface.getTheMovies(medicineReadyToShows);
+                homePresenterInterface.sendTheListOfMedicines(medicineReadyToShows);
 
             }
         };

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.medicalreminder">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
@@ -17,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder">
         <activity android:name=".home.view.Home"></activity>
+
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

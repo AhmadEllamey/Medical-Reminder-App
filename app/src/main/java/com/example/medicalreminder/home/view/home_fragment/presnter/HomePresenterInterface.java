@@ -11,7 +11,7 @@ public interface HomePresenterInterface {
     void requestUpdateMedicineList(String date);
 
 
-    void getTheMovies(List<MedicineReadyToShow> medicineReadyToShows);
+    void sendTheListOfMedicines(List<MedicineReadyToShow> medicineReadyToShows);
 
     void getDataFromFireStoreAndStoreItIntoRoom();
 

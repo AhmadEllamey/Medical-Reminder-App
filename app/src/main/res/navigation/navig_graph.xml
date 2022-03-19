@@ -146,7 +146,7 @@
     </fragment>
     <fragment
         android:id="@+id/displaymed"
-        android:name="com.example.medicalreminder.displaymedicin.Displaymed"
+        android:name="com.example.medicalreminder.displaymedicin.DisplayView.Displaymed"
         android:label="Displaymed" />
     <fragment
         android:id="@+id/instructions2"

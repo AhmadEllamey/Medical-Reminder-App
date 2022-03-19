@@ -12,12 +12,15 @@
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/displaymedicin.xml" value="0.33" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/dose_time.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/edit_layout.xml" value="0.25" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_active_medications.xml" value="0.11197916666666667" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_blank.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/getrefill.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/how_often.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/howoften_not_every_day.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/instructions.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicine_reminder.xml" value="0.5" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/popupcounter.xml" value="0.254981884057971" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/reminder_layout.xml" value="0.67" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/strength.xml" value="0.254981884057971" />
       </map>
     </option>

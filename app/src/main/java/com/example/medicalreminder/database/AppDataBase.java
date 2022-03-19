@@ -6,10 +6,11 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.medicalreminder.Model.Local_Medicine_DB;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 
 
-@Database(entities = {MedicineReadyToShow.class, com.example.medicalreminder.Model.Medicine.class}, version = 1)
+@Database(entities = {MedicineReadyToShow.class, com.example.medicalreminder.Model.Medicine.class, Local_Medicine_DB.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static AppDataBase instance = null;

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_active_row"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/active_img_med"
+            android:layout_width="44dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pilltwo" />
+
+        <TextView
+            android:id="@+id/txt_med_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/active_img_med"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="adol" />
+
+        <TextView
+            android:id="@+id/txt_med_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/txt_med_name"
+            app:layout_constraintTop_toBottomOf="@+id/txt_med_name"
+            tools:text="4" />
+
+        <TextView
+            android:id="@+id/txt_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/txt_med_amount"
+            app:layout_constraintTop_toTopOf="@+id/txt_med_amount"
+            tools:text="pill(s)" />
+        <TextView
+            android:id="@+id/txt_med_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/txt_form"
+            app:layout_constraintTop_toTopOf="@id/txt_med_amount"
+            tools:text="left" />
+        <TextView
+            android:id="@+id/txt_med_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/txt_med_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5" />
+        <TextView
+            android:id="@+id/txt_med_s_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toEndOf="@id/txt_med_strength"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="mg/g" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

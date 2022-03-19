@@ -61,6 +61,15 @@ public class Med_Left extends Fragment {
                 else{
 
                     medicine.setMed_left(Integer.parseInt(medleft.getText().toString()));
+                    Bundle Sendbundle = new Bundle();
+                    Sendbundle.putSerializable("obj",medicine);
+
+                    //sending
+//        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
+
+                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToInstructions2();
+                    navController.navigate(R.id.instructions2,Sendbundle);
+
 //                    addMedicine(medicine);
                 }
         }
@@ -69,14 +78,6 @@ public class Med_Left extends Fragment {
 
         }
 ////
-        Bundle Sendbundle = new Bundle();
-        Sendbundle.putSerializable("obj",medicine);
-
-        //sending
-//        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
-
-        NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToInstructions2();
-        navController.navigate(R.id.instructions2,Sendbundle);
 
 
         //addMedicine(medicine);

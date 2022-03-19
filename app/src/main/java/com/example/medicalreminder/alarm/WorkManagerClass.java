@@ -30,9 +30,10 @@ import com.google.firebase.firestore.model.Values;
 
 public class WorkManagerClass extends Worker {
 
-
+    Context context;
     public WorkManagerClass(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+        this.context=context;
     }
 
     @NonNull
@@ -42,12 +43,30 @@ public class WorkManagerClass extends Worker {
 
         System.out.println("----------------------------------------- alarm working ------------------------------------------");
 
+        //pop up the window
+        NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext(),"Alarm")
+                .setContentTitle("Med Reminder ")
+                .setContentText("Take your med")
+                .setAutoCancel(true)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+//                .setContentIntent(pendingIntent);
 
 
+        NotificationManagerCompat notificationManagerCompat= NotificationManagerCompat.from(getApplicationContext());
+        notificationManagerCompat.notify(123 ,builder.build());
 
+
+        openDialog();
 
 
 
         return null;
+    }
+
+    private void openDialog() {
+        MyCustomDialoge myCustomDialoge= new MyCustomDialoge(getApplicationContext());
+        myCustomDialoge.show();
     }
 }

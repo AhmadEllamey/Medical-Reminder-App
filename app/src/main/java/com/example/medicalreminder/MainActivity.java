@@ -9,6 +9,9 @@ import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createNotificationChannel();
 
 
         SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         long startTime = 0;
         try {
-            dTime = formatter.parse("17:00");
+            dTime = formatter.parse("18:40");
             cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
             cal.set(Calendar.MINUTE,dTime.getMinutes());
             cal.set(Calendar.SECOND,0);
@@ -114,6 +117,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private void createNotificationChannel() {
+
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+            CharSequence name ="Medical Reminder Channel";
+            String desc = "Channel for alram";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("Alarm",name,importance);
+            channel.setDescription(desc);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

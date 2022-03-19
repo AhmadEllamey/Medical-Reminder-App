@@ -89,6 +89,11 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.4.2'
     compileOnly 'com.google.android.wearable:wearable:2.9.0'
 
+    //workManager(Hend)
+    def work_version = "2.7.1"
+
+    implementation "androidx.work:work-runtime:$work_version"
+
 
 
 

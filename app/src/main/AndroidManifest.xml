@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.medicalreminder">
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
@@ -16,7 +16,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder">
-        <activity android:name=".home.view.Home"></activity>
+        <receiver
+            android:name=".refillreminder.RefillReminderBroadCast"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+
+        <service
+            android:name=".refillreminder.RefillReminderService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".home.view.Home" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -34,7 +45,8 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

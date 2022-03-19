@@ -24,6 +24,9 @@
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_active_medications.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_inactive_medications.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_medications_list.xml" value="0.1802536231884058" />
+        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/inactive_meds_row.xml" value="0.1802536231884058" />
+        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_alarm_window.xml" value="0.1802536231884058" />
+        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_notification_screen.xml" value="0.1802536231884058" />
       </map>
     </option>
   </component>

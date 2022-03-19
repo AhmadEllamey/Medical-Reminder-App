@@ -4,4 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#03A4C8D8"/>
+    android:background="#03A4C8D8">
+
+    <TextView
+        android:id="@+id/med_id"
+        android:layout_width="194dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="641dp"
+        android:text="Adol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Message;
 
 import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
@@ -23,19 +24,32 @@ public class Repo {
     DatabaseFunctions databaseFunctions;
     HomePresenterInterface homePresenterInterface ;
     com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenter ;
-//hend ..........................................................................................Start
+    DisplayInterface displayInterface ;
+
+
+
+
+    //hend ..........................................................................................Start
     List<Medicine>medicines;
     ActivePresenter activePresenter;
     ActivePresenterInterface activePresenterInterface;
     InactivePresenter inactivePresenter;
     InactiveViewInterface  inactiveViewInterface;
+    public Repo(ActivePresenterInterface activePresenterInterface , ActivePresenter activePresenter){this.activePresenterInterface = activePresenterInterface;}
     public Repo(ActivePresenter activePresenter){
         this.activePresenter=activePresenter;
     }
     public Repo(InactivePresenter inactivePresenter){
         this.inactivePresenter=inactivePresenter;
     }
+
    // hend.........................................................................................End
+
+
+    public Repo(DisplayInterface displayInterface) {
+        this.displayInterface = displayInterface;
+    }
+
     public Repo(HomePresenterInterface homePresenterInterface) {
         this.homePresenterInterface = homePresenterInterface;
     }
@@ -164,7 +178,7 @@ public class Repo {
             public void handleMessage(Message msg)
             {
                 //  Do SomeThings
-                homePresenterInterface.getTheMovies(medicineReadyToShows);
+                homePresenterInterface.sendTheListOfMedicines(medicineReadyToShows);
 
             }
         };
@@ -180,6 +194,21 @@ public class Repo {
         }).start();
 
 
+
+    }
+
+
+    public void getMedicineFor(String medicineName ,String username){
+
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
+            }
+        }).start();
 
     }
 

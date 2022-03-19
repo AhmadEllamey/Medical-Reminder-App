@@ -27,7 +27,7 @@ public class HomePresenter implements HomePresenterInterface {
     }
 
     @Override
-    public void getTheMovies(List<MedicineReadyToShow> medicineReadyToShows) {
+    public void sendTheListOfMedicines(List<MedicineReadyToShow> medicineReadyToShows) {
         homeViewInterface.updateTheListOfMedicines(medicineReadyToShows);
     }
 

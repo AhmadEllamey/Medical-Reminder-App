@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.home.view.Home;
+import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.login.model.User;
 
 public class ProfileFragment extends Fragment implements ProfileViewInterface {
@@ -18,6 +20,10 @@ public class ProfileFragment extends Fragment implements ProfileViewInterface {
 
     public ProfileFragment() {
         // Required empty public constructor
+    }
+
+    public ProfileFragment(MedicineReadyToShow medicine){
+        System.out.println("we are right");
     }
 
 

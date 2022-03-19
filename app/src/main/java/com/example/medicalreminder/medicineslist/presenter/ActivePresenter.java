@@ -17,7 +17,7 @@ public class ActivePresenter implements ActivePresenterInterface{
 
     @Override
     public void getActiveMeds(List<Medicine> medicine) {
-        Repo repo=new Repo(this);
+        Repo repo=new Repo(this,this);
         repo.getActiveMedications();
         activeViewInterface.getActiveMedicines(medicine);
     }

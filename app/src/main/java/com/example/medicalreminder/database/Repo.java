@@ -11,6 +11,7 @@ import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresente
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
 import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
+import com.example.medicalreminder.medicineslist.presenter.InactivePresenterInterface;
 import com.example.medicalreminder.medicineslist.view.ActiveViewInterface;
 import com.example.medicalreminder.medicineslist.view.InactiveViewInterface;
 
@@ -34,14 +35,13 @@ public class Repo {
     ActivePresenter activePresenter;
     ActivePresenterInterface activePresenterInterface;
     InactivePresenter inactivePresenter;
-    InactiveViewInterface  inactiveViewInterface;
+    InactivePresenterInterface inactivePresenterInterface;
     public Repo(ActivePresenterInterface activePresenterInterface , ActivePresenter activePresenter){this.activePresenterInterface = activePresenterInterface;}
-    public Repo(ActivePresenter activePresenter){
-        this.activePresenter=activePresenter;
-    }
+    public Repo(ActivePresenter activePresenter){this.activePresenter=activePresenter;}
     public Repo(InactivePresenter inactivePresenter){
         this.inactivePresenter=inactivePresenter;
     }
+    public Repo(InactivePresenterInterface inactivePresenterInterface,InactivePresenter inactivePresenter) {this.inactivePresenterInterface = inactivePresenterInterface;}
 
    // hend.........................................................................................End
 
@@ -250,7 +250,7 @@ public class Repo {
             @Override
             public void handleMessage(Message msg)
             {
-                inactiveViewInterface.getInactiveMeds(medicines);
+                inactivePresenterInterface.getInactiveMeds(medicines);
 
             }
         };

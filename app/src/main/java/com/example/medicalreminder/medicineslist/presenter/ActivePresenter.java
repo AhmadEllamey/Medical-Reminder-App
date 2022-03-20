@@ -19,6 +19,6 @@ public class ActivePresenter implements ActivePresenterInterface{
     public void getActiveMeds(List<Medicine> medicine) {
         Repo repo=new Repo(this,this);
         repo.getActiveMedications();
-        activeViewInterface.getActiveMedicines(medicine);
+        activeViewInterface.getActiveMeds(medicine);
     }
-}
+} 

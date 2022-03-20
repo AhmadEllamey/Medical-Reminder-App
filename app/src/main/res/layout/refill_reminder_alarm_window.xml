@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_weight="1"
-                    android:text="@string/txt_skip"
+                    android:text="@string/txt_skip_refill_reminder"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
                     android:layout_weight="1"
-                    android:text="@string/txt_refill"
+                    android:text="@string/txt_refillrefill_reminder"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_weight="1"
-                    android:text="@string/txt_snooze"
+                    android:text="@string/txt_snooze_refill_reminder"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>

@@ -123,4 +123,7 @@
     <string name="snooze">Snooze</string>
     <string name="Skip">Skip</string>
     <string name="btntake">Take</string>
+    <string name="txt_skip_refill_reminder">Skip</string>
+    <string name="txt_refillrefill_reminder">Refill</string>
+    <string name="txt_snooze_refill_reminder">Snooze</string>
 </resources>

@@ -63,7 +63,7 @@ public class ActiveViewMedicationsFragment extends Fragment implements ActiveVie
 
 
     @Override
-    public void getActiveMedicines(List<Medicine> medications) {
+    public void getActiveMeds(List<Medicine> medications) {
         if(medications.size()==0){
             fragmentActiveMedicationsBinding.activeTxt.setVisibility(View.GONE);
             fragmentActiveMedicationsBinding.ActiveRecyclerView.setVisibility(View.GONE);

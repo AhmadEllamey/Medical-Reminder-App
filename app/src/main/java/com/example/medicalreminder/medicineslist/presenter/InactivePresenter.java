@@ -15,7 +15,7 @@ public class InactivePresenter implements InactivePresenterInterface{
 
     @Override
     public void getInactiveMeds(List<Medicine> medicine) {
-    Repo repo=new Repo(this);
+    Repo repo=new Repo(this,this);
     repo.getInactiveMedications();
         inactiveViewInterface.getInactiveMeds(medicine);
     }

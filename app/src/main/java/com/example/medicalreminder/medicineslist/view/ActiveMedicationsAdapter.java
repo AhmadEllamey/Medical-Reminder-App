@@ -37,10 +37,10 @@ public class ActiveMedicationsAdapter extends RecyclerView.Adapter<ActiveMedicat
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.i("TAG", "onBindViewHolder ");
-        holder.binding.activeImgMed.setImageResource(R.drawable.pill);
-        holder.binding.txtMedName.setText(meds.get(position).getStrength());
-        holder.binding.txtMedStrength.setText(meds.get(position).getStrength());
-        holder.binding.txtForm.setText(meds.get(position).getMed_form());
+        holder.binding.activeImgMed.setImageResource(R.drawable.pill);//done
+        holder.binding.txtMedName.setText(meds.get(position).getMed_name());//done
+        holder.binding.txtMedStrength.setText(meds.get(position).getStrength());//done
+        holder.binding.txtForm.setText(meds.get(position).getMed_form());//done
         holder.binding.txtMedAmount.setText(String.valueOf(meds.get(position).getMed_amount()));
         holder.binding.txtMedSUnit.setText(meds.get(position).getS_Unit());
         holder.binding.txtMedLeft.setText("left");

@@ -388,8 +388,14 @@ public class HomePresenter implements HomePresenterInterface {
                             Date endDateForThisMed = new SimpleDateFormat("dd/MM/yyyy").parse(i.getEnd_date());
 
                             System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+endDateForThisMed); //18/4/22
-                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+cal1); // 21/3/22
-                            while(!cal1.before(endDateForThisMed)) {
+                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+ cal1.getTime()); // 21/3/22
+
+                            // this is to retrieve only to the next month only
+                            if(cal2.before(endDateForThisMed)){
+                                endDateForThisMed = cal2.getTime();
+                            }
+
+                            while(cal1.before(endDateForThisMed)) {
 
                                 if(i.getHour_of_Morning()!=null) {
                                     MedicineReadyToShow medicineReadyToShow =

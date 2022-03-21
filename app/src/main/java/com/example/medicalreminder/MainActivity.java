@@ -17,8 +17,11 @@ import android.os.Build;
 import android.os.Bundle;
 import com.example.medicalreminder.alarm.WorkManagerClass;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public Date getNearestDate(List<Date> dates, Date currentDate) {
+        long minDiff = -1, currentTime = currentDate.getTime();
+        Date minDate = null;
+        for (Date date : dates) {
+            long diff = date.getTime() - currentTime ;
+            if (((minDiff == -1) || (diff < minDiff)) && diff>=0) {
+                minDiff = diff;
+                minDate = date;
+            }
+        }
+        return minDate;
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -43,48 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         createNotificationChannel();
-
-
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-        Date dTime ;
-        Date date ;
-        Calendar cal = Calendar.getInstance();
-        long startTime = 0;
-        try {
-            dTime = formatter.parse("18:40");
-            cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
-            cal.set(Calendar.MINUTE,dTime.getMinutes());
-            cal.set(Calendar.SECOND,0);
-            cal.set(Calendar.MILLISECOND,0);
-            date = cal.getTime();
-            startTime = date.getTime();
-            System.out.println("we are here");
-            System.out.println(startTime);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-
-        // set the alarm to the medicine object
-
-//        Data data = new Data.Builder()
-//                .putString("Medicine Name",medicineReadyToShow.getName())
-//                .putString("Pills ToTake",medicineReadyToShow.getPills_to_take())
-//                .putString("Time Per Day",medicineReadyToShow.getWhen())
-//                .putString("Date Of The Day",medicineReadyToShow.getDate())
-//                .putString("Time Of The Day",medicineReadyToShow.getTime())
-//                .putString("Instructions",medicineReadyToShow.getInstruction())
-//                .build();
-
-        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(WorkManagerClass.class)
-                .setInitialDelay(startTime - System.currentTimeMillis(),TimeUnit.MILLISECONDS)
-                //.setScheduleRequestedAt(startTime, TimeUnit.MILLISECONDS)
-                .build();
-
-        WorkManager.getInstance(this).enqueue(oneTimeWorkRequest);
- 
-
 
         context = this ;
 

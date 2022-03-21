@@ -1,11 +1,13 @@
 package com.example.medicalreminder.database;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 
 import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
+import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
@@ -14,6 +16,11 @@ import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
 import com.example.medicalreminder.medicineslist.view.ActiveViewInterface;
 import com.example.medicalreminder.medicineslist.view.InactiveViewInterface;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Repo {
@@ -188,7 +195,7 @@ public class Repo {
             public void run() {
                 //databaseFunctions.insertMedicine(new Medicine("panadol","06:00","03/13/2022","1","Active","Waiting"));
                 System.out.println("we are here !!!!!!");
-                medicineReadyToShows = databaseFunctions.getCurrentDayMedicines(date);
+                medicineReadyToShows = databaseFunctions.getCurrentDayMedicines(date, Home.getTheCurrentUser().getEmail());
                 handler.sendEmptyMessage(1);
             }
         }).start();
@@ -209,6 +216,39 @@ public class Repo {
                 displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
             }
         }).start();
+
+    }
+
+
+
+
+    public void getTodayMedicinesFun(String username){
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+        List<MedicineReadyToShow> medicineReadyToShowsForToday = new ArrayList<>();
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                homePresenter.sendTodayMedicines(medicineReadyToShows);
+
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Date date = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                medicineReadyToShows = databaseFunctions.getTodayMedicines(dateFormat.format(date),username);
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+
+
 
     }
 

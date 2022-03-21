@@ -12,8 +12,8 @@ public interface HomeViewInterface {
 
     void updateTheUI();
 
-    void setTheAlarm(MedicineReadyToShow medicineReadyToShow);
 
+    void manageTheAlarms(List<MedicineReadyToShow> medicineReadyToShows);
 
 
 

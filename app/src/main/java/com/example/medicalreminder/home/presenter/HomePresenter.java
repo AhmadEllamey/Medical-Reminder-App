@@ -65,6 +65,17 @@ public class HomePresenter implements HomePresenterInterface {
                 });
     }
 
+    @Override
+    public void getTheListOfMedicinesForToday(String username) {
+        Repo repo = new Repo(this);
+        repo.getTodayMedicinesFun(username);
+    }
+
+    @Override
+    public void sendTodayMedicines(List<MedicineReadyToShow> medicineReadyToShows) {
+        homeViewInterface.manageTheAlarms(medicineReadyToShows);
+    }
+
     // load the data into app room
     @Override
     public void loadMedicineInfo() {

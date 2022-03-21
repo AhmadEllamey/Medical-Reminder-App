@@ -16,8 +16,12 @@ import java.util.List;
 @Dao
 public interface DatabaseFunctions {
 
-    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet")
-    List<MedicineReadyToShow> getCurrentDayMedicines(String dateToGet);
+    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet AND user_name = :username")
+    List<MedicineReadyToShow> getTodayMedicines(String dateToGet , String username);
+
+
+    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet AND user_name = :username")
+    List<MedicineReadyToShow> getCurrentDayMedicines(String dateToGet , String username);
 
     @Query("SELECT * FROM MedicineInfo WHERE med_name = :medName AND user_name = :userName")
     Medicine getTheMed(String medName , String userName);

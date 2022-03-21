@@ -14,15 +14,27 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.example.medicalreminder.BlankFragment;
+import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 import com.example.medicalreminder.login.model.User;
 import com.example.medicalreminder.medicineslist.view.MedicationsListFragment;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , Communicator {
+import java.util.Objects;
+
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , Communicator ,GoogleApiClient.OnConnectionFailedListener {
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
@@ -30,14 +42,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     User user;
     static User userX;
     static FrameLayout frameLayout ;
-
-
     public static FragmentManager fragmentManager;
 
-
-
-
     static Context context ;
+
+    private GoogleApiClient googleApiClient;
+    private GoogleSignInOptions gso;
 
 
     public static FrameLayout getFrameLayout(){
@@ -62,6 +72,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setContentView(R.layout.activity_home);
 
         context = this;
+
+
+
+        gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleApiClient=new GoogleApiClient.Builder(this)
+                .enableAutoManage(this,this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                .build();
 
         fragmentManager = getSupportFragmentManager();
         Intent intent = getIntent();
@@ -115,18 +136,47 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_health_takers){
             Toast.makeText(this,"Add health takers",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+            //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_manage_health_takers){
             Toast.makeText(this,"Manage health takers",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+            //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_sittings){
-            Toast.makeText(this,"Sittings",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+            Toast.makeText(this,"Sittings , not supported yet",Toast.LENGTH_SHORT).show();
+            //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_log_out){
-            Toast.makeText(this,"Log Out",Toast.LENGTH_SHORT).show();
 
             // todo >>> here the steps of logging out of the account and go back to the login screen
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+
+
+            // clear the shared preferences
+            MainActivity.setClearSharedPreferences("clear");
+
+            // try to logout from google
+
+
+            FirebaseAuth.getInstance().signOut();
+            Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            if (status.isSuccess()){
+                                Toast.makeText(getApplicationContext(),"Session closed",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Session not close",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+
+            Toast.makeText(this,"Log Out",Toast.LENGTH_LONG).show();
+
+
+            // move to the login screen
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+
+
+
         }
 
         navigationView.setCheckedItem(item.getItemId());
@@ -138,5 +188,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
 
+        // ToDO -- > handle what to do when back button pressed ...
+
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
+        OptionalPendingResult<GoogleSignInResult> opr= Auth.GoogleSignInApi.silentSignIn(googleApiClient);
+        if(opr.isDone()){
+            GoogleSignInResult result=opr.get();
+            //handleSignInResult(result);
+        }else{
+            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
+                @Override
+                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
+                    //handleSignInResult(googleSignInResult);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(this,"Filed sign out with GMail",Toast.LENGTH_LONG).show();
+    }
 }

@@ -32,30 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
     private static Context context;
 
+    private static String clearSharedPreferences = "null" ;
+
     public static Context getContext() {
         return context;
     }
 
-
-    public Date getNearestDate(List<Date> dates, Date currentDate) {
-        long minDiff = -1, currentTime = currentDate.getTime();
-        Date minDate = null;
-        for (Date date : dates) {
-            long diff = date.getTime() - currentTime ;
-            if (((minDiff == -1) || (diff < minDiff)) && diff>=0) {
-                minDiff = diff;
-                minDate = date;
-            }
-        }
-        return minDate;
+    public static void setContext(Context context) {
+        MainActivity.context = context;
     }
 
+    public static String getClearSharedPreferences() {
+        return clearSharedPreferences;
+    }
+
+    public static void setClearSharedPreferences(String clearSharedPreferences) {
+        MainActivity.clearSharedPreferences = clearSharedPreferences;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
 
         createNotificationChannel();
 
@@ -77,19 +81,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+
+        // ToDO -- > handle what to do when back button pressed ...
     }
 
     private void createNotificationChannel() {

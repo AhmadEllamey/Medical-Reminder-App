@@ -1,7 +1,10 @@
 package com.example.medicalreminder.home.presenter;
 
 
+import android.annotation.SuppressLint;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import com.example.medicalreminder.Model.Medicine;
@@ -57,6 +60,9 @@ public class HomePresenter implements HomePresenterInterface {
                             Medicine medicine =document.toObject(Medicine.class);
                             medicines.add(medicine);
                         }
+
+
+
                     } else {
                         // todo -- > show toast that the internet is lost
                         Toast.makeText(Home.getContext(),"Connection Lost",Toast.LENGTH_LONG).show();
@@ -90,7 +96,6 @@ public class HomePresenter implements HomePresenterInterface {
         Repo repo = new Repo(this);
         repo.clearReadyToShowForTheCurrentUser(Home.getTheCurrentUser().getEmail());
     }
-
 
 
     // process the data to set the medicines that will be available
@@ -471,7 +476,6 @@ public class HomePresenter implements HomePresenterInterface {
 
         homeViewInterface.updateTheUI();
     }
-
 
     public void saveTheRecord(MedicineReadyToShow medicineReadyToShow){
         Repo repo = new Repo();

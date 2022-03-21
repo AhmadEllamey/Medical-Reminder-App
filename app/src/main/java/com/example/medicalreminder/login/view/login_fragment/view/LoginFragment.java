@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.login.model.User;
@@ -88,8 +89,15 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
         sharedpreferences = view.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
+        if(MainActivity.getClearSharedPreferences().equals("clear")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("email","NA");
+            editor.apply();
+            editor.commit();
+            MainActivity.setClearSharedPreferences("null");
+        }
 
-        /*
+
         if(!sharedpreferences.getString("email","NA").equals("NA")){
             // the user is already signed in before , then go to the home with his stored info
 
@@ -103,7 +111,7 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
             updateTheUiAfterSystemLogin(user);
         }
-         */
+
 
 
         loginFragmentPresenterInterface = new LoginFragmentPresenter(this);

@@ -1,23 +1,16 @@
 package com.example.medicalreminder.home.view.home_fragment.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
-
-
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -26,13 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.alarm.WorkManagerClass;
@@ -42,7 +31,6 @@ import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenter;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -67,7 +55,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -97,10 +84,10 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         recyclerView.setAdapter(medicineAdapter);
 
         // load medicines for the show list
-        homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
+        //homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
 
-        // ask for updating the alarm
-        homePresenterInterfaceParent.getTheListOfMedicinesForToday(Home.getTheCurrentUser().getEmail());
+
+
 
         /* starts before 1 month from now */
         Calendar startDate = Calendar.getInstance();
@@ -148,15 +135,20 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
                 // todo --->>>> do some action here when the date is chosen
 
+
+
                 homePresenterInterface.requestUpdateMedicineList(formateDate);
 
             }
         });
 
 
+        // load medicines for the show list
+        homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
+
+
         return view ;
     }
-
 
     public Date getNearestDate(List<Date> dates, Date currentDate) {
 
@@ -432,7 +424,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
         // todo -- > here we should calculate the nearest medicine to alert with. (Set The Alarm)
 
-//        setTheAlarm(getTheMedicineToAlarm(medicineReadyToShows));
+        // ask for updating the alarm
+        homePresenterInterfaceParent.getTheListOfMedicinesForToday(Home.getTheCurrentUser().getEmail());
 
     }
 
@@ -444,6 +437,7 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         LocalDateTime now = LocalDateTime.now();
         System.out.println("--------------->>>>>" + dtf.format(now));
         homePresenterInterface.requestUpdateMedicineList(dtf.format(now));
+
     }
 
 

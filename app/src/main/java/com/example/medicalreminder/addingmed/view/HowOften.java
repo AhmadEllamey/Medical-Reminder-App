@@ -33,11 +33,6 @@ public class HowOften extends Fragment {
         Bundle bundle = this.getArguments();
         if(bundle!=null){
             medicine= (Medicine) bundle.getSerializable("obj");
-            System.out.println(medicine.getMed_name()+"\n"+
-                    medicine.getMed_form()+"\n"+
-                    medicine.getStrength()+"\n"+
-                    medicine.getWhy_Taken()+"\n"+
-                    medicine.getFlag());
         }
 
         view.findViewById(R.id.once).setOnClickListener(this::gonext);
@@ -60,7 +55,6 @@ public class HowOften extends Fragment {
         if( holder.getId() ==  R.id.twice) counter=2;
         if( holder.getId() == R.id.there ) counter=3;
         if( holder.getId() == R.id.four) counter=4;
-        //if( holder.getId() ==2131231164 ) ;  //6 hours
 
         Bundle Sendbundle = new Bundle();
         System.out.println("the counter sended as "+counter);

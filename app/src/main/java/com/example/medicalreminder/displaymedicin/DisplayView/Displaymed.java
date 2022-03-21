@@ -28,6 +28,7 @@ import com.example.medicalreminder.displaymedicin.DisplayPresenter.DisplayPresen
 import com.example.medicalreminder.editmedicin.EditView.Edit_View;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
+import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,11 +86,6 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         repo.getMedicineFor(medName,username);
 
 
-
-//
-//        Bundle bundle = this.getArguments();
-//        medicine= (Medicine) bundle.getSerializable("obj");
-
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
@@ -132,12 +128,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
                     String formattedDate = df.format(c);
                     medicine.setStart_date(formattedDate);
 
+                    medicine.setActive(true);
+                    btn.setText("Suspend");
                     //send to preseneter to update the record
                     sendtopresenter( medicine);
 
                     Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
-                    medicine.setActive(true);
-                    btn.setText("Suspend");
+
+
                 }
 
 
@@ -256,11 +254,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     @Override
     public void deletesuccess() {
         Toast.makeText(getContext(), "deleted", Toast.LENGTH_SHORT).show();
+        Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+
     }
 
     @Override
     public void deletefailed() {
         Toast.makeText(getContext(), "Failed to delete it try again", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -283,10 +284,17 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         Refill.setText("remind you when "+medicine.getMed_left()+"pills  left");
 
-        //if not null
-        Reminder.setText(medicine.getHour_of_Morning() + medicine.getHour_of_Night()
-        +medicine.getHour_of_Noon()+medicine.getHour_of_Evening()
-        );
+
+        if(medicine.getHour_of_Morning()!= null){
+            Reminder.append(medicine.getHour_of_Morning()+"\n");}
+        if(medicine.getHour_of_Noon()!=null){
+            Reminder.append(medicine.getHour_of_Noon()+"\n");}
+        if(medicine.getHour_of_Evening()!=null) {
+            Reminder.append(medicine.getHour_of_Evening() +"\n");
+        } if( medicine.getHour_of_Night()!=null)        {
+            Reminder.append(medicine.getHour_of_Night()+"\n");
+        }
+
 
 
     }

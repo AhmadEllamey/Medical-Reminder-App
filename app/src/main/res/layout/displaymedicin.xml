@@ -86,16 +86,15 @@
 
     <TextView
         android:id="@+id/remind"
-        android:layout_width="274dp"
-        android:layout_height="41dp"
+        android:layout_width="207dp"
+        android:layout_height="84dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/LastTaken"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView11"

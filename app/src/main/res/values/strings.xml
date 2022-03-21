@@ -123,4 +123,6 @@
     <string name="snooze">Snooze</string>
     <string name="Skip">Skip</string>
     <string name="btntake">Take</string>
+    <string name="instruction">Instruction</string>
+    <string name="SetAlarm">Set Alarm</string>
 </resources>

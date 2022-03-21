@@ -20,6 +20,7 @@ import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 import com.example.medicalreminder.login.model.User;
+import com.example.medicalreminder.login.view.login_fragment.view.LoginFragment;
 import com.example.medicalreminder.medicineslist.view.MedicationsListFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -31,6 +32,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -170,12 +172,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             Toast.makeText(this,"Log Out",Toast.LENGTH_LONG).show();
 
+            try{
+                LoginFragment.logOut();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             // move to the login screen
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
-
-
 
         }
 

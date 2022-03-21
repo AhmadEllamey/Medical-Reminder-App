@@ -1,10 +1,7 @@
 package com.example.medicalreminder.home.presenter;
 
 
-import android.annotation.SuppressLint;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import com.example.medicalreminder.Model.Medicine;
@@ -389,7 +386,10 @@ public class HomePresenter implements HomePresenterInterface {
                         case "period_of_days" :
 
                             Date endDateForThisMed = new SimpleDateFormat("dd/MM/yyyy").parse(i.getEnd_date());
-                            while(!cal1.after(endDateForThisMed)) {
+
+                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+endDateForThisMed); //18/4/22
+                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+cal1); // 21/3/22
+                            while(!cal1.before(endDateForThisMed)) {
 
                                 if(i.getHour_of_Morning()!=null) {
                                     MedicineReadyToShow medicineReadyToShow =

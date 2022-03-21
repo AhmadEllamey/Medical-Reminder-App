@@ -76,7 +76,7 @@ public class Choose_theDays extends Fragment implements Week_Adapter.onclickday 
             Toast.makeText(getContext(), "Select a day", Toast.LENGTH_SHORT).show();
         } else {
             Bundle Sendbundle = new Bundle();
-            //Sendbundle.putInt("count",counter);
+            Sendbundle.putInt("counter",0);
             Sendbundle.putSerializable("obj", medicine);
 
             NavController navController;

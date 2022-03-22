@@ -21,7 +21,6 @@ import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 import com.example.medicalreminder.login.model.User;
 import com.example.medicalreminder.login.view.login_fragment.view.LoginFragment;
-import com.example.medicalreminder.medicineslist.view.MedicationsListFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -32,7 +31,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -135,7 +133,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new BlankFragment()).commit();
         }else if(item.getItemId() == R.id.nav_edit_medicine){
             Toast.makeText(this,"Show Medicines",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
+            //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_health_takers){
             Toast.makeText(this,"Add health takers",Toast.LENGTH_SHORT).show();
             //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();

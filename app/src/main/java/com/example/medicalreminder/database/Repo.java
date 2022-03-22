@@ -1,6 +1,5 @@
 package com.example.medicalreminder.database;
 
-import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 
@@ -10,11 +9,6 @@ import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
-import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
-import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
-import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
-import com.example.medicalreminder.medicineslist.view.ActiveViewInterface;
-import com.example.medicalreminder.medicineslist.view.InactiveViewInterface;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,22 +29,6 @@ public class Repo {
 
 
 
-
-    //hend ..........................................................................................Start
-    List<Medicine>medicines;
-    ActivePresenter activePresenter;
-    ActivePresenterInterface activePresenterInterface;
-    InactivePresenter inactivePresenter;
-    InactiveViewInterface  inactiveViewInterface;
-    public Repo(ActivePresenterInterface activePresenterInterface , ActivePresenter activePresenter){this.activePresenterInterface = activePresenterInterface;}
-    public Repo(ActivePresenter activePresenter){
-        this.activePresenter=activePresenter;
-    }
-    public Repo(InactivePresenter inactivePresenter){
-        this.inactivePresenter=inactivePresenter;
-    }
-
-   // hend.........................................................................................End
 
 
     public Repo(DisplayInterface displayInterface) {
@@ -171,7 +149,6 @@ public class Repo {
         }).start();
     }
 
-
     public void getAllMedicines(String date){
 
         System.out.println("we are here again");
@@ -204,7 +181,6 @@ public class Repo {
 
     }
 
-
     public void getMedicineFor(String medicineName ,String username){
 
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
@@ -218,9 +194,6 @@ public class Repo {
         }).start();
 
     }
-
-
-
 
     public void getTodayMedicinesFun(String username){
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
@@ -251,63 +224,6 @@ public class Repo {
 
 
     }
-
-
-    //hend...................................................................................
-    public void getActiveMedications (){
-        System.out.println("inside getActiveMedications ");
-
-        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
-        databaseFunctions = appDataBase.databaseFunctions();
-
-        Handler handler =  new Handler()
-        {
-            @Override
-            public void handleMessage(Message msg)
-            {
-                activePresenterInterface.getActiveMeds(medicines);
-
-            }
-        };
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                medicines = databaseFunctions.getActiveMedications();
-                handler.sendEmptyMessage(1);
-            }
-        }).start();
-
-    }
-    public void getInactiveMedications(){
-        System.out.println("inside getInactiveMedications ");
-
-        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
-        databaseFunctions = appDataBase.databaseFunctions();
-
-        Handler handler =  new Handler()
-        {
-            @Override
-            public void handleMessage(Message msg)
-            {
-                inactiveViewInterface.getInactiveMeds(medicines);
-
-            }
-        };
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                medicines = databaseFunctions.getInactiveMedications();
-                handler.sendEmptyMessage(1);
-            }
-        }).start();
-
-    }
-
-
-
 
 
 

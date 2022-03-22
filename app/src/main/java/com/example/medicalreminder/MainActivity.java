@@ -7,22 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import com.example.medicalreminder.alarm.WorkManagerClass;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -91,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             CharSequence name ="Medical Reminder Channel";
-            String desc = "Channel for alram";
+            String desc = "Channel for alarm";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel("Alarm",name,importance);
             channel.setDescription(desc);

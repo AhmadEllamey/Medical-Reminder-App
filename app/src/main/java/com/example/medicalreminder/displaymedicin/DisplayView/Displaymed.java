@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import com.example.medicalreminder.editmedicin.EditView.Edit_View;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
+import com.google.firebase.firestore.core.SyncEngine;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,7 +59,7 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     ImageButton edit;
     ImageButton delete;
     int counter = 0;
-
+    int new_dose=0;
 
     String username;
     String medName;
@@ -182,6 +184,18 @@ public class Displaymed extends Fragment implements  DisplayInterface{
             }
         });
 
+
+        //addDose
+        view.findViewById(R.id.addDose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDoseDialog();
+
+
+            }
+        });
+
+
         return  view;
     }
 
@@ -234,6 +248,44 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
 
         dialogBuilder.setView(dialogView);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+
+    private void setDoseDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        // ...Irrelevant code for customizing the buttons and title
+        EditText Dose;
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.add_dose, null);
+        Dose = dialogView.findViewById(R.id.DoseEdit);
+//        Dose.setText(new_dose);
+
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new_dose = Integer.parseInt(Dose.getText().toString());
+                medicine.setCount(new_dose);
+
+                //send to presenter to update the record
+                sendtopresenter(medicine);
+            }
+
+        });
+        dialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+
+        dialogBuilder.setView(dialogView);
+//        Dose.setText(medicine.getCount());
 
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();

@@ -123,4 +123,13 @@
     <string name="snooze">Snooze</string>
     <string name="Skip">Skip</string>
     <string name="btntake">Take</string>
+    <string name="SetAlarm">Set Alarm</string>
+    <string name="instruction">Instructions</string>
+    <string name="profile">Profile</string>
+    <string name="nameProfile">Name</string>
+    <string name="na">NA</string>
+    <string name="emailProfile">Email</string>
+    <string name="date_of_birth_profile">Date Of Birth</string>
+    <string name="genderProfile">Gender</string>
+    <string name="phoneProfile">Phone</string>
 </resources>

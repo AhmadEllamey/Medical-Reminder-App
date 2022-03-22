@@ -135,8 +135,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
 
                 // todo --->>>> do some action here when the date is chosen
 
-
-
                 homePresenterInterface.requestUpdateMedicineList(formateDate);
 
             }
@@ -318,8 +316,6 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
                         // first we need to find the nearest time from now
 
                         int j  = 0 ;
-
-
 
                         for (MedicineReadyToShow i : medicineReadyToShows1) {
                             try {

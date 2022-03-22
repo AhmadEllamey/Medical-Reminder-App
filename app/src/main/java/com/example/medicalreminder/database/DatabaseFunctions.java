@@ -23,6 +23,10 @@ public interface DatabaseFunctions {
     @Query("SELECT * FROM MedicineInfo WHERE med_name = :medName AND user_name = :userName")
     Medicine getTheMed(String medName , String userName);
 
+    // todo -- > use this function to get all medicines for a specific use
+    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName")
+    List<Medicine> getTheMedications(String userName);
+
     @Insert
     void insertMedicine(MedicineReadyToShow medicineReadyToShow);
 

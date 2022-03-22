@@ -787,8 +787,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                     specificdays.setChecked(false);
                     periodofdays.setChecked(false);
                     medicine.setFlag("Everyday");
-                    medicine.setStart_date(null);
-                    medicine.setEnd_date(null);
+//                    medicine.setStart_date(date);
+//                    medicine.setEnd_date(null);
                     setdaysfalse();
 
 
@@ -803,8 +803,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                     everyday.setChecked(false);
                     periodofdays.setChecked(false);
                     medicine.setFlag("Specific_Days");
-                    medicine.setStart_date(null);
-                    medicine.setEnd_date(null);
+//                    medicine.setStart_date(date);
+//                    medicine.setEnd_date(null);
                     SetDialoge();
 
 

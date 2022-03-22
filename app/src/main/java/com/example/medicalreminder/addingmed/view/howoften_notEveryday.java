@@ -60,21 +60,9 @@ public class howoften_notEveryday extends Fragment {
 
         medicine.setFlag("Specific_Days");
 
-//        int counter=0;
-
-//        if(view.getId() == R.id.two_days_aweek ) {
-//            counter = 2;
-//            medicine.setFlag("Specific_Days");
-//        }
-//        if(view.getId() == R.id.threedaysaweek ){
-//            counter = 3;
-//            medicine.setFlag("Specific_Days");
-//        }
 
         Bundle Sendbundle = new Bundle();
         Sendbundle.putSerializable("obj",medicine);
-//        Sendbundle.putInt("count",counter);
-
         navController = Navigation.findNavController(view);
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.howoften_notEverydayDirections.actionHowoftennoteverydayToChooseTheDays();
         navController.navigate(R.id.choose_theDays,Sendbundle);

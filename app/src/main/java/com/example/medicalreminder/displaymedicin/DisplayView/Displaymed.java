@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import com.example.medicalreminder.displaymedicin.DisplayPresenter.DisplayPresen
 import com.example.medicalreminder.editmedicin.EditView.Edit_View;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
+import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
+import com.google.firebase.firestore.core.SyncEngine;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,7 +59,7 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     ImageButton edit;
     ImageButton delete;
     int counter = 0;
-
+    int new_dose=0;
 
     String username;
     String medName;
@@ -84,11 +87,6 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         Repo repo = new Repo(this);
         repo.getMedicineFor(medName,username);
 
-
-
-//
-//        Bundle bundle = this.getArguments();
-//        medicine= (Medicine) bundle.getSerializable("obj");
 
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
@@ -132,12 +130,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
                     String formattedDate = df.format(c);
                     medicine.setStart_date(formattedDate);
 
+                    medicine.setActive(true);
+                    btn.setText("Suspend");
                     //send to preseneter to update the record
                     sendtopresenter( medicine);
 
                     Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
-                    medicine.setActive(true);
-                    btn.setText("Suspend");
+
+
                 }
 
 
@@ -183,6 +183,18 @@ public class Displaymed extends Fragment implements  DisplayInterface{
                 deletePresenter(medicine);
             }
         });
+
+
+        //addDose
+        view.findViewById(R.id.addDose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDoseDialog();
+
+
+            }
+        });
+
 
         return  view;
     }
@@ -241,6 +253,44 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         alertDialog.show();
     }
 
+
+
+    private void setDoseDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        // ...Irrelevant code for customizing the buttons and title
+        EditText Dose;
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.add_dose, null);
+        Dose = dialogView.findViewById(R.id.DoseEdit);
+//        Dose.setText(new_dose);
+
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new_dose = Integer.parseInt(Dose.getText().toString());
+                medicine.setCount(new_dose);
+
+                //send to presenter to update the record
+                sendtopresenter(medicine);
+            }
+
+        });
+        dialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+
+        dialogBuilder.setView(dialogView);
+//        Dose.setText(medicine.getCount());
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
     private  void sendtopresenter(Medicine medicine){
         displayPresenterInterface = new DisplayPresenter(this);
         displayPresenterInterface.update(medicine);
@@ -256,11 +306,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     @Override
     public void deletesuccess() {
         Toast.makeText(getContext(), "deleted", Toast.LENGTH_SHORT).show();
+        Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+
     }
 
     @Override
     public void deletefailed() {
         Toast.makeText(getContext(), "Failed to delete it try again", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -283,10 +336,17 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         Refill.setText("remind you when "+medicine.getMed_left()+"pills  left");
 
-        //if not null
-        Reminder.setText(medicine.getHour_of_Morning() + medicine.getHour_of_Night()
-        +medicine.getHour_of_Noon()+medicine.getHour_of_Evening()
-        );
+
+        if(medicine.getHour_of_Morning()!= null){
+            Reminder.append(medicine.getHour_of_Morning()+"\n");}
+        if(medicine.getHour_of_Noon()!=null){
+            Reminder.append(medicine.getHour_of_Noon()+"\n");}
+        if(medicine.getHour_of_Evening()!=null) {
+            Reminder.append(medicine.getHour_of_Evening() +"\n");
+        } if( medicine.getHour_of_Night()!=null)        {
+            Reminder.append(medicine.getHour_of_Night()+"\n");
+        }
+
 
 
     }

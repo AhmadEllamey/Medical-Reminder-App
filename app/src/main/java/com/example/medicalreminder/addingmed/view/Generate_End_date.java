@@ -13,7 +13,7 @@ public class Generate_End_date {
         End_date= addDays(day, month, year, i);
     }
    public Generate_End_date(String date , int i ) {
-        String[] datesplitted= date.split("-");
+        String[] datesplitted= date.split("/");
         int day= Integer.parseInt(datesplitted[0]);
         int month= Integer.parseInt(datesplitted[1]);
         int year= Integer.parseInt(datesplitted[2]);

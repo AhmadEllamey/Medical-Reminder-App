@@ -364,6 +364,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.impl.background.systemalarm.SystemAlarmService;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -377,6 +379,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -391,6 +394,8 @@ import com.example.medicalreminder.addingmed.view.Generate_End_date;
 import com.example.medicalreminder.addingmed.view.ViewInterface;
 import com.example.medicalreminder.editmedicin.EditPresenter.EditPresenter;
 import com.example.medicalreminder.editmedicin.EditPresenter.EditPresenterInterface;
+import com.example.medicalreminder.home.view.Home;
+import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -398,81 +403,69 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 //import java.util.Calendar;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Edit_View extends Fragment  implements EditViewInterface {
 
-    List <String> Selecteddays= new ArrayList<>();
-    Medicine medicine = new Medicine();
-//  RecyclerView recyclerView;
-//  Edit_Adapter edit_adapter;
-//  List <String>Times_Selected= new ArrayList<>();
+    List<String> Selecteddays = new ArrayList<>();
+    Medicine medicine;
 
     TextView First;
     TextView Second;
     TextView Third;
     TextView Forth;
-    TextView refill;
+    EditText refill;
     TextView medname;
-    TextView strenght;
+    EditText strenght;
     TextView unit;
     TextView num_of_days;
 
+    String unitt;
     RadioButton everyday;
     RadioButton specificdays;
     RadioButton periodofdays;
+    ArrayList<String> hours = new ArrayList<>();
+    int counter = 0;
+    String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
+    List<Integer> checked = new ArrayList<Integer>();
 
-    public Edit_View(Medicine medicine){
+    public Edit_View(Medicine medicine) {
         this.medicine = medicine;
     }
-
-    int counter = 0;
-
-    String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
 
     @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view= inflater.inflate(R.layout.edit_layout,container,false);
-//        setContentView(R.layout.edit_layout);
+        View view = inflater.inflate(R.layout.edit_layout, container, false);
 
-        //test
         // Edit the Time
+        sethourslist();
 
-        medicine.setMed_name("adol");
-        medicine.setHow_often("Twice");
-        medicine.setHour_of_Morning("12:30");
-        medicine.setHour_of_Night("6:30");
-        medicine.setHour_of_Evening("");
-        medicine.setHour_of_Noon("");
-        medicine.setIs_Every_Day(true);
-        medicine.setMed_left(3);
-        medicine.setStrength("35");
-        medicine.setS_Unit("mg");
-
-        //display the unit
-        unit=view.findViewById(R.id.spinner_unit);
-        unit.setText(medicine.getS_Unit());
 
         //saving the edit
         //update in the medicine info (AHMED) and firestore
         view.findViewById(R.id.savebtn).setOnClickListener(this::save);
 
 
-        medname=view.findViewById(R.id.mednameedit);
-        refill=view.findViewById(R.id.refill_edit);
-        strenght=view.findViewById(R.id.strenghtEdit);
-        First=view.findViewById(R.id.Morningtime);
-        First.setText(medicine.getHour_of_Morning());
+        //display the items
+        unit = view.findViewById(R.id.Unit);
+        medname = view.findViewById(R.id.mednameedit);
+        refill = view.findViewById(R.id.refill_edit);
+        strenght = view.findViewById(R.id.strenghtEdit);
+        medname.setText(medicine.getMed_name());
+        unit.setText(medicine.getS_Unit());
+        strenght.setText(medicine.getStrength());
 
-
-
-        view.findViewById(R.id.Morningtime).setOnClickListener(new View.OnClickListener() {
+        First = view.findViewById(R.id.First);
+        view.findViewById(R.id.First).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
@@ -489,8 +482,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                         Time time = new Time(selectedHour, selectedMinute, 0);
 
                         //little h uses 12 hour format and big H uses 24 hour format
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mma");
-
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("H:mm");
+//                        new SimpleDateFormat("h:mma");
                         //format takes in a Date, and Time is a sublcass of Date
                         String s = simpleDateFormat.format(time);
                         Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
@@ -504,11 +497,11 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 //            Times_Selected.get(position).replace(Times_Selected.get(position));
-            }});
-        Second=view.findViewById(R.id.eveningtime);
-        Second.setText(medicine.getEvening());
+            }
+        });
 
-        view.findViewById(R.id.eveningtime).setOnClickListener(new View.OnClickListener() {
+        Second = view.findViewById(R.id.Second);
+        view.findViewById(R.id.Second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
@@ -525,7 +518,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                         Time time = new Time(selectedHour, selectedMinute, 0);
 
                         //little h uses 12 hour format and big H uses 24 hour format
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mma");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("H:mm");
 
                         //format takes in a Date, and Time is a sublcass of Date
                         String s = simpleDateFormat.format(time);
@@ -540,10 +533,11 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 //            Times_Selected.get(position).replace(Times_Selected.get(position));
-            }});
-        Third=view.findViewById(R.id.nighttime);
-        Third.setText(medicine.getHour_of_Night());
-        view.findViewById(R.id.nighttime).setOnClickListener(new View.OnClickListener() {
+            }
+        });
+
+        Third = view.findViewById(R.id.Third);
+        view.findViewById(R.id.Third).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
@@ -560,7 +554,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                         Time time = new Time(selectedHour, selectedMinute, 0);
 
                         //little h uses 12 hour format and big H uses 24 hour format
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mma");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("H:mm");
 
                         //format takes in a Date, and Time is a sublcass of Date
                         String s = simpleDateFormat.format(time);
@@ -575,11 +569,11 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 //            Times_Selected.get(position).replace(Times_Selected.get(position));
-            }});
+            }
+        });
 
-        Forth=view.findViewById(R.id.noontime);
-        Forth.setText(medicine.getHour_of_Noon());
-        view.findViewById(R.id.noontime).setOnClickListener(new View.OnClickListener() {
+        Forth = view.findViewById(R.id.Forth);
+        view.findViewById(R.id.Forth).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Clicked", Toast.LENGTH_SHORT).show();
@@ -596,7 +590,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                         Time time = new Time(selectedHour, selectedMinute, 0);
 
                         //little h uses 12 hour format and big H uses 24 hour format
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mma");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("H:mm");
 
                         //format takes in a Date, and Time is a sublcass of Date
                         String s = simpleDateFormat.format(time);
@@ -611,110 +605,51 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
 //            Times_Selected.get(position).replace(Times_Selected.get(position));
-            }});
-//        recyclerView=findViewById(R.id.Reminder_times);
-//        edit_adapter= new Edit_Adapter(Times_Selected,this,this);
-//
-//        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setAdapter(edit_adapter);
-
-        // Write a message to the database
-
-//        Medicine medicine = new Medicine();
-//        medicine.setMed_name("adol");
-//        medicine.setMed_form("pill");
-//        medicine.setStrength("23");
-//
-//        //open the connection with firebase
-//        database = FirebaseDatabase.getInstance();
-//
-//        //get the root of the database
-//        myRef = database.getReference();
-//
-//        //myRef.setValue(name.getText().toString());
-//
-//        //adding gson
-//        myRef.child(medicine.getMed_name()).setValue(medicine);
-        /*
-        name = findViewById(R.id.MedName);
-        form=findViewById(R.id.Med);
-        strength=findViewById(R.id.editTextTextPersonName3);
-
-        btn= findViewById(R.id.savebtn);
-        //readbtn= findViewById(R.id.readbtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Write a message to the database
-                medicine.setMed_name(name.getText().toString());
-                medicine.setMed_form(form.getText().toString());
-                medicine.setStrength(strength.getText().toString());
-
-                //open the connection with firebase
-                 database = FirebaseDatabase.getInstance();
-
-                //get the root of the database
-                myRef = database.getReference();
-
-                //myRef.setValue(name.getText().toString());
-
-                //adding gson
-                myRef.child(medicine.getMed_name()).setValue(medicine);
             }
         });
 
+//_______________________________Set the time_____________________________________
+        if (hours.size() >= 1)
+            //show
+            First.setText(hours.get(0));
+            First.setVisibility(View.VISIBLE);
 
-         */
-/*
-        readbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
-                        name.setText(value);
-                       // Log.d(TAG, "Value is: " + value);
-                    }
+//        else {
+//            First.setText("Set Alarm");
+//        }
+        if (hours.size() >= 2)
+            Second.setText(hours.get(1));
+            Second.setVisibility(View.VISIBLE);
 
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        //Log.w(TAG, "Failed to read value.", error.toException());
-                    }
-                });
-            }
-        });
-        */
-//        For navgraph of adding med
-//        setContentView(R.layout.activity_main);
+//        else {
+//            Second.setText("Set Alarm");
+//        }
+        if (hours.size() >= 3)
+            Third.setText(hours.get(2));
+            Third.setVisibility(View.VISIBLE);
 
-//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav);
-//        if(navHostFragment != null){
-//            NavController navController = navHostFragment.getNavController();
-//            NavGraph navGraph=navController.getNavInflater().inflate(R.navigation.navig_graph);
-//            navGraph.setStartDestination(R.id.AddingMed);
-//            navController.setGraph(navGraph);
+//        else {
+//            Third.setText("Set Alarm");
+//        }
+        if (hours.size() >= 4)
+            Forth.setText(hours.get(3));
+            Forth.setVisibility(View.VISIBLE);
+
+//        else {
+//            Forth.setText("Set Alarm");
 //        }
 
-        //test snipper
-        //  Edit Frequency --> SPINNER________________________________________________________________________________________________
 
-        //Spiner
 
-        List<String> spinnerArray =  new ArrayList<String>();
-        spinnerArray.add("once");
-        spinnerArray.add("Twice");
-        spinnerArray.add("Third");
-        spinnerArray.add("Forth");
+//________________________________________Instruction_____________________________
+        List<String> spinnerArray = new ArrayList<String>();
+        spinnerArray.add("Before eating");
+        spinnerArray.add("While eating");
+        spinnerArray.add("After eating");
+        spinnerArray.add("Dose not matter");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, spinnerArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getContext(), android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner1);
@@ -722,37 +657,14 @@ public class Edit_View extends Fragment  implements EditViewInterface {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if(position==0){
-
-                    First.setText("9:00");
-                    Second.setText(null);
-                    Third.setText(null);
-                    Forth.setText(null);
-                    medicine.setHow_often("once");
-                }
-                else if (position == 1){
-                    First.setText("9:00");
-                    Second.setText("9:00");
-                    Third.setText("");
-                    Forth.setText("");
-                    medicine.setHow_often("Twice");
-
-                }
-                else  if (position==2){
-                    First.setText("9:00");
-                    Second.setText("9:00");
-                    Third.setText("9:00");
-                    Forth.setText("");
-                    medicine.setHow_often("Third");
-
-                }
-                else if (position==3){
-                    First.setText("9:00");
-                    Second.setText("9:00");
-                    Third.setText("9:00");
-                    Forth.setText("9:00");
-                    medicine.setHow_often("Forth");
-
+                if (position == 0) {
+                    medicine.setInstructions("Before eating");
+                } else if (position == 1) {
+                    medicine.setInstructions("While eating");
+                } else if (position == 2) {
+                    medicine.setInstructions("After eating");
+                } else if (position == 3) {
+                    medicine.setInstructions("Dose not matter");
                 }
             }
 
@@ -763,21 +675,122 @@ public class Edit_View extends Fragment  implements EditViewInterface {
 
         });
 
-        //edit the schadule
-        everyday= view.findViewById(R.id.everydaycheckbox);
-        specificdays=view.findViewById(R.id.specificcheckbox);
-        periodofdays=view.findViewById(R.id.numberofdayscheck);
+        //____________________SPINNER_Time__________________________________
 
+        List<String> Frequency_Array =  new ArrayList<String>();
+        Frequency_Array.add("once");
+        Frequency_Array.add("Twice");
+        Frequency_Array.add("Third");
+        Frequency_Array.add("Forth");
+        int FRQ=0;
+        ArrayAdapter<String>  Frequency_Adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, Frequency_Array);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner Frequency_Spinner = (Spinner) view.findViewById(R.id.spinner2);
+        Frequency_Spinner.setAdapter(Frequency_Adapter);
+
+
+        System.out.println(medicine.getHow_often());
+        if(medicine.getHow_often()==null) FRQ=0;
+       else if (medicine.getHow_often().equals("Twice daily")) FRQ=1;
+       else if (medicine.getHow_often().equals("3 times a day")) FRQ=2;
+       else  if(medicine.getHow_often().equals("4 times a day")) FRQ=3;
+       else FRQ=0;
+
+
+        Frequency_Spinner.setSelection(FRQ);
+
+        Frequency_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                //Once frequency
+                if(position==0) {
+                    First.setVisibility(View.VISIBLE);
+
+                    //hide them
+                    Second.setVisibility(View.INVISIBLE);
+                    Third.setVisibility(View.INVISIBLE);
+                    Forth.setVisibility(View.INVISIBLE);
+
+                    //reset text
+                    Second.setText("Set Alarm");
+                    Third.setText("Set Alarm");
+                    Forth.setText("Set Alarm");
+
+
+                    medicine.setHow_often("Once Daily");
+
+                }
+                //Twice frequency
+                else if (position == 1){
+                    First.setVisibility(View.VISIBLE);
+                    Second.setVisibility(View.VISIBLE);
+
+                    //hide them
+                    Third.setVisibility(View.INVISIBLE);
+                    Forth.setVisibility(View.INVISIBLE);
+
+                    //reset text
+                    Third.setText("Set Alarm");
+                    Forth.setText("Set Alarm");
+
+
+                    medicine.setHow_often("Twice daily");
+                }
+
+                //Third Frequency
+                else  if (position==2){
+                    First.setVisibility(View.VISIBLE);
+                    Second.setVisibility(View.VISIBLE);
+                    Third.setVisibility(View.VISIBLE);
+
+                    //hide
+                    Forth.setVisibility(View.INVISIBLE);
+
+                    //set text
+                    Forth.setText("Set Alarm");
+
+                    medicine.setHow_often("3 times a day");
+                }
+                //Forth frequency
+                else if (position==3){
+                    First.setVisibility(View.VISIBLE);
+                    Second.setVisibility(View.VISIBLE);
+                    Third.setVisibility(View.VISIBLE);
+                    Forth.setVisibility(View.VISIBLE);
+
+                    medicine.setHow_often("4 times a day");
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        //edit the schadule
+
+
+        //_______________handling the period of days _____________________
+        everyday = view.findViewById(R.id.everydaycheckbox);
+        specificdays = view.findViewById(R.id.specificcheckbox);
+        periodofdays = view.findViewById(R.id.numberofdayscheck);
         everyday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(everyday.isChecked()){
+                if (everyday.isChecked()) {
                     System.out.println("okay");
                     specificdays.setChecked(false);
                     periodofdays.setChecked(false);
-                    medicine.setFlag("Everyday");;
+                    medicine.setFlag("Everyday");
                     medicine.setStart_date(null);
                     medicine.setEnd_date(null);
+                    setdaysfalse();
+
 
                 }
             }
@@ -785,7 +798,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
         specificdays.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(specificdays.isChecked()){
+                if (specificdays.isChecked()) {
                     System.out.println("okay");
                     everyday.setChecked(false);
                     periodofdays.setChecked(false);
@@ -802,108 +815,50 @@ public class Edit_View extends Fragment  implements EditViewInterface {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                if(periodofdays.isChecked()){
+                if (periodofdays.isChecked()) {
                     specificdays.setChecked(false);
                     everyday.setChecked(false);
                     medicine.setFlag("period_of_days");
                     setperiodofdaysDilaoge();
+                    setdaysfalse();
 
-//
-//                    popupView= LayoutInflater.from(MainActivity.this).inflate(R.layout.popupcounter, null);
-//                    PopupWindow popupWindow = new PopupWindow(popupView,WindowManager.LayoutParams.MATCH_PARENT ,500);
-//                    num_of_days = popupView.findViewById(R.id.numberofdays);
-//                    popupView.findViewById(R.id.Setbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            LocalDateTime myDateObj = LocalDateTime.now();
-////                    LocaleData mydate = LocaleData.getInstance();
-////                    System.out.println(mydate);
-//                            Date date2 = new Date();
-//                            date2.getDate();
-//                            //System.out.println(myDateObj);
-//                            System.out.println("DATE"+date2);
-//
-//                            //System.out.println(date);
-//                            medicine.setStart_date(date);
-//                            popupWindow.dismiss();
-//
-//                        }
-//                    });
-//                    popupView.findViewById(R.id.cancelbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            popupWindow.dismiss();
-//                            counter=0;
-//                        }
-//                    });
-//                    popupView.findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            if (counter>=365) {
-//                                Toast.makeText(MainActivity.this, "Set it everyday", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else{
-//                                counter ++;
-//                            }
-//                            num_of_days.setText(String.valueOf(counter));
-//                        }
-//                    });
-//                    popupView.findViewById(R.id.mins).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            if(counter==1){
-//                                counter=1;
-//                                Toast.makeText(MainActivity.this, "Can not be less than 1 ", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else
-//                            {
-//                                counter--;
-//                            }
-//                            num_of_days.setText(String.valueOf(counter));
-//                        }
-//                    });
-//
-//
-//                    popupWindow.setFocusable(true);
-//                    popupWindow.setTouchable(true);
-//                    popupWindow.setContentView(popupView);
-//                    // finally show up your popwindow
-//                    popupWindow.showAsDropDown(popupView);//,0,0);
 
                 }
             }
         });
-//
-//        @Override
-//        public void OnClick(int position, View view) {
-//        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
-//        Calendar mcurrentTime = Calendar.getInstance();
-//        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-//        int minute = mcurrentTime.get(Calendar.MINUTE);
-//
-//        TimePickerDialog mTimePicker;
-//
-//        mTimePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-//            @Override
-//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-//                Toast.makeText(MainActivity.this, selectedHour + ":" + selectedMinute, Toast.LENGTH_SHORT).show();
-//                Time time = new Time(selectedHour, selectedMinute, 0);
-//
-//                //little h uses 12 hour format and big H uses 24 hour format
-//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h:mma");
-//
-//                //format takes in a Date, and Time is a sublcass of Date
-//                String s = simpleDateFormat.format(time);
-//                Times_Selected.get(position).replace(Times_Selected.get(position),s);
-//                edit_adapter.getnewdata(Times_Selected);
-//                edit_adapter.notifyDataSetChanged();
-//            }
-//
-//        }, hour, minute, true);
-//        mTimePicker.setTitle("Select Time");
-//        mTimePicker.show();
-//        Times_Selected.get(position).replace(Times_Selected.get(position));
-    return view;
+
+        return view;
+    }
+
+    private void sethourslist() {
+
+        //the list will avoid the null and present the time in order
+
+        if(medicine.getHour_of_Morning()!= null)
+        hours.add(medicine.getHour_of_Morning());
+        if(medicine.getHour_of_Evening()!= null)
+        hours.add(medicine.getHour_of_Evening());
+        if(medicine.getHour_of_Night()!= null )
+        hours.add(medicine.getHour_of_Night());
+        if(medicine.getHour_of_Noon()!= null)
+        hours.add(medicine.getHour_of_Noon());
+    }
+
+    private void setdaysfalse() {
+        medicine.setSunday(false);
+        medicine.setSaturday(false);
+        medicine.setMonday(false);
+        medicine.setThursday(false);
+        medicine.setTuesday(false);
+        medicine.setWedensday(false);
+        medicine.setFriday(false);
+    }
+
+    private void putcontent() {
+        medname.setText(medicine.getMed_name());
+        refill.setText(medicine.getMed_left());
+        strenght.setText(medicine.getStrength());
+
     }
 
     private void setperiodofdaysDilaoge() {
@@ -911,26 +866,6 @@ public class Edit_View extends Fragment  implements EditViewInterface {
         // ...Irrelevant code for customizing the buttons and title
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.popupcounter, null);
         num_of_days = dialogView.findViewById(R.id.refilldisplay);
-//        dialogView.findViewById(R.id.Setbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            LocalDateTime myDateObj = LocalDateTime.now();
-////                    LocaleData mydate = LocaleData.getInstance();
-////                    System.out.println(mydate);
-//                            Date date2 = new Date();
-//                            date2.getDate();
-//                            //System.out.println(myDateObj);
-//                            System.out.println("DATE"+date2);
-//
-//                            //System.out.println(date);
-//                            medicine.setStart_date(date); }});
-//        dialogView.findViewById(R.id.cancelbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            counter=0;
-//                        }
-//                    });
-
 
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -940,8 +875,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
             public void onClick(DialogInterface dialog, int which) {
                 LocalDateTime myDateObj = LocalDateTime.now();
                 Toast.makeText(getContext(), num_of_days.getText().toString(), Toast.LENGTH_SHORT).show();
-                counter=Integer.parseInt(num_of_days.getText().toString());
-                if (Integer.parseInt(num_of_days.getText().toString())>=365) {
+                counter = Integer.parseInt(num_of_days.getText().toString());
+                if (Integer.parseInt(num_of_days.getText().toString()) >= 365) {
                     Toast.makeText(getContext(), "Set it everyday", Toast.LENGTH_SHORT).show();
                     medicine.setFlag("Everyday");
                 }
@@ -955,8 +890,6 @@ public class Edit_View extends Fragment  implements EditViewInterface {
             }
         });
 
-
-
         dialogView.findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -965,8 +898,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
 //                                Toast.makeText(MainActivity.this, "Set it everyday", Toast.LENGTH_SHORT).show();
 //                            }
 //                            else{
-                counter ++;
-                num_of_days.setText(counter);
+                counter++;
+//                num_of_days.setText(counter);
 //                            }
                 num_of_days.setText(String.valueOf(counter));
             }
@@ -975,12 +908,10 @@ public class Edit_View extends Fragment  implements EditViewInterface {
             @Override
             public void onClick(View view) {
                 num_of_days.setText(counter);
-                if(Integer.parseInt(num_of_days.getText().toString())==1){
-                    counter=1;
+                if (Integer.parseInt(num_of_days.getText().toString()) == 1) {
+                    counter = 1;
                     Toast.makeText(getContext(), "Can not be less than 1 ", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     counter--;
                 }
                 num_of_days.setText(String.valueOf(counter));
@@ -994,7 +925,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
 
     private void SetDialoge() {
         // initialise the list items for the alert dialog
-        final String[] listItems = new String[]{"Saturday", "Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday"};
+        final String[] listItems = new String[]{"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         final boolean[] checkedItems = new boolean[listItems.length];
 
         // copy the items from the main list to the selected item list
@@ -1002,10 +933,8 @@ public class Edit_View extends Fragment  implements EditViewInterface {
         // should be displayed for the user
         final List<String> selectedItems = Arrays.asList(listItems);
 
+
         // handle the Open Alert Dialog button
-//                bOpenAlertDialog.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
 
 
         // initialise the alert dialog builder
@@ -1033,13 +962,14 @@ public class Edit_View extends Fragment  implements EditViewInterface {
             public void onClick(DialogInterface dialog, int which) {
                 for (int i = 0; i < checkedItems.length; i++) {
                     if (checkedItems[i]) {
-//                            tvSelectedItemsPreview.setText(tvSelectedItemsPreview.getText() + selectedItems.get(i) + ", ");
                         Selecteddays.add(listItems[i]);
-
-                        Toast.makeText(getContext(),  selectedItems.get(i), Toast.LENGTH_SHORT).show();
+                        checked.add(i);
+                        Toast.makeText(getContext(), selectedItems.get(i), Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 System.out.println(Selecteddays);
+                System.out.println(checked);
             }
         });
 
@@ -1060,8 +990,11 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 }
             }
         });
+
+
         // create the builder
         builder.create();
+
         // create the alert dialog with the
         // alert dialog builder instance
         AlertDialog alertDialog = builder.create();
@@ -1071,69 +1004,80 @@ public class Edit_View extends Fragment  implements EditViewInterface {
     private void save(View view) {
 
         //saving
-        EditPresenterInterface editpresenterInterface= new EditPresenter(this);
+        EditPresenterInterface editpresenterInterface = new EditPresenter(this);
 
 
         medicine.setMed_name(medname.getText().toString());
-        if(!refill.getText().toString().equals(""))
-        {
+        if (!refill.getText().toString().equals("")) {
             medicine.setMed_left(Integer.parseInt(refill.getText().toString()));
         }
 
         medicine.setStrength(strenght.getText().toString());
-        medicine.setHour_of_Morning(First.getText().toString());
-        medicine.setHour_of_Evening(Second.getText().toString());
-        medicine.setHour_of_Noon(Third.getText().toString());
-        medicine.setHour_of_Night(Forth.getText().toString());
 
-        // to generate the end_date
-        Generate_End_date generate_end_date= new Generate_End_date(date,counter);
-        System.out.println(generate_end_date.getEnd_date());
+
+        //____________________________Set_Hour___________________________________
+
+        if (!First.getText().equals("Set Alarm"))
+            medicine.setHour_of_Noon(First.getText().toString());
+        else {
+            medicine.setHour_of_Noon(null); }
+
+        //_______________________________________
+        if (!Second.getText().equals("Set Alarm")){
+            medicine.setHour_of_Night(Second.getText().toString());
+        } else {
+            medicine.setHour_of_Night(null);
+        }
+        //------------------------------------------
+
+        if (!Third.getText().equals("Set Alarm")) {medicine.setHour_of_Morning(Third.getText().toString());
+        } else {
+            medicine.setHour_of_Morning(null);
+        }
+
+
+        //------------------------------------------------
+        if (!Forth.getText().equals("Set Alarm")) medicine.setHour_of_Evening(Forth.getText().toString());
+        else {
+            medicine.setHour_of_Evening(null);
+        }
+
+        //-----------------------------------------------
+        System.out.println("1" + medicine.getHour_of_Noon());
+        System.out.println("2" + medicine.getHour_of_Night());
+        System.out.println("3" + medicine.getHour_of_Morning());
+        System.out.println("4" + medicine.getHour_of_Evening());
+
+
+        //-------------------- to generate the end_date-----------------------------
+        Generate_End_date generate_end_date = new Generate_End_date(date, counter);
         medicine.setEnd_date(generate_end_date.getEnd_date());
+        if (!medicine.getFlag().equals("Everyday")) {
+            for (int i = 0; i < checked.size(); i++) {
+                System.out.println(checked.size());
+                if (checked.get(i) == 0) medicine.setSaturday(true);
+                if (checked.get(i) == 1) medicine.setSunday(true);
+                if (checked.get(i) == 2) medicine.setMonday(true);
+                if (checked.get(i) == 3) medicine.setTuesday(true);
+                if (checked.get(i) == 4) medicine.setWedensday(true);
+                if (checked.get(i) == 5) medicine.setThursday(true);
+                if (checked.get(i) == 6) medicine.setFriday(true);
+
+            }
+        }
 
 
         //passing medicine to Edit Presenter
         editpresenterInterface.update(medicine);
 
+        //navigate to home
+        Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(), new HomeFragment()).commit();
 
-//        System.out.println(medicine.getMed_name());
-//        System.out.println(medicine.getHow_often());
-//        System.out.println(medicine.getHour_of_Evening());
-//        System.out.println(medicine.getHour_of_Morning());
-//        System.out.println(medicine.getHour_of_Noon());
-//        System.out.println(medicine.getHour_of_Night());
-//        System.out.println(medicine.getStrength());
-//        System.out.println(medicine.getMed_left());
-//        System.out.println(medicine.getFlag());
 
     }
 
     @Override
     public void ShowToast() {
-        Toast.makeText(getContext(), "Edit Successfully", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "Edit Successfully", Toast.LENGTH_SHORT).show();
     }
-
-    ///for last taken
-    //LocalTime myObj = LocalTime.now();
-//
-//
-//    private void showCustomPopupMenu()
-//    {
-//        windowManager2 = (WindowManager)getSystemService(WINDOW_SERVICE);
-//        LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View view=layoutInflater.inflate(R.layout.xxact_copy_popupmenu, null);
-//        params=new WindowManager.LayoutParams(
-//                WindowManager.LayoutParams.WRAP_CONTENT,
-//                WindowManager.LayoutParams.WRAP_CONTENT,
-//                WindowManager.LayoutParams.TYPE_PHONE,
-//                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-//                PixelFormat.TRANSLUCENT
-//        );
-//
-//        params.gravity=Gravity.CENTER|Gravity.CENTER;
-//        params.x=0;
-//        params.y=0;
-//        windowManager2.addView(view, params);
-//    }
-
 }

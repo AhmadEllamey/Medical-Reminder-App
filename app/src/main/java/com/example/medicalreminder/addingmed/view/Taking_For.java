@@ -37,9 +37,6 @@ public class Taking_For extends Fragment {
         Bundle bundle = this.getArguments();
         if(bundle!=null){
             medicine= (Medicine) bundle.getSerializable("obj");
-            System.out.println(medicine.getMed_name()+"\n"+
-                    medicine.getMed_form()+"\n"+
-            medicine.getStrength());
         }
         Log.i(TAG, "onCreateView: 1 " + bundle.toString());
 

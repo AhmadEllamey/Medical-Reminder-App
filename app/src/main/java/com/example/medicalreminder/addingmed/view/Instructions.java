@@ -96,6 +96,11 @@ public class Instructions extends Fragment implements ViewInterface {
 
     private void save(View view) {
         medicine.setActive(true);
+
+        //dose
+        medicine.setCount(1);
+
+
         //MVP
         //implementaion in the presenter
         addingPresenterInterface = new AddingPresenter(this);

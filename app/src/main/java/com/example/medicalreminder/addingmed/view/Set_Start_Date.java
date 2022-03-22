@@ -37,10 +37,6 @@ public class Set_Start_Date extends Fragment {
         medicine= (Medicine) bundle.getSerializable("obj");
         intervaloftime=bundle.getInt("intervaloftime");
         view.findViewById(R.id.savebtn).setOnClickListener(this::save);
-
-
-
-
         return  view;
     }
 
@@ -71,40 +67,6 @@ public class Set_Start_Date extends Fragment {
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.Set_Start_DateDirections.actionSetStartDateToTimeInDayFragment();
         navController.navigate(R.id.Time_In_Day_fragment,Sendbundle);
         Toast.makeText(getContext(), Generate_End_date.End_date, Toast.LENGTH_SHORT).show();
-
-        System.out.println(
-                        medicine.getMed_name()+"\n"+
-                        medicine.getMed_form()+"\n"+
-                        medicine.getStrength()+"\n"+
-                        medicine.getHow_often()+"\n"+
-                        medicine.getFlag()+"\n"+
-                        medicine.getWhy_Taken()+"\n"+
-                        medicine.getMed_amount()+"\n"+
-                        medicine.getMed_left()+"\n"+
-
-                        medicine.getMorning()+"\n"+
-                        medicine.getHour_of_Morning()+"\n"+
-
-                        medicine.getEvening()+"\n"+
-                        medicine.getHour_of_Evening()+"\n"+
-
-                        medicine.getNoon()+"\n"+
-                        medicine.getHour_of_Noon()+"\n"+
-
-                        medicine.getNight()+"\n"+
-                        medicine.getHour_of_Night()+"\n"+
-
-                        medicine.getStart_date()+"\n"+
-                        medicine.getEnd_date()+"\n"+
-
-                        medicine.isFriday()+"\n"+
-                        medicine.isSaturday()+"\n"+
-                        medicine.isSunday()+"\n"+
-                        medicine.isMonday()+"\n"+
-                        medicine.isTuesday()+"\n"+
-                        medicine.isWedensday()+"\n"+
-                        medicine.isThursday()+"\n"
-                );
 
     }
 }

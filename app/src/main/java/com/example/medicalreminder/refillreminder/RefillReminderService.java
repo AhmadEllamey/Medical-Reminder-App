@@ -39,7 +39,10 @@ public class RefillReminderService extends Service {
 
         displayMyNotification();
         buildMyNotification();
-
+        if (Settings.canDrawOverlays(this)) {
+           RefillRminderWindow window = new RefillRminderWindow(this, intent.getStringExtra("refill"));
+            window.open();
+        }
         return START_NOT_STICKY;
     }
 

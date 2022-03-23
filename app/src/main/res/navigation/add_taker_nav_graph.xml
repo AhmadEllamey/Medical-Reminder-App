@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_taker_nav_graph"
+    app:startDestination="@id/addHealthTakerFragment">
+
+    <fragment
+        android:id="@+id/addHealthTakerFragment"
+        android:name="com.example.medicalreminder.addhealthtaker.view.AddHealthTakerFragment"
+        android:label="fragment_add_health_taker"
+        tools:layout="@layout/fragment_add_health_taker" >
+        <action
+            android:id="@+id/action_addHealthTakerFragment_to_requestListFragment"
+            app:destination="@id/requestListFragment" />
+        <action
+            android:id="@+id/action_addHealthTakerFragment_to_medFriendFragment"
+            app:destination="@id/medFriendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestListFragment"
+        android:name="com.example.medicalreminder.addhealthtaker.view.RequestsListFragment"
+        android:label="fragment_request_list"
+        tools:layout="@layout/fragment_requests_list"/>
+    <fragment
+        android:id="@+id/medFriendFragment"
+        android:name="com.example.medicalreminder.addhealthtaker.view.MedFriendFragment"
+        android:label="fragment_med_friend"
+        tools:layout="@layout/fragment_med_friend" />
+</navigation>

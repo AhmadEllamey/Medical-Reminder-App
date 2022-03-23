@@ -12,6 +12,8 @@ import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyTo
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 
 @Dao
 public interface DatabaseFunctions {
@@ -46,26 +48,14 @@ public interface DatabaseFunctions {
     void insertMedicines(Medicine medicine);
 
 
-
-    /*
-    new Thread(() -> {
-        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
-        databaseFunctions = appDataBase.databaseFunctions();
-        databaseFunctions.insertMovie(movie);
-    }).start();
-     */
-
-
 //hend...............................................................
 
     @Query("Select * from MedicineInfo")
-    List<Medicine> getAllMedications();
+    Single<List<Medicine>> getAllMedications();
 
     @Query("SELECT * FROM MedicineInfo WHERE  active=1")
     List<Medicine> getActiveMedications();
 
     @Query("SELECT * FROM MedicineInfo WHERE  active=0")
     List<Medicine> getInactiveMedications();
-
-
 }

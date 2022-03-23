@@ -126,4 +126,6 @@
     <string name="txt_skip_refill_reminder">Skip</string>
     <string name="txt_refillrefill_reminder">Refill</string>
     <string name="txt_snooze_refill_reminder">Snooze</string>
+    <string name="txt_request_list_title">Requests</string>
+    <string name="txt_med_friend_title">My Health Takers</string>
 </resources>

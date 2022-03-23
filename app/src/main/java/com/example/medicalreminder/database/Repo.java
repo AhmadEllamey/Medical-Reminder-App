@@ -8,14 +8,14 @@ import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
-import com.example.medicalreminder.medicineslist.presenter.ActivePresenter;
 import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
 import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
 import com.example.medicalreminder.medicineslist.presenter.InactivePresenterInterface;
-import com.example.medicalreminder.medicineslist.view.ActiveViewInterface;
-import com.example.medicalreminder.medicineslist.view.InactiveViewInterface;
+import com.example.medicalreminder.refillreminder.RefillReminderPeriodicManager;
 
 import java.util.List;
+
+import io.reactivex.Single;
 
 public class Repo {
 
@@ -32,16 +32,21 @@ public class Repo {
 
     //hend ..........................................................................................Start
     List<Medicine>medicines;
-    ActivePresenter activePresenter;
     ActivePresenterInterface activePresenterInterface;
     InactivePresenter inactivePresenter;
     InactivePresenterInterface inactivePresenterInterface;
-    public Repo(ActivePresenterInterface activePresenterInterface , ActivePresenter activePresenter){this.activePresenterInterface = activePresenterInterface;}
-    public Repo(ActivePresenter activePresenter){this.activePresenter=activePresenter;}
+    RefillReminderPeriodicManager refillReminderPeriodicManager;
+
+    public Repo(ActivePresenterInterface activePresenterInterface)
+    {
+        this.activePresenterInterface = activePresenterInterface;
+    }
+
     public Repo(InactivePresenter inactivePresenter){
         this.inactivePresenter=inactivePresenter;
     }
-    public Repo(InactivePresenterInterface inactivePresenterInterface,InactivePresenter inactivePresenter) {this.inactivePresenterInterface = inactivePresenterInterface;}
+    public Repo(InactivePresenterInterface inactivePresenterInterface) {this.inactivePresenterInterface = inactivePresenterInterface;}
+    public Repo(RefillReminderPeriodicManager refillReminderPeriodicManager){this.refillReminderPeriodicManager=refillReminderPeriodicManager;}
 
    // hend.........................................................................................End
 
@@ -265,6 +270,26 @@ public class Repo {
         }).start();
 
     }
+
+
+
+    public Single<List<Medicine>> getAllMedications(){
+        System.out.println("inside getRefilReminderList ");
+
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                databaseFunctions.getAllMedications();
+            }
+        }).start();
+
+      return  databaseFunctions.getAllMedications();
+    }
+
+
 
 
 

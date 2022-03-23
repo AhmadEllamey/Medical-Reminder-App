@@ -15,6 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.example.medicalreminder.BlankFragment;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.addhealthtaker.view.AddHealthTakerFragment;
+import com.example.medicalreminder.addhealthtaker.view.MedFriendFragment;
+import com.example.medicalreminder.addhealthtaker.view.RequestsListFragment;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
@@ -115,11 +118,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
         }else if(item.getItemId() == R.id.nav_add_health_takers){
             Toast.makeText(this,"Add health takers",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
+            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new AddHealthTakerFragment()).commit();
         }else if(item.getItemId() == R.id.nav_manage_health_takers){
             Toast.makeText(this,"Manage health takers",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
-        }else if(item.getItemId() == R.id.nav_sittings){
+            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new RequestsListFragment()).commit();
+        } else if(item.getItemId() == R.id.nav_sittings){
             Toast.makeText(this,"Sittings",Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();
         }else if(item.getItemId() == R.id.nav_log_out){

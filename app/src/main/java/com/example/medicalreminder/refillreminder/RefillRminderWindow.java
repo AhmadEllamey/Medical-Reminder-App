@@ -71,19 +71,7 @@ public class RefillRminderWindow {
         }
     }
 
-    private void setPeriodicWorkManger(){
-        Constraints constraints = new Constraints.Builder()
-                .setRequiresBatteryNotLow(true)
-                .build();
 
-        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(RefillReminderPeriodicManager.class,
-                3, TimeUnit.HOURS)
-                .setConstraints(constraints)
-                .build();
-
-        WorkManager.getInstance(context).enqueueUniquePeriodicWork("Counter", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
-//        WorkManager.getInstance(this.getContext()).enqueue(periodicWorkRequest);
-    }
 
     private void callOneTimeRefillReminder(String pojo) {
 
@@ -93,7 +81,7 @@ public class RefillRminderWindow {
                 .setRequiresBatteryNotLow(true)
                 .build();
         String tag = medicationPOJO.getMed_name();
-        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(RefillReminderPeriodicManager.class)
+        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(RefillReminderWorkManger.class)
                 .setInputData(data)
                 .setConstraints(constraints)
                 .setInitialDelay(1, TimeUnit.HOURS)

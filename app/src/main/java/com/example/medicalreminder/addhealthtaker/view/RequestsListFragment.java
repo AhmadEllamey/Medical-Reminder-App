@@ -38,7 +38,6 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
     DocumentReference documentReference;
     List<RequestModel> requestModelList;
 
-
     public RequestsListFragment() {
     }
 
@@ -78,7 +77,6 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
         firestore.collection("Requests")
                 .document("RecieverRequests")
                 .collection(Home.getTheCurrentUser().getEmail())
-                //.whereEqualTo("receiever_name",Home.getTheCurrentUser().getName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -100,14 +98,12 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
     }
 
 
-    public void deleteRequest(RequestModel model){
-
-        // delete the request from reciverRequests
+   /* public void deleteRequest(RequestModel model){
 
         firestore.collection("Requests")
-                .document("RecieverRequests")//
-                .collection(Home.getTheCurrentUser().getEmail()) // model.getreciverEmail *****"noha@g.com"
-                .document(Home.getTheCurrentUser().getName())//****   model.getSenderEmail()    ******
+                .document("RecieverRequests")
+                .collection(Home.getTheCurrentUser().getEmail())
+                .document(Home.getTheCurrentUser().getName())
                 .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -116,9 +112,9 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
         });
 
         firestore.collection("Requests")
-                .document("SenderRequests")//
-                .collection(model.getSender_email())//model.getSenderEmail()
-                .document(model.getReceiever_email())//  "noha@g.com"*****
+                .document("SenderRequests")
+                .collection(model.getSender_email())
+                .document(model.getReceiever_email())
                 .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -127,7 +123,7 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
         });
 
         requestModelList.clear();
-    }
+    }*/
 
 
     public void saveAsMedFreiend(RequestModel model) {
@@ -139,7 +135,7 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
 
         firestore.collection("MedFriends")
                 .document("MyFriends")
-                .collection(model.getSender_email())  // or firebaseAuth.getCurrentUser().getEmail()  ****/
+                .collection(model.getSender_email())
                 .document(model.getSender_name())
                 .set(model)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -156,10 +152,9 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
             }
         });
 
-        // save reciever medfriend
         firestore.collection("MedFriends")
                 .document("MyFriends")
-                .collection(Home.getTheCurrentUser().getEmail())  // or firebaseAuth.getCurrentUser().getEmail()  ****/
+                .collection(Home.getTheCurrentUser().getEmail())
                 .document(model.getSender_email())
                 .set(model)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -183,16 +178,11 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
 
     @Override
     public void onAcceptClick(RequestModel model) {
-        //deleteRequest(model);
+
         saveAsMedFreiend(model);
-
-
     }
 
     @Override
     public void onDeclineClick(RequestModel model) {
-        //deleteRequest(model);
-
-
     }
 }

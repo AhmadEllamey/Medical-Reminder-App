@@ -8,34 +8,46 @@
 
         <item
             android:id="@+id/nav_home"
+            android:icon="@drawable/home"
             android:title="Home" />
 
         <item
             android:id="@+id/nav_profile"
+            android:icon="@drawable/administrator"
             android:title="Profile" />
 
         <item
             android:id="@+id/nav_add_medicine"
+            android:icon="@drawable/addmed"
             android:title="Add medicine" />
 
         <item
             android:id="@+id/nav_edit_medicine"
-            android:title="Edit medicine" />
+            android:icon="@drawable/doctorsbag"
+            android:title="Medicines" />
 
         <item
             android:id="@+id/nav_add_health_takers"
+            android:icon="@drawable/addhelper"
             android:title="Add health takers " />
+        <item
+            android:id="@+id/nav_request_list"
+            android:icon="@drawable/list"
+            android:title="Request List " />
 
         <item
             android:id="@+id/nav_manage_health_takers"
+            android:icon="@drawable/manage"
             android:title="Manage health takers " />
 
         <item
             android:id="@+id/nav_sittings"
+            android:icon="@drawable/settings"
             android:title="Sittings" />
 
         <item
             android:id="@+id/nav_log_out"
+            android:icon="@drawable/logout"
             android:title="Log out " />
 
 

@@ -52,7 +52,7 @@ public class AddHealthTakerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.requestListBtn.setOnClickListener(new View.OnClickListener() {
+       /* binding.requestListBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
@@ -65,7 +65,7 @@ public class AddHealthTakerFragment extends Fragment {
                 Bundle bundle = new Bundle();
                  Navigation.findNavController(view).navigate(R.id.action_addHealthTakerFragment_to_medFriendFragment,bundle);
             }});
-
+*/
         binding.sendRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

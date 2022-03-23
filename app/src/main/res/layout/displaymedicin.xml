@@ -36,10 +36,9 @@
 
     <TextView
         android:id="@+id/MedNameDisplay"
-        android:layout_width="103dp"
-        android:layout_height="34dp"
+        android:layout_width="203dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:text="Adol"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,16 +85,15 @@
 
     <TextView
         android:id="@+id/remind"
-        android:layout_width="274dp"
-        android:layout_height="41dp"
+        android:layout_width="207dp"
+        android:layout_height="84dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/LastTaken"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView11"
@@ -205,6 +203,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/trash" />
+
+    <Button
+        android:id="@+id/addDose"
+        android:layout_width="113dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/adddose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Refilldisplay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

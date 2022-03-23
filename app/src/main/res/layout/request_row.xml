@@ -70,7 +70,7 @@
             android:layout_marginStart="12dp"
             app:layout_constraintStart_toEndOf="@+id/accept_request_btn"
             app:layout_constraintTop_toTopOf="@+id/accept_request_btn"
-           />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

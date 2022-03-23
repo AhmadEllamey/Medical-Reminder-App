@@ -1,12 +1,15 @@
 package com.example.medicalreminder.home.view.home_fragment.view;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +20,10 @@ import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
@@ -72,22 +79,62 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         return new ViewHolder(v);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onBindViewHolder(@NonNull MedicineAdapter.ViewHolder holder, int position) {
 
 
         holder.medicineName.setText(medicineReadyToShows.get(position).getName());
-        holder.medicineState.setText(medicineReadyToShows.get(position).getStates());
-        holder.medicineAction.setText(medicineReadyToShows.get(position).getAction());
-        holder.medicineTime.setText(medicineReadyToShows.get(position).getTime());
+
+        String state = "Waiting" ;
+        Date currentDate = new Date();
+        Date currentMedicineDate = new Date();
+        try {
+            currentMedicineDate = new SimpleDateFormat("dd/MM/yyyy").parse(medicineReadyToShows.get(position).getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(currentMedicineDate.before(currentDate)){
+            state = "Done";
+        }
+        holder.medicineState.setText(state);
+        String active = "Active" ;
+        if(medicineReadyToShows.get(position).getAction().equals("false")){
+            active = "Deactivated" ;
+        }
+        holder.medicineAction.setText(active);
+
+
+
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        Date dTime = null;
+        try {
+            dTime = formatter.parse(medicineReadyToShows.get(position).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calY = Calendar.getInstance();
+        calY.setTime(currentMedicineDate);
+        calY.set(Calendar.HOUR_OF_DAY,dTime.getHours());
+        calY.set(Calendar.MINUTE,dTime.getMinutes());
+        calY.set(Calendar.SECOND,0);
+        calY.set(Calendar.MILLISECOND,0);
+
+        Date dateToShow = calY.getTime();
+
+        String timeToShow = dateToShow +" "+medicineReadyToShows.get(position).getWhen();
+
+        holder.medicineTime.setText(timeToShow);
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new Displaymed(medicineReadyToShows.get(holder.getAdapterPosition()))).commit();
             }
         });
-
-
 
 
     }

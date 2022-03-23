@@ -54,85 +54,21 @@ public class Med_Left extends Fragment {
     private void nextend(View view) {
         NavController navController;
         navController = Navigation.findNavController(view);
-        if(!medleft.getText().toString().equals("")){
-                if (Integer.parseInt(medleft.getText().toString())>=medicine.getMed_amount()){
-                    Toast.makeText(getContext(), "Must be less than the medicine amount", Toast.LENGTH_SHORT).show();
-                }
-                else{
+        if (!medleft.getText().toString().equals("")) {
+            if (Integer.parseInt(medleft.getText().toString()) >= medicine.getMed_amount()) {
+                Toast.makeText(getContext(), "Must be less than the medicine amount", Toast.LENGTH_SHORT).show();
+            } else {
 
-                    medicine.setMed_left(Integer.parseInt(medleft.getText().toString()));
-                    Bundle Sendbundle = new Bundle();
-                    Sendbundle.putSerializable("obj",medicine);
-
-                    //sending
-//        presenterInterface = (PresenterInterface) new Presenter(context, (PresenterInterface) this);
-
-                    NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToInstructions2();
-                    navController.navigate(R.id.instructions2,Sendbundle);
-
-//                    addMedicine(medicine);
-                }
-        }
-        else{
-                Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
+                medicine.setMed_left(Integer.parseInt(medleft.getText().toString()));
+                Bundle Sendbundle = new Bundle();
+                Sendbundle.putSerializable("obj", medicine);
+                NavDirections navDirections = com.example.medicalreminder.addingmed.view.Med_LeftDirections.actionMedLeftFragmentToInstructions2();
+                navController.navigate(R.id.instructions2, Sendbundle);
+            }
+        } else {
+            Toast.makeText(getContext(), "Fill the amount to remind you ", Toast.LENGTH_LONG).show();
 
         }
-////
-
-
-        //addMedicine(medicine);
-//            System.out.println(
-//                    medicine.getMed_name()+"\n"+
-//                            medicine.getMed_form()+"\n"+
-//                            medicine.getStrength()+"\n"+
-//                            medicine.getHow_often()+"\n"+
-//                            medicine.getIs_Every_Day()+"\n"+
-//                            medicine.getWhy_Taken()+"\n"+
-//                            medicine.getMed_amount()+"\n"+
-//                            medicine.getMed_left()+"\n"+
-//
-//                            medicine.getMorning()+"\n"+
-//                            medicine.getHour_of_Morning()+"\n"+
-//
-//                            medicine.getEvening()+"\n"+
-//                            medicine.getHour_of_Evening()+"\n"+
-//
-//                            medicine.getNoon()+"\n"+
-//                            medicine.getHour_of_Noon()+"\n"+
-//
-//                            medicine.getNight()+"\n"+
-//                            medicine.getHour_of_Night()+"\n"+
-//
-//                            medicine.getStart_date()+"\n"+
-//                            medicine.getEnd_date()+"\n"+
-//
-//                            medicine.isFriday()+"\n"+
-//                            medicine.isSaturday()+"\n"+
-//                            medicine.isSunday()+"\n"+
-//                            medicine.isMonday()+"\n"+
-//                            medicine.isTuesday()+"\n"+
-//                            medicine.isWedensday()+"\n"+
-//                            medicine.isThursday()
-//            );
-
-        }
-
-//
-//    public void addMedicine(Medicine medicine){
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("Medicine Info").document(medicine.getUser_name()+"-"+medicine.getMed_name())
-//                .set(medicine).addOnSuccessListener(aVoid -> {
-//            //Log.d(TAG, "DocumentSnapshot successfully written!");
-//            //getChildFragmentManager().beginTransaction().replace(R.id.container,new HomeFragment()).commit();
-//
-//            Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
-//
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                //Log.w(TAG, "Error writing document", e);
-//            }
-//        });
-//    }
+    }
 
 }

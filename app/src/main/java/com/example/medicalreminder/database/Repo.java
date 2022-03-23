@@ -4,52 +4,40 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.medicalreminder.MainActivity;
+import com.example.medicalreminder.Medicitions.presenter.Presenter_Medicions_Interface;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
+import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
-import com.example.medicalreminder.medicineslist.presenter.ActivePresenterInterface;
-import com.example.medicalreminder.medicineslist.presenter.InactivePresenter;
-import com.example.medicalreminder.medicineslist.presenter.InactivePresenterInterface;
-import com.example.medicalreminder.refillreminder.RefillReminderPeriodicManager;
+import com.facebook.all.All;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-import io.reactivex.Single;
 
 public class Repo {
 
 
 
     List<MedicineReadyToShow> medicineReadyToShows;
+    List<Medicine> medicitions;
+    List<Medicine> medicitions_inactive;
     DatabaseFunctions databaseFunctions;
+    Medicine medicineTodisplay = new Medicine();
     HomePresenterInterface homePresenterInterface ;
     com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenter ;
     DisplayInterface displayInterface ;
+    Presenter_Medicions_Interface presenter_medicions_interface;
 
 
 
-
-    //hend ..........................................................................................Start
-    List<Medicine>medicines;
-    ActivePresenterInterface activePresenterInterface;
-    InactivePresenter inactivePresenter;
-    InactivePresenterInterface inactivePresenterInterface;
-    RefillReminderPeriodicManager refillReminderPeriodicManager;
-
-    public Repo(ActivePresenterInterface activePresenterInterface)
-    {
-        this.activePresenterInterface = activePresenterInterface;
+    public Repo(Presenter_Medicions_Interface presenter_medicions_interface) {
+        this.presenter_medicions_interface = presenter_medicions_interface;
     }
-
-    public Repo(InactivePresenter inactivePresenter){
-        this.inactivePresenter=inactivePresenter;
-    }
-    public Repo(InactivePresenterInterface inactivePresenterInterface) {this.inactivePresenterInterface = inactivePresenterInterface;}
-    public Repo(RefillReminderPeriodicManager refillReminderPeriodicManager){this.refillReminderPeriodicManager=refillReminderPeriodicManager;}
-
-   // hend.........................................................................................End
-
 
     public Repo(DisplayInterface displayInterface) {
         this.displayInterface = displayInterface;
@@ -169,7 +157,6 @@ public class Repo {
         }).start();
     }
 
-
     public void getAllMedicines(String date){
 
         System.out.println("we are here again");
@@ -193,7 +180,7 @@ public class Repo {
             public void run() {
                 //databaseFunctions.insertMedicine(new Medicine("panadol","06:00","03/13/2022","1","Active","Waiting"));
                 System.out.println("we are here !!!!!!");
-                medicineReadyToShows = databaseFunctions.getCurrentDayMedicines(date);
+                medicineReadyToShows = databaseFunctions.getCurrentDayMedicines(date, Home.getTheCurrentUser().getEmail());
                 handler.sendEmptyMessage(1);
             }
         }).start();
@@ -201,27 +188,72 @@ public class Repo {
 
 
     }
-
 
     public void getMedicineFor(String medicineName ,String username){
 
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
         databaseFunctions = appDataBase.databaseFunctions();
+        System.out.println("getmedicinefor");
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                displayInterface.iGotTheMed(medicineTodisplay);
+
+            }
+        };
+
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
+//                displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
+
+                medicineTodisplay =databaseFunctions.getTheMed(medicineName,username);
+                System.out.println("getmedicinefor");
+                System.out.println(medicineTodisplay.getMed_name());
+                handler.sendEmptyMessage(1);
+
+
             }
         }).start();
 
     }
 
+    public void getTodayMedicinesFun(String username){
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+        List<MedicineReadyToShow> medicineReadyToShowsForToday = new ArrayList<>();
 
-    //hend...................................................................................
-    public void getActiveMedications (){
-        System.out.println("inside getActiveMedications ");
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                homePresenter.sendTodayMedicines(medicineReadyToShows);
 
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Date date = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                medicineReadyToShows = databaseFunctions.getTodayMedicines(dateFormat.format(date),username);
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+
+
+
+    }
+
+    public void getMedicinesList(String username){
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
         databaseFunctions = appDataBase.databaseFunctions();
 
@@ -230,7 +262,8 @@ public class Repo {
             @Override
             public void handleMessage(Message msg)
             {
-                activePresenterInterface.getActiveMeds(medicines);
+                //  Do SomeThings
+                 presenter_medicions_interface.sendToMedicionList(medicitions);
 
             }
         };
@@ -238,15 +271,14 @@ public class Repo {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                medicines = databaseFunctions.getActiveMedications();
+                medicitions = databaseFunctions.getTheMedications(username);
                 handler.sendEmptyMessage(1);
             }
         }).start();
-
     }
-    public void getInactiveMedications(){
-        System.out.println("inside getInactiveMedications ");
 
+
+    public void getMedicinesList_Inactive(String username){
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
         databaseFunctions = appDataBase.databaseFunctions();
 
@@ -255,7 +287,8 @@ public class Repo {
             @Override
             public void handleMessage(Message msg)
             {
-                inactivePresenterInterface.getInactiveMeds(medicines);
+                //  Do SomeThings
+                presenter_medicions_interface.sendToMedicionList_Inactive(medicitions_inactive);
 
             }
         };
@@ -263,36 +296,11 @@ public class Repo {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                medicines = databaseFunctions.getInactiveMedications();
+                medicitions_inactive = databaseFunctions.getInactiveMedications(username);
                 handler.sendEmptyMessage(1);
             }
         }).start();
-
     }
-
-
-
-    public Single<List<Medicine>> getAllMedications(){
-        System.out.println("inside getRefilReminderList ");
-
-        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
-        databaseFunctions = appDataBase.databaseFunctions();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                databaseFunctions.getAllMedications();
-            }
-        }).start();
-
-      return  databaseFunctions.getAllMedications();
-    }
-
-
-
-
-
 
 
 

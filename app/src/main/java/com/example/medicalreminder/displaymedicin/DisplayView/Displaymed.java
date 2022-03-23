@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import com.example.medicalreminder.displaymedicin.DisplayPresenter.DisplayPresen
 import com.example.medicalreminder.editmedicin.EditView.Edit_View;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
+import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
+import com.google.firebase.firestore.core.SyncEngine;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +49,7 @@ import java.util.Locale;
 public class Displaymed extends Fragment implements  DisplayInterface{
     ImageView image;
     LayoutInflater inflater;
-    Medicine medicine;
+    Medicine medicine ;//= new Medicine();
     TextView medicinname;
     TextView Lasttaken;
     TextView Reminder;
@@ -56,16 +59,22 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     ImageButton edit;
     ImageButton delete;
     int counter = 0;
-
+    int new_dose=0;
 
     String username;
     String medName;
 
-    DisplayPresenterInterface displayPresenterInterface;
+    DisplayPresenterInterface displayPresenterInterface = new DisplayPresenter(this);
 
     public Displaymed(MedicineReadyToShow medicineReadyToShow){
         username = medicineReadyToShow.getUser_name();
         medName = medicineReadyToShow.getName();
+    }
+    public Displaymed(Medicine medicine){
+        username = medicine.getUser_name();
+        medName = medicine.getMed_name();
+        this.medicine = medicine;
+
     }
 
 
@@ -81,15 +90,11 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         // get the medicine
         // we sent a request asking for the current medicine
-        Repo repo = new Repo(this);
-        repo.getMedicineFor(medName,username);
+//        Repo repo = new Repo(this);
+//        repo.getMedicineFor(medName,username);
 
-
-
-//
-//        Bundle bundle = this.getArguments();
-//        medicine= (Medicine) bundle.getSerializable("obj");
-
+        displayPresenterInterface.SendRequest(medName,username);
+        System.out.println("from view");
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
@@ -97,8 +102,8 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         Refill=view.findViewById(R.id.Refilldisplay);
         btn = view.findViewById(R.id.suspend_id);
 
-
-
+        System.out.println(medName);
+        medicinname.setText(medName);
 
 
 
@@ -132,12 +137,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
                     String formattedDate = df.format(c);
                     medicine.setStart_date(formattedDate);
 
+                    medicine.setActive(true);
+                    btn.setText("Suspend");
                     //send to preseneter to update the record
                     sendtopresenter( medicine);
 
                     Toast.makeText(getContext(), "Medicine is suspended", Toast.LENGTH_SHORT).show();
-                    medicine.setActive(true);
-                    btn.setText("Suspend");
+
+
                 }
 
 
@@ -184,6 +191,18 @@ public class Displaymed extends Fragment implements  DisplayInterface{
             }
         });
 
+
+        //addDose
+        view.findViewById(R.id.addDose).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDoseDialog();
+
+
+            }
+        });
+
+
         return  view;
     }
 
@@ -198,25 +217,6 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         TextView num_refill;
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.getrefill, null);
         num_refill = dialogView.findViewById(R.id.refilldisplay);
-//        dialogView.findViewById(R.id.Setbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            LocalDateTime myDateObj = LocalDateTime.now();
-////                    LocaleData mydate = LocaleData.getInstance();
-////                    System.out.println(mydate);
-//                            Date date2 = new Date();
-//                            date2.getDate();
-//                            //System.out.println(myDateObj);
-//                            System.out.println("DATE"+date2);
-//
-//                            //System.out.println(date);
-//                            medicine.setStart_date(date); }});
-//        dialogView.findViewById(R.id.cancelbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            counter=0;
-//                        }
-//                    });
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -241,6 +241,44 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         alertDialog.show();
     }
 
+
+
+    private void setDoseDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+        // ...Irrelevant code for customizing the buttons and title
+        EditText Dose;
+        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.add_dose, null);
+        Dose = dialogView.findViewById(R.id.DoseEdit);
+//        Dose.setText(new_dose);
+
+        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new_dose = Integer.parseInt(Dose.getText().toString());
+                medicine.setCount(new_dose);
+
+                //send to presenter to update the record
+                sendtopresenter(medicine);
+            }
+
+        });
+        dialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //do nothing
+            }
+        });
+
+
+        dialogBuilder.setView(dialogView);
+//        Dose.setText(medicine.getCount());
+
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
     private  void sendtopresenter(Medicine medicine){
         displayPresenterInterface = new DisplayPresenter(this);
         displayPresenterInterface.update(medicine);
@@ -256,11 +294,14 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     @Override
     public void deletesuccess() {
         Toast.makeText(getContext(), "deleted", Toast.LENGTH_SHORT).show();
+        Home.getFragmentManagerX().beginTransaction().replace(Home.getFrameLayout().getId(),new HomeFragment()).commit();
+
     }
 
     @Override
     public void deletefailed() {
         Toast.makeText(getContext(), "Failed to delete it try again", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -283,27 +324,18 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         Refill.setText("remind you when "+medicine.getMed_left()+"pills  left");
 
-        //if not null
-        Reminder.setText(medicine.getHour_of_Morning() + medicine.getHour_of_Night()
-        +medicine.getHour_of_Noon()+medicine.getHour_of_Evening()
-        );
+
+        if(medicine.getHour_of_Morning()!= null){
+            Reminder.append(medicine.getHour_of_Morning()+"\n");}
+        if(medicine.getHour_of_Noon()!=null){
+            Reminder.append(medicine.getHour_of_Noon()+"\n");}
+        if(medicine.getHour_of_Evening()!=null) {
+            Reminder.append(medicine.getHour_of_Evening() +"\n");
+        } if( medicine.getHour_of_Night()!=null)        {
+            Reminder.append(medicine.getHour_of_Night()+"\n");
+        }
+
 
 
     }
 }
-// Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                name.setText(value);
-//                // Log.d(TAG, "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                //Log.w(TAG, "Failed to read value.", error.toException());
-//            }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
@@ -42,11 +41,11 @@ public class ProfileFragment extends Fragment implements ProfileViewInterface {
 
         User user = Home.getTheCurrentUser();
 
-        TextView name = view.findViewById(R.id.nameTextProfile);
-        TextView email = view.findViewById(R.id.EmailTextProfile);
-        TextView dob = view.findViewById(R.id.dobTextProfile);
-        TextView gender = view.findViewById(R.id.genderTextProfile);
-        TextView phone = view.findViewById(R.id.phoneTextProfile);
+        TextView name = view.findViewById(R.id.nameTextView);
+        TextView email = view.findViewById(R.id.emailTextView);
+        TextView dob = view.findViewById(R.id.dobTextView);
+        TextView gender = view.findViewById(R.id.genderTextView);
+        TextView phone = view.findViewById(R.id.phoneTextView);
 
         name.setText(user.getName());
         email.setText(user.getEmail());

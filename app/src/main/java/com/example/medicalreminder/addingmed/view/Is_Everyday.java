@@ -92,7 +92,6 @@ public class Is_Everyday extends Fragment {
     private void gonext(View view) {
 
         navController = Navigation.findNavController(view);
-//        medicine.setIs_Every_Day(is);
         if(is==true){
             Bundle Sendbundle = new Bundle();
             Sendbundle.putSerializable("obj",medicine);

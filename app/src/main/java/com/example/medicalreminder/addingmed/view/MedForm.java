@@ -59,8 +59,6 @@ public class MedForm extends Fragment {
         Sendbundle.putSerializable("obj",medicine);
         NavDirections navDirections = com.example.medicalreminder.addingmed.view.MedFormDirections.actionMedFormToStrengthfragment();
         navController.navigate(R.id.Strengthfragment, Sendbundle);
-
-        // navController.navigate(navDirections);
     }
 
 }

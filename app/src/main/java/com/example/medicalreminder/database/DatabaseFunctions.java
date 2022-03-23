@@ -2,38 +2,37 @@ package com.example.medicalreminder.database;
 
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-
-import com.example.medicalreminder.Model.Local_Medicine_DB;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 
 import java.util.List;
 
-import io.reactivex.Single;
-
 
 @Dao
 public interface DatabaseFunctions {
 
-    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet")
-    List<MedicineReadyToShow> getCurrentDayMedicines(String dateToGet);
+    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet AND user_name = :username")
+    List<MedicineReadyToShow> getTodayMedicines(String dateToGet , String username);
+
+
+    @Query("SELECT * FROM medicines_ready_to_view WHERE date = :dateToGet AND user_name = :username")
+    List<MedicineReadyToShow> getCurrentDayMedicines(String dateToGet , String username);
 
     @Query("SELECT * FROM MedicineInfo WHERE med_name = :medName AND user_name = :userName")
     Medicine getTheMed(String medName , String userName);
 
+    // todo -- > use this function to get all medicines for a specific use
+    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName  AND active = 1")
+    List<Medicine> getTheMedications(String userName);
+
+
+    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName  AND active = 0")
+    List<Medicine> getInactiveMedications(String userName);
+
     @Insert
     void insertMedicine(MedicineReadyToShow medicineReadyToShow);
-
-    //ADDLOCAL
-    @Insert
-    void insertLocalMedicine(Local_Medicine_DB local_medicine_db);
-    //Delete
-//    @Query("DELETE FROM LocalMedicine WHERE user_name :")
-//    void DeleteLocalMedicine(Local_Medicine_DB local_medicine_db);
-
 
 
     @Query("DELETE FROM medicines_ready_to_view WhERE user_name = :userName")
@@ -48,14 +47,9 @@ public interface DatabaseFunctions {
     void insertMedicines(Medicine medicine);
 
 
-//hend...............................................................
 
-    @Query("Select * from MedicineInfo")
-    Single<List<Medicine>> getAllMedications();
 
-    @Query("SELECT * FROM MedicineInfo WHERE  active=1")
-    List<Medicine> getActiveMedications();
 
-    @Query("SELECT * FROM MedicineInfo WHERE  active=0")
-    List<Medicine> getInactiveMedications();
+
+
 }

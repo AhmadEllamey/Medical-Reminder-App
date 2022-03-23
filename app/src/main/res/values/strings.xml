@@ -123,9 +123,18 @@
     <string name="snooze">Snooze</string>
     <string name="Skip">Skip</string>
     <string name="btntake">Take</string>
+    <string name="SetAlarm">Set Alarm</string>
+    <string name="instruction">Instructions</string>
+    <string name="profile">Profile</string>
+    <string name="nameProfile">Name</string>
+    <string name="na">NA</string>
+    <string name="emailProfile">Email</string>
+    <string name="date_of_birth_profile">Date Of Birth</string>
+    <string name="genderProfile">Gender</string>
+    <string name="phoneProfile">Phone</string>
     <string name="txt_skip_refill_reminder">Skip</string>
     <string name="txt_refillrefill_reminder">Refill</string>
     <string name="txt_snooze_refill_reminder">Snooze</string>
     <string name="txt_request_list_title">Requests</string>
-    <string name="txt_med_friend_title">My Health Takers</string>
+    <string name="txt_med_friend_title">My Friends</string>
 </resources>

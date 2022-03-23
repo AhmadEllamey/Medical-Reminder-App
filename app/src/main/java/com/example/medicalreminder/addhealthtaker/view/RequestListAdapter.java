@@ -2,19 +2,13 @@ package com.example.medicalreminder.addhealthtaker.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addhealthtaker.RequestModel;
-import com.example.medicalreminder.databinding.ActiveMedsRowBinding;
-import com.example.medicalreminder.databinding.FragmentRequestsListBinding;
 import com.example.medicalreminder.databinding.RequestRowBinding;
-import com.example.medicalreminder.medicineslist.view.ActiveMedicationsAdapter;
-
 import java.util.List;
 
 public class RequestListAdapter extends RecyclerView.Adapter<RequestListAdapter.ViewHolder> {

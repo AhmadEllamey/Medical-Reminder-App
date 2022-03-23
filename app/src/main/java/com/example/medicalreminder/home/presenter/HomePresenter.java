@@ -57,12 +57,26 @@ public class HomePresenter implements HomePresenterInterface {
                             Medicine medicine =document.toObject(Medicine.class);
                             medicines.add(medicine);
                         }
+
+
+
                     } else {
                         // todo -- > show toast that the internet is lost
                         Toast.makeText(Home.getContext(),"Connection Lost",Toast.LENGTH_LONG).show();
                         homeViewInterface.updateTheUI();
                     }
                 });
+    }
+
+    @Override
+    public void getTheListOfMedicinesForToday(String username) {
+        Repo repo = new Repo(this);
+        repo.getTodayMedicinesFun(username);
+    }
+
+    @Override
+    public void sendTodayMedicines(List<MedicineReadyToShow> medicineReadyToShows) {
+        homeViewInterface.manageTheAlarms(medicineReadyToShows);
     }
 
     // load the data into app room
@@ -79,7 +93,6 @@ public class HomePresenter implements HomePresenterInterface {
         Repo repo = new Repo(this);
         repo.clearReadyToShowForTheCurrentUser(Home.getTheCurrentUser().getEmail());
     }
-
 
 
     // process the data to set the medicines that will be available
@@ -373,7 +386,16 @@ public class HomePresenter implements HomePresenterInterface {
                         case "period_of_days" :
 
                             Date endDateForThisMed = new SimpleDateFormat("dd/MM/yyyy").parse(i.getEnd_date());
-                            while(!cal1.after(endDateForThisMed)) {
+
+                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+endDateForThisMed); //18/4/22
+                            System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"+ cal1.getTime()); // 21/3/22
+
+                            // this is to retrieve only to the next month only
+                            if(cal2.before(endDateForThisMed)){
+                                endDateForThisMed = cal2.getTime();
+                            }
+
+                            while(cal1.before(endDateForThisMed)) {
 
                                 if(i.getHour_of_Morning()!=null) {
                                     MedicineReadyToShow medicineReadyToShow =
@@ -460,7 +482,6 @@ public class HomePresenter implements HomePresenterInterface {
 
         homeViewInterface.updateTheUI();
     }
-
 
     public void saveTheRecord(MedicineReadyToShow medicineReadyToShow){
         Repo repo = new Repo();

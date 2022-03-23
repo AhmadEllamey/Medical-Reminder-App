@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.example.medicalreminder.Model.Medicine;
+import com.example.medicalreminder.database.Repo;
 import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
 import com.example.medicalreminder.editmedicin.EditView.EditViewInterface;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,6 +68,13 @@ public class DisplayPresenter implements DisplayPresenterInterface {
             }
         });
 
+    }
+
+    @Override
+    public void SendRequest(String name , String user) {
+        Repo repo = new Repo(displayInterface);
+        repo.getMedicineFor(name,user);
+        System.out.println("sendrepeuest" + name +user);
     }
 
 

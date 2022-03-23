@@ -7,19 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import com.example.medicalreminder.alarm.WorkManagerClass;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,12 +22,23 @@ public class MainActivity extends AppCompatActivity {
 
     private static Context context;
 
+    private static String clearSharedPreferences = "null" ;
+
     public static Context getContext() {
         return context;
     }
 
+    public static void setContext(Context context) {
+        MainActivity.context = context;
+    }
 
+    public static String getClearSharedPreferences() {
+        return clearSharedPreferences;
+    }
 
+    public static void setClearSharedPreferences(String clearSharedPreferences) {
+        MainActivity.clearSharedPreferences = clearSharedPreferences;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -42,49 +46,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createNotificationChannel();
-
-
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
-        Date dTime ;
-        Date date ;
-        Calendar cal = Calendar.getInstance();
-        long startTime = 0;
-        try {
-            dTime = formatter.parse("18:40");
-            cal.set(Calendar.HOUR_OF_DAY,dTime.getHours());
-            cal.set(Calendar.MINUTE,dTime.getMinutes());
-            cal.set(Calendar.SECOND,0);
-            cal.set(Calendar.MILLISECOND,0);
-            date = cal.getTime();
-            startTime = date.getTime();
-            System.out.println("we are here");
-            System.out.println(startTime);
-        }catch (Exception e){
-            e.printStackTrace();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
         }
 
 
-
-        // set the alarm to the medicine object
-
-//        Data data = new Data.Builder()
-//                .putString("Medicine Name",medicineReadyToShow.getName())
-//                .putString("Pills ToTake",medicineReadyToShow.getPills_to_take())
-//                .putString("Time Per Day",medicineReadyToShow.getWhen())
-//                .putString("Date Of The Day",medicineReadyToShow.getDate())
-//                .putString("Time Of The Day",medicineReadyToShow.getTime())
-//                .putString("Instructions",medicineReadyToShow.getInstruction())
-//                .build();
-
-        OneTimeWorkRequest oneTimeWorkRequest = new OneTimeWorkRequest.Builder(WorkManagerClass.class)
-                .setInitialDelay(startTime - System.currentTimeMillis(),TimeUnit.MILLISECONDS)
-                //.setScheduleRequestedAt(startTime, TimeUnit.MILLISECONDS)
-                .build();
-
-        WorkManager.getInstance(this).enqueue(oneTimeWorkRequest);
- 
-
+        createNotificationChannel();
 
         context = this ;
 
@@ -104,26 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+
+        // ToDO -- > handle what to do when back button pressed ...
     }
 
     private void createNotificationChannel() {
 
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             CharSequence name ="Medical Reminder Channel";
-            String desc = "Channel for alram";
+            String desc = "Channel for alarm";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel("Alarm",name,importance);
             channel.setDescription(desc);

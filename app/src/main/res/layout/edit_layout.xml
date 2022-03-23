@@ -15,10 +15,10 @@
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,14 +26,18 @@
 
 
             <TextView
-                android:id="@+id/eveningtime"
+                android:id="@+id/Second"
                 android:layout_width="114dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="112dp"
+                android:layout_marginStart="116dp"
                 android:layout_marginTop="12dp"
+                android:text="@string/SetAlarm"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/Morningtime"
-                app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintStart_toEndOf="@+id/First"
+                app:layout_constraintTop_toBottomOf="@+id/spinner2"
+                tools:visibility="visible" />
 
             <RadioButton
                 android:id="@+id/specificcheckbox"
@@ -72,6 +76,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/numberofdayscheck" />
 
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="360dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="32dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reminderedit" />
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="350dp"
@@ -83,57 +100,30 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.372"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.035" />
-
-            <EditText
-                android:id="@+id/mednameedit"
-                android:layout_width="354dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="@string/medname"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintVertical_bias="0.034" />
 
             <TextView
                 android:id="@+id/reminderedit"
-                android:layout_width="357dp"
-                android:layout_height="43dp"
+                android:layout_width="358dp"
+                android:layout_height="33dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/ReminderTimes"
                 android:textAlignment="textStart"
                 android:textColor="#4f5bd5"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/mednameedit"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/mednameedit" />
 
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="360dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="30dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dialog"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/reminderedit" />
-
             <TextView
                 android:id="@+id/schedule"
-                android:layout_width="389dp"
-                android:layout_height="33dp"
+                android:layout_width="338dp"
+                android:layout_height="34dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/Schedule"
                 android:textAlignment="textStart"
@@ -143,12 +133,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/reminderedit"
-                app:layout_constraintTop_toBottomOf="@+id/nighttime" />
+                app:layout_constraintTop_toBottomOf="@+id/Third" />
 
             <TextView
                 android:id="@+id/Strength"
-                android:layout_width="158dp"
-                android:layout_height="51dp"
+                android:layout_width="132dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="41dp"
                 android:text="@string/Strenghttxt"
                 android:textAlignment="textStart"
@@ -166,23 +156,23 @@
                 android:id="@+id/strength"
                 android:layout_width="196dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/prescriptionrefill"
                 android:textAlignment="textStart"
                 android:textColor="#4f5bd5"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.069"
+                app:layout_constraintHorizontal_bias="0.076"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Strength" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="175dp"
                 android:layout_height="71dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="23dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/medleft"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/strength" />
@@ -191,20 +181,18 @@
                 android:id="@+id/strenghtEdit"
                 android:layout_width="115dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="21dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="64dp"
                 android:ems="10"
                 android:hint="0"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="@+id/refill_edit"
-                app:layout_constraintStart_toEndOf="@+id/Strength"
                 app:layout_constraintTop_toBottomOf="@+id/specificcheckbox" />
 
             <TextView
                 android:id="@+id/Unit"
-                android:layout_width="29dp"
-                android:layout_height="39dp"
+                android:layout_width="56dp"
+                android:layout_height="45dp"
                 android:text="g"
                 android:textColor="#4f5bd5"
                 android:textSize="20sp"
@@ -214,6 +202,7 @@
                 app:layout_constraintStart_toEndOf="@+id/strenghtEdit"
                 app:layout_constraintTop_toTopOf="@+id/strenghtEdit"
                 app:layout_constraintVertical_bias="1.0" />
+
 
             <EditText
                 android:id="@+id/refill_edit"
@@ -226,54 +215,78 @@
                 android:hint="0"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.192"
                 app:layout_constraintStart_toEndOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/strength" />
 
             <TextView
-                android:id="@+id/Morningtime"
-                android:layout_width="92dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="28dp"
+                android:id="@+id/First"
+                android:layout_width="102dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="12dp"
+                android:text="@string/SetAlarm"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner2"
+                tools:visibility="invisible" />
 
             <TextView
-                android:id="@+id/nighttime"
-                android:layout_width="95dp"
-                android:layout_height="39dp"
+                android:id="@+id/Third"
+                android:layout_width="99dp"
+                android:layout_height="36dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="116dp"
+                android:text="@string/SetAlarm"
+
                 android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/noontime"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/Morningtime"
-                app:layout_constraintTop_toBottomOf="@+id/Morningtime" />
+                app:layout_constraintEnd_toStartOf="@+id/Forth"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/First"
+                app:layout_constraintTop_toBottomOf="@+id/First"
+                tools:visibility="visible" />
 
             <TextView
-                android:id="@+id/noontime"
+                android:id="@+id/Forth"
                 android:layout_width="108dp"
                 android:layout_height="37dp"
                 android:textSize="20sp"
+                android:text="@string/SetAlarm"
+
                 app:layout_constraintBottom_toTopOf="@+id/schedule"
-                app:layout_constraintEnd_toEndOf="@+id/eveningtime"
-                app:layout_constraintStart_toStartOf="@+id/eveningtime"
-                app:layout_constraintTop_toBottomOf="@+id/eveningtime"
-                app:layout_constraintVertical_bias="0.347" />
+                app:layout_constraintEnd_toEndOf="@+id/Second"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/Second"
+                app:layout_constraintTop_toBottomOf="@+id/Second"
+                app:layout_constraintVertical_bias="0.6"
+                tools:visibility="visible" />
+
 
             <Button
                 android:id="@+id/savebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="308dp"
-                android:layout_marginTop="85dp"
                 android:layout_marginEnd="16dp"
                 android:text="Save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/refill_edit" />
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="360dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.608"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -281,12 +294,39 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="27dp"
                 android:layout_marginEnd="327dp"
-                android:layout_marginBottom="9dp"
                 android:text="Frequency"
-                app:layout_constraintBottom_toTopOf="@+id/spinner1"
+                app:layout_constraintBottom_toTopOf="@+id/First"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reminderedit" />
+                app:layout_constraintTop_toBottomOf="@+id/reminderedit"
+                app:layout_constraintVertical_bias="0.074" />
+
+            <TextView
+                android:id="@+id/mednameedit"
+                android:layout_width="240dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.156"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="124dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/instruction"
+                android:textColor="#4f5bd5"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Strength" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

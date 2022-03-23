@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.login.model.User;
@@ -88,8 +89,15 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
         sharedpreferences = view.getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
+        if(MainActivity.getClearSharedPreferences().equals("clear")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("email","NA");
+            editor.apply();
+            editor.commit();
+            MainActivity.setClearSharedPreferences("null");
+        }
 
-        /*
+
         if(!sharedpreferences.getString("email","NA").equals("NA")){
             // the user is already signed in before , then go to the home with his stored info
 
@@ -103,7 +111,7 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
             updateTheUiAfterSystemLogin(user);
         }
-         */
+
 
 
         loginFragmentPresenterInterface = new LoginFragmentPresenter(this);
@@ -181,46 +189,50 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
 
         view.findViewById(R.id.continueWithFacebook).setOnClickListener(view14 -> {
 
-            LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    showToast("done we are in ");
-                    System.out.println(loginResult.getAccessToken().getUserId());
-                    User user = new User(loginResult.getAccessToken().getUserId(),
-                            "null",loginResult.getAccessToken().getToken(),
-                            "null","null","null");
-                    updateTheUiAfterSystemLogin(user);
-                }
 
-                @Override
-                public void onCancel() {
-                    showToast("login canceled");
-                }
+            Toast.makeText(getContext(),"Under Maintains",Toast.LENGTH_LONG).show();
 
-                @Override
-                public void onError(FacebookException error) {
-                    showToast("something went wrong");
-                }
-            });
-
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"));
-
+                //            LoginManager.getInstance().registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//                @Override
+//                public void onSuccess(LoginResult loginResult) {
+//                    showToast("done we are in ");
+//                    System.out.println(loginResult.getAccessToken().getUserId());
+//                    User user = new User(loginResult.getAccessToken().getUserId(),
+//                            "null",loginResult.getAccessToken().getToken(),
+//                            "null","null","null");
+//                    updateTheUiAfterSystemLogin(user);
+//                }
+//
+//                @Override
+//                public void onCancel() {
+//                    showToast("login canceled");
+//                }
+//
+//                @Override
+//                public void onError(FacebookException error) {
+//                    showToast("something went wrong");
+//                }
+//            });
+//
+//            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email"));
 
         });
 
         view.findViewById(R.id.continueAsGuestButton).setOnClickListener(view13 -> {
+            Toast.makeText(getContext(),"Under Maintains",Toast.LENGTH_LONG).show();
             // create a guest user with any guest as mail , save the shared with this user , go to home page .
-            User user = new User("guest","NA","guest@locala.user","NA","NA","NA");
-            updateTheUiAfterSystemLogin(user);
+            //User user = new User("guest","NA","guest@locala.user","NA","NA","NA");
+            //updateTheUiAfterSystemLogin(user);
         });
 
         view.findViewById(R.id.forgotPasswordLink).setOnClickListener(view15 -> {
 
-            NavController navController = Navigation.findNavController(view15);
+            Toast.makeText(getContext(),"Under Maintains",Toast.LENGTH_LONG).show();
+            //NavController navController = Navigation.findNavController(view15);
 
-            NavDirections navDirections = LoginFragmentDirections.toForgotPassword();
+            //NavDirections navDirections = LoginFragmentDirections.toForgotPassword();
 
-            navController.navigate(navDirections);
+            //navController.navigate(navDirections);
 
         });
 
@@ -356,6 +368,10 @@ public class LoginFragment extends Fragment implements LoginFragmentInterface {
     public void clearTheRecentUser() {
         User user = new User("NA","NA","NA","NA","NA","NA");
         saveTheRecentUser(user);
+    }
+
+    public static void logOut(){
+        LoginManager.getInstance().logOut();
     }
 
 

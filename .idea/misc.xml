@@ -30,7 +30,7 @@
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_blank.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_inactive_medications.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_login.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_med_friend.xml" value="0.1802536231884058" />
+        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_med_friend.xml" value="0.25982905982905985" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_medications_list.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_requests_list.xml" value="0.1802536231884058" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/how_often.xml" value="0.33" />
@@ -38,7 +38,7 @@
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/med_friend_row.xml" value="0.25" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_alarm_window.xml" value="0.33" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_notification_screen.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/request_row.xml" value="0.22" />
+        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/request_row.xml" value="0.33" />
         <entry key="..\:/MyAndroidProject/app/src/main/res/menu/navegation_menu.xml" value="0.20416666666666666" />
       </map>
     </option>

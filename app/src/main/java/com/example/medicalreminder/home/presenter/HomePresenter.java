@@ -171,7 +171,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Morning()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Morning"
@@ -186,7 +186,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Noon()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Noon"
@@ -202,7 +202,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Evening()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Evening"
@@ -217,7 +217,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Night()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Night"
@@ -240,7 +240,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Morning()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Morning"
@@ -255,7 +255,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Noon()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Noon"
@@ -271,7 +271,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Evening()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Evening"
@@ -286,7 +286,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Night()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Night"
@@ -323,7 +323,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getHour_of_Morning()
                                                         , dateFormat.format(cal1.getTime())
                                                         , i.getUser_name()
-                                                        , i.getS_Unit()
+                                                        , String.valueOf(i.getCount())
                                                         , i.getActive().toString()
                                                         , "waiting"
                                                         ,"Morning"
@@ -338,7 +338,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getHour_of_Noon()
                                                         , dateFormat.format(cal1.getTime())
                                                         , i.getUser_name()
-                                                        , i.getS_Unit()
+                                                        , String.valueOf(i.getCount())
                                                         , i.getActive().toString()
                                                         , "waiting"
                                                         ,"Noon"
@@ -354,7 +354,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getHour_of_Evening()
                                                         , dateFormat.format(cal1.getTime())
                                                         , i.getUser_name()
-                                                        , i.getS_Unit()
+                                                        , String.valueOf(i.getCount())
                                                         , i.getActive().toString()
                                                         , "waiting"
                                                         ,"Evening"
@@ -369,7 +369,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                         , i.getHour_of_Night()
                                                         , dateFormat.format(cal1.getTime())
                                                         , i.getUser_name()
-                                                        , i.getS_Unit()
+                                                        , String.valueOf(i.getCount())
                                                         , i.getActive().toString()
                                                         , "waiting"
                                                         ,"Night"
@@ -403,7 +403,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Morning()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Morning"
@@ -418,7 +418,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Noon()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Noon"
@@ -434,7 +434,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Evening()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Evening"
@@ -449,7 +449,7 @@ public class HomePresenter implements HomePresenterInterface {
                                                     , i.getHour_of_Night()
                                                     , dateFormat.format(cal1.getTime())
                                                     , i.getUser_name()
-                                                    , i.getS_Unit()
+                                                    , String.valueOf(i.getCount())
                                                     , i.getActive().toString()
                                                     , "waiting"
                                                     ,"Night"
@@ -482,6 +482,7 @@ public class HomePresenter implements HomePresenterInterface {
 
         homeViewInterface.updateTheUI();
     }
+
 
     public void saveTheRecord(MedicineReadyToShow medicineReadyToShow){
         Repo repo = new Repo();

@@ -27,6 +27,7 @@ public class Repo {
     List<Medicine> medicitions;
     List<Medicine> medicitions_inactive;
     DatabaseFunctions databaseFunctions;
+    Medicine medicineTodisplay = new Medicine();
     HomePresenterInterface homePresenterInterface ;
     com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenter ;
     DisplayInterface displayInterface ;
@@ -192,11 +193,31 @@ public class Repo {
 
         AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
         databaseFunctions = appDataBase.databaseFunctions();
+        System.out.println("getmedicinefor");
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                displayInterface.iGotTheMed(medicineTodisplay);
+
+            }
+        };
+
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
+//                displayInterface.iGotTheMed(databaseFunctions.getTheMed(medicineName,username));
+
+                medicineTodisplay =databaseFunctions.getTheMed(medicineName,username);
+                System.out.println("getmedicinefor");
+                System.out.println(medicineTodisplay.getMed_name());
+                handler.sendEmptyMessage(1);
+
+
             }
         }).start();
 

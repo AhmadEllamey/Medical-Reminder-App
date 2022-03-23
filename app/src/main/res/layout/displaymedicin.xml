@@ -36,10 +36,9 @@
 
     <TextView
         android:id="@+id/MedNameDisplay"
-        android:layout_width="103dp"
-        android:layout_height="34dp"
+        android:layout_width="203dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:text="Adol"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"

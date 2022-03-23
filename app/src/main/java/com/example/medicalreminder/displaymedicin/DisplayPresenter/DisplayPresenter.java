@@ -71,9 +71,10 @@ public class DisplayPresenter implements DisplayPresenterInterface {
     }
 
     @Override
-    public void SendRequest(Medicine medicine) {
+    public void SendRequest(String name , String user) {
         Repo repo = new Repo(displayInterface);
-        repo.getMedicineFor(medicine.getMed_name(),medicine.getUser_name());
+        repo.getMedicineFor(name,user);
+        System.out.println("sendrepeuest" + name +user);
     }
 
 

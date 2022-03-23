@@ -49,7 +49,7 @@ import java.util.Locale;
 public class Displaymed extends Fragment implements  DisplayInterface{
     ImageView image;
     LayoutInflater inflater;
-    Medicine medicine = new Medicine();
+    Medicine medicine ;//= new Medicine();
     TextView medicinname;
     TextView Lasttaken;
     TextView Reminder;
@@ -64,7 +64,7 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     String username;
     String medName;
 
-    DisplayPresenterInterface displayPresenterInterface;
+    DisplayPresenterInterface displayPresenterInterface = new DisplayPresenter(this);
 
     public Displaymed(MedicineReadyToShow medicineReadyToShow){
         username = medicineReadyToShow.getUser_name();
@@ -74,6 +74,7 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         username = medicine.getUser_name();
         medName = medicine.getMed_name();
         this.medicine = medicine;
+
     }
 
 
@@ -89,11 +90,11 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         // get the medicine
         // we sent a request asking for the current medicine
-        Repo repo = new Repo(this);
-        repo.getMedicineFor(medName,username);
+//        Repo repo = new Repo(this);
+//        repo.getMedicineFor(medName,username);
 
-//        displayPresenterInterface.SendRequest(medicine);
-
+        displayPresenterInterface.SendRequest(medName,username);
+        System.out.println("from view");
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
@@ -101,8 +102,8 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         Refill=view.findViewById(R.id.Refilldisplay);
         btn = view.findViewById(R.id.suspend_id);
 
-
-//        medicinname.setText(medName);
+        System.out.println(medName);
+        medicinname.setText(medName);
 
 
 

@@ -16,9 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
-import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.R;
@@ -50,8 +48,6 @@ public class AddingMed extends Fragment  {
             medicine.setMed_name(med_name.getText().toString().trim());
             medicine.setUser_name(Home.getTheCurrentUser().getEmail());
             Bundle bundle = new Bundle();
-            //bundle.putString("medname", med_name.getText().toString());
-
                 bundle.putSerializable("obj", medicine);
             Log.i(TAG, "onCreateView: 1 " + bundle.toString());
 

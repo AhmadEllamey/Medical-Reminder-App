@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.example.medicalreminder.BlankFragment;
 import com.example.medicalreminder.MainActivity;
+import com.example.medicalreminder.Medicitions.View.Medicions_View;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
@@ -133,7 +134,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new BlankFragment()).commit();
         }else if(item.getItemId() == R.id.nav_edit_medicine){
             Toast.makeText(this,"Show Medicines",Toast.LENGTH_SHORT).show();
-            //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedicationsListFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new Medicions_View()).commit();
         }else if(item.getItemId() == R.id.nav_add_health_takers){
             Toast.makeText(this,"Add health takers",Toast.LENGTH_SHORT).show();
             //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();

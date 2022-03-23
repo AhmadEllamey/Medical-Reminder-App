@@ -24,8 +24,12 @@ public interface DatabaseFunctions {
     Medicine getTheMed(String medName , String userName);
 
     // todo -- > use this function to get all medicines for a specific use
-    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName")
+    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName  AND active = 1")
     List<Medicine> getTheMedications(String userName);
+
+
+    @Query("SELECT * FROM MedicineInfo WHERE user_name = :userName  AND active = 0")
+    List<Medicine> getInactiveMedications(String userName);
 
     @Insert
     void insertMedicine(MedicineReadyToShow medicineReadyToShow);

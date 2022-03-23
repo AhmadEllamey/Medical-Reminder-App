@@ -6,6 +6,7 @@
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/drawable/background.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/drawable/circularimage.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/add_dose.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/adding_med.xml" value="0.18" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/choosetheday.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/customday.xml" value="0.27291666666666664" />
@@ -14,30 +15,24 @@
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/edit_layout.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_active_medications.xml" value="0.11197916666666667" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_blank.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_blank2.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/getrefill.xml" value="0.25" />
-        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/how_often.xml" value="0.1" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/how_often.xml" value="0.5" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/howoften_not_every_day.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/instructions.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicine_reminder.xml" value="0.5" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicitions_list.xml" value="0.33" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicitions_list_n.xml" value="0.2368659420289855" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/mediction_row.xml" value="0.6529605263157895" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/mycustomrow.xml" value="0.2368659420289855" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/popupcounter.xml" value="0.254981884057971" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/reminder_layout.xml" value="0.67" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/strength.xml" value="0.254981884057971" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/drawable/borders.xml" value="0.1" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/drawable/divider_test.xml" value="0.167" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/fragment_active_medications.xml" value="0.25" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/fragment_profile.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/medicine_reminder.xml" value="0.11041666666666666" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/reminder_layout.xml" value="0.23958333333333334" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/single_row.xml" value="0.25" />
-        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/menu/navegation_menu.xml" value="0.25" />
-        <entry key="..\:/Users/ahmad/OneDrive/Desktop/AndroidBackup/MedicalReminder/app/src/main/res/layout/edit_layout.xml" value="0.11041666666666666" />
-        <entry key="..\:/Users/ahmad/OneDrive/Desktop/AndroidBackup/MedicalReminder/app/src/main/res/layout/fragment_profile.xml" value="0.11041666666666666" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

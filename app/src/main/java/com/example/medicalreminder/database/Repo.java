@@ -4,11 +4,13 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.medicalreminder.MainActivity;
+import com.example.medicalreminder.Medicitions.presenter.Presenter_Medicions_Interface;
 import com.example.medicalreminder.Model.Medicine;
 import com.example.medicalreminder.displaymedicin.DisplayView.DisplayInterface;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
 import com.example.medicalreminder.home.view.home_fragment.presnter.HomePresenterInterface;
+import com.facebook.all.All;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,14 +24,19 @@ public class Repo {
 
 
     List<MedicineReadyToShow> medicineReadyToShows;
+    List<Medicine> medicitions;
+    List<Medicine> medicitions_inactive;
     DatabaseFunctions databaseFunctions;
     HomePresenterInterface homePresenterInterface ;
     com.example.medicalreminder.home.presenter.HomePresenterInterface homePresenter ;
     DisplayInterface displayInterface ;
+    Presenter_Medicions_Interface presenter_medicions_interface;
 
 
 
-
+    public Repo(Presenter_Medicions_Interface presenter_medicions_interface) {
+        this.presenter_medicions_interface = presenter_medicions_interface;
+    }
 
     public Repo(DisplayInterface displayInterface) {
         this.displayInterface = displayInterface;
@@ -223,6 +230,55 @@ public class Repo {
 
 
 
+    }
+
+    public void getMedicinesList(String username){
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                 presenter_medicions_interface.sendToMedicionList(medicitions);
+
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                medicitions = databaseFunctions.getTheMedications(username);
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
+    }
+
+
+    public void getMedicinesList_Inactive(String username){
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        Handler handler =  new Handler()
+        {
+            @Override
+            public void handleMessage(Message msg)
+            {
+                //  Do SomeThings
+                presenter_medicions_interface.sendToMedicionList_Inactive(medicitions_inactive);
+
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                medicitions_inactive = databaseFunctions.getInactiveMedications(username);
+                handler.sendEmptyMessage(1);
+            }
+        }).start();
     }
 
 

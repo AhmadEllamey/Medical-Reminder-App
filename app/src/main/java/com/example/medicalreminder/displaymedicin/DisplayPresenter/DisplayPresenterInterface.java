@@ -6,4 +6,5 @@ public interface DisplayPresenterInterface {
     void update(Medicine medicine);
 
     void delete(Medicine medicine);
+    void SendRequest(Medicine medicine);
 }

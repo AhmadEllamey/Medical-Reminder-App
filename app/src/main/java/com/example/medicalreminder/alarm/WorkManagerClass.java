@@ -185,7 +185,7 @@ public class WorkManagerClass extends Worker {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //Snooze
-                            Toast.makeText(context, "Snooze", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Snooze ... under maintains", Toast.LENGTH_SHORT).show();
                         }
                     });
 

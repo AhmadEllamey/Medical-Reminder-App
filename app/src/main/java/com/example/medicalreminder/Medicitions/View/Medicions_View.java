@@ -134,7 +134,7 @@ public class Medicions_View extends Fragment implements Medicions_View_Interface
     public void receivingMedicinesInactive(List<Medicine> All_Medicions) {
         medsToShow_inactive = All_Medicions;
         medicions_adapter_Inactive.setMedicines(All_Medicions);
-        System.out.println("Inactive"+All_Medicions.get(0).getMed_name());
+//        System.out.println("Inactive"+All_Medicions.get(0).getMed_name());
         medicions_adapter_Inactive.notifyDataSetChanged();
 
     }

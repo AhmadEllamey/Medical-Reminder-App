@@ -11,7 +11,6 @@ public interface HomePresenterInterface {
 
     void loadMedicineToShow();
 
-
     void loadMedicineInfo();
 
     void clearTheReadyToShowData();

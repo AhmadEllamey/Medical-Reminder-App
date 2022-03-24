@@ -49,7 +49,7 @@ import java.util.Locale;
 public class Displaymed extends Fragment implements  DisplayInterface{
     ImageView image;
     LayoutInflater inflater;
-    Medicine medicine;
+    Medicine medicine ;//= new Medicine();
     TextView medicinname;
     TextView Lasttaken;
     TextView Reminder;
@@ -64,11 +64,17 @@ public class Displaymed extends Fragment implements  DisplayInterface{
     String username;
     String medName;
 
-    DisplayPresenterInterface displayPresenterInterface;
+    DisplayPresenterInterface displayPresenterInterface = new DisplayPresenter(this);
 
     public Displaymed(MedicineReadyToShow medicineReadyToShow){
         username = medicineReadyToShow.getUser_name();
         medName = medicineReadyToShow.getName();
+    }
+    public Displaymed(Medicine medicine){
+        username = medicine.getUser_name();
+        medName = medicine.getMed_name();
+        this.medicine = medicine;
+
     }
 
 
@@ -84,10 +90,11 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
         // get the medicine
         // we sent a request asking for the current medicine
-        Repo repo = new Repo(this);
-        repo.getMedicineFor(medName,username);
+//        Repo repo = new Repo(this);
+//        repo.getMedicineFor(medName,username);
 
-
+        displayPresenterInterface.SendRequest(medName,username);
+        System.out.println("from view");
         medicinname=view.findViewById(R.id.MedNameDisplay);
         Lasttaken=view.findViewById(R.id.LastTaken);
         Reminder=view.findViewById(R.id.remind);
@@ -95,8 +102,8 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         Refill=view.findViewById(R.id.Refilldisplay);
         btn = view.findViewById(R.id.suspend_id);
 
-
-
+        System.out.println(medName);
+        medicinname.setText(medName);
 
 
 
@@ -210,25 +217,6 @@ public class Displaymed extends Fragment implements  DisplayInterface{
         TextView num_refill;
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.getrefill, null);
         num_refill = dialogView.findViewById(R.id.refilldisplay);
-//        dialogView.findViewById(R.id.Setbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            LocalDateTime myDateObj = LocalDateTime.now();
-////                    LocaleData mydate = LocaleData.getInstance();
-////                    System.out.println(mydate);
-//                            Date date2 = new Date();
-//                            date2.getDate();
-//                            //System.out.println(myDateObj);
-//                            System.out.println("DATE"+date2);
-//
-//                            //System.out.println(date);
-//                            medicine.setStart_date(date); }});
-//        dialogView.findViewById(R.id.cancelbtn).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            counter=0;
-//                        }
-//                    });
 
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -351,19 +339,3 @@ public class Displaymed extends Fragment implements  DisplayInterface{
 
     }
 }
-// Read from the database
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                String value = dataSnapshot.getValue(String.class);
-//                name.setText(value);
-//                // Log.d(TAG, "Value is: " + value);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                // Failed to read value
-//                //Log.w(TAG, "Failed to read value.", error.toException());
-//            }

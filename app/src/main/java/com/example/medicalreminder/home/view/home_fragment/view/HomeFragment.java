@@ -87,6 +87,8 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         //homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
 
 
+        // load medicines for the show list
+        homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
 
 
         /* starts before 1 month from now */
@@ -141,8 +143,7 @@ public class HomeFragment extends Fragment implements HomeViewInterface {
         });
 
 
-        // load medicines for the show list
-        homePresenterInterfaceParent.loadTheMedicinesDataFromTheServer(Home.getTheCurrentUser());
+
 
 
         return view ;

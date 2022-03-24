@@ -22,7 +22,6 @@ import java.util.List;
 public class Repo {
 
 
-
     List<MedicineReadyToShow> medicineReadyToShows;
     List<Medicine> medicitions;
     List<Medicine> medicitions_inactive;
@@ -300,6 +299,24 @@ public class Repo {
                 handler.sendEmptyMessage(1);
             }
         }).start();
+    }
+
+    public void clearTheUserData(String username){
+
+        AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+        databaseFunctions = appDataBase.databaseFunctions();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                databaseFunctions.clearTheMedicines(username);
+                databaseFunctions.clearTheMedicinesInfo(username);
+            }
+        }).start();
+
+
+
+
     }
 
 

@@ -17,6 +17,7 @@ import com.example.medicalreminder.BlankFragment;
 import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.Medicitions.View.Medicions_View;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.database.Repo;
 import com.example.medicalreminder.home.view.home_fragment.view.Communicator;
 import com.example.medicalreminder.home.view.home_fragment.view.HomeFragment;
 import com.example.medicalreminder.home.view.profile_fragment.view.ProfileFragment;
@@ -177,6 +178,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }catch (Exception e){
                 e.printStackTrace();
             }
+
+
+
+            // clear the local database
+
+            Repo repo = new Repo();
+            repo.clearTheUserData(Home.getTheCurrentUser().getEmail());
+
+
+
+
 
             // move to the login screen
             Intent intent = new Intent(this,MainActivity.class);

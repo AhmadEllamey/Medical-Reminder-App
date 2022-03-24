@@ -98,32 +98,6 @@ public class RequestsListFragment extends Fragment implements onAcceptClickListe
     }
 
 
-   /* public void deleteRequest(RequestModel model){
-
-        firestore.collection("Requests")
-                .document("RecieverRequests")
-                .collection(Home.getTheCurrentUser().getEmail())
-                .document(Home.getTheCurrentUser().getName())
-                .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        firestore.collection("Requests")
-                .document("SenderRequests")
-                .collection(model.getSender_email())
-                .document(model.getReceiever_email())
-                .delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        requestModelList.clear();
-    }*/
 
 
     public void saveAsMedFreiend(RequestModel model) {

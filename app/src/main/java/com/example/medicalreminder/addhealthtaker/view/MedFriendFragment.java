@@ -18,7 +18,10 @@ import com.example.medicalreminder.addhealthtaker.RequestModel;
 import com.example.medicalreminder.databinding.FragmentMedFriendBinding;
 import com.example.medicalreminder.databinding.FragmentRequestsListBinding;
 import com.example.medicalreminder.home.view.Home;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -70,32 +73,30 @@ public class MedFriendFragment extends Fragment {
         binding.medFriendRecyclerView.setHasFixedSize(true);
         binding.medFriendRecyclerView.setLayoutManager(layoutManager);
         binding.medFriendRecyclerView.setAdapter(medFriendAdapter);
-        documentReference=firestore
-                .collection("Med_Friends")
-                .document("MyFriends")
-                .collection(Home.getTheCurrentUser().getEmail())
-                .document();
 
         firestore.collection("Med_Friends")
                 .document("MyFriends")
                 .collection(Home.getTheCurrentUser().getEmail())
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error!=null) {
-                        }
-                        for(QueryDocumentSnapshot doc: value){
-                            RequestModel model = new RequestModel();
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        System.out.println("we are here in the loop ");
+                        for(QueryDocumentSnapshot doc: task.getResult()){
+                             RequestModel model = new RequestModel();
                             model.setSender_email(doc.getString("sender_email"));
+                            System.out.println(doc.getString("sender_email"));
                             model.setSender_name(doc.getString("sender_name"));
                             model.setReceiever_email(doc.getString("reciver_email"));
                             model.setReciever_name(doc.getString("reciver_name"));
                             model.setRequest_status(doc.getString("request_status"));
                             requestModelList.add(model);
-                            medFriendAdapter.notifyDataSetChanged();
                         }
-                    }
+                        medFriendAdapter.requestModelList = requestModelList;
+                        medFriendAdapter.notifyDataSetChanged();
 
+                    }
                 });
     }
 }

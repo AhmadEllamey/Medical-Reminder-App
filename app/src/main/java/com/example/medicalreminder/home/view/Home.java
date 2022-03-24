@@ -145,9 +145,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Toast.makeText(this, "RequestList", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new RequestsListFragment()).commit();
         }
-        else if(item.getItemId() == R.id.nav_manage_health_takers){
+       else if(item.getItemId() == R.id.nav_manage_health_takers){
             Toast.makeText(this,"Manage health takers",Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedFriendFragment()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),new MedFriendFragment()).commit();
         }else if(item.getItemId() == R.id.nav_sittings){
             Toast.makeText(this,"Sittings , not supported yet",Toast.LENGTH_SHORT).show();
             //getSupportFragmentManager().beginTransaction().replace(frameLayout.getId(),null).commit();

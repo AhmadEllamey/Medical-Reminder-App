@@ -6,40 +6,29 @@
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/drawable/background.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/drawable/circularimage.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/add_dose.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/adding_med.xml" value="0.18" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/choosetheday.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/customday.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/displaymedicin.xml" value="0.33" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/dose_time.xml" value="0.1" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/edit_layout.xml" value="0.25" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_active_medications.xml" value="0.11197916666666667" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_blank.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/fragment_blank2.xml" value="0.25" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/getrefill.xml" value="0.25" />
-        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/how_often.xml" value="0.1" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/how_often.xml" value="0.5" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/howoften_not_every_day.xml" value="0.27291666666666664" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/instructions.xml" value="0.27291666666666664" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicine_reminder.xml" value="0.5" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicitions_list.xml" value="0.33" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/medicitions_list_n.xml" value="0.2368659420289855" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/mediction_row.xml" value="0.6529605263157895" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/mycustomrow.xml" value="0.2368659420289855" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/popupcounter.xml" value="0.254981884057971" />
+        <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/reminder_layout.xml" value="0.67" />
         <entry key="..\:/ITI/Android/AndroidLabs/Medical-Reminder-App/app/src/main/res/layout/strength.xml" value="0.254981884057971" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/drawable-v24/buttons_style.xml" value="0.1605" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/drawable-v24/ic_baseline_email_24.xml" value="0.1" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/drawable-v24/ic_close_24.xml" value="0.1" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/active_meds_row.xml" value="0.25" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/activity_home.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/activity_main.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_active_medications.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_add_health_taker.xml" value="0.25" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_blank.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_inactive_medications.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_login.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_med_friend.xml" value="0.25982905982905985" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_medications_list.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/fragment_requests_list.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/how_often.xml" value="0.33" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/inactive_meds_row.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/med_friend_row.xml" value="0.25" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_alarm_window.xml" value="0.33" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/refill_reminder_notification_screen.xml" value="0.1802536231884058" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/layout/request_row.xml" value="0.33" />
-        <entry key="..\:/MyAndroidProject/app/src/main/res/menu/navegation_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ahmad/AndroidStudioProjects/AndroidCloningProject/app/src/main/res/layout/medicine_reminder.xml" value="0.11041666666666666" />
       </map>
     </option>
   </component>

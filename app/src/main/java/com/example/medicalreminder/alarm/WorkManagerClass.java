@@ -1,14 +1,20 @@
 package com.example.medicalreminder.alarm;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -21,11 +27,17 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import com.example.medicalreminder.MainActivity;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.ReminderDialog.MyCustomDialoge;
 import com.example.medicalreminder.database.AppDataBase;
 import com.example.medicalreminder.database.DatabaseFunctions;
 import com.example.medicalreminder.home.view.Home;
 import com.example.medicalreminder.home.view.home_fragment.model.MedicineReadyToShow;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +57,7 @@ public class WorkManagerClass extends Worker {
         inflater = LayoutInflater.from(context);
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public Result doWork() {
@@ -61,10 +74,8 @@ public class WorkManagerClass extends Worker {
 
         //pop up the window
         NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext(),"Alarm")
-                .setContentTitle("medicineName")
-                .setContentText("Take ("+pillsToTake+") pill/s from your medicine ("+medicineName+")\n" +
-                        "Time : "+time+" , "+dateOfTheDay+" , "+timePerDay+"\n" +
-                        "note : " + instructions)
+                .setContentTitle("Medical Reminder")
+                .setContentText("Alert Take Your Medicine")
                 .setAutoCancel(false)
                 .setSmallIcon(R.drawable.med)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -75,69 +86,134 @@ public class WorkManagerClass extends Worker {
         NotificationManagerCompat notificationManagerCompat= NotificationManagerCompat.from(getApplicationContext());
         notificationManagerCompat.notify(123 ,builder.build());
 
+
+
+
         // todo -- > display the dialog (not working with no error)
         Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Run your task here
-                Toast.makeText(context, "Testing", Toast.LENGTH_LONG).show();
-                //openDialog();
+        handler.postDelayed(() -> {
+            // Run your task here
+            Toast.makeText(context, "Testing", Toast.LENGTH_LONG).show();
+            //openDialog();
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-                View view = inflater.inflate(R.layout.reminder_layout,null);
-
-                builder.setView(view)
-                        .setTitle("Medicine Reminder")
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //do nothing
-                            }
-                        })
-                        .setPositiveButton("Take", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // minus one from med_amount
-                                // update the last_taken date
-                                // update the fire_store
-                                // update the medicine info || medicine ready to show
-                                Toast.makeText(context, "Take", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNeutralButton("Snooze", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Snooze
-                                Toast.makeText(context, "Snooze", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                builder.create();
-
-
+            if (!Settings.canDrawOverlays(context)) {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + context.getPackageName()));
+               context.startActivity(intent);
 
             }
+
+
+
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+
+            View view = inflater.inflate(R.layout.reminder_screen,null);
+            TextView medName = view.findViewById(R.id.medNameText);
+            TextView medTime = view.findViewById(R.id.medTimeText);
+            TextView medPills = view.findViewById(R.id.PillsText);
+            TextView medInstruction = view.findViewById(R.id.instructionText);
+
+            medName.setText(medicineName);
+            medTime.setText(time+" , "+dateOfTheDay+" , "+timePerDay);
+            medPills.setText("Take "+pillsToTake+" Pills");
+            medInstruction.setText("Instructions : "+instructions);
+
+            builder1.setView(view)
+                    .setTitle("Medicine Reminder")
+                    .setNegativeButton("Cancel", (dialogInterface, i) -> {
+                        //do nothing
+                        Toast.makeText(context, "Canceled", Toast.LENGTH_SHORT).show();
+                    })
+                    .setPositiveButton("Take", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            // minus one from med_amount
+                            int minusBy = Integer.parseInt(pillsToTake) * -1;
+                            System.out.println(minusBy);
+                            // update the last_taken date
+                            Date date = new Date();
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                            String lastTimeTaken = formatter.format(date);
+                            // update the fire_store
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            DocumentReference washingtonRef = db.collection("Medicine Info").document(Home.getTheCurrentUser().getEmail()+"-"+medicineName);
+                            washingtonRef
+                                    .update("last_time_taken",lastTimeTaken
+                                    ,"med_amount", FieldValue.increment(minusBy))
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                            // compare medicine left with medicine amount and fire notification if they are the same
+                                            DocumentReference docRef = db.collection("Medicine Info").document(Home.getTheCurrentUser().getEmail()+"-"+medicineName);
+                                            docRef.get().addOnCompleteListener(task -> {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists()) {
+                                                         if(Integer.parseInt(document.get("med_amount").toString()) <= Integer.parseInt( document.get("med_left").toString())){
+                                                             // fire a notification that remind the user to refill the med
+                                                             NotificationCompat.Builder builder = new NotificationCompat.Builder( getApplicationContext(),"Alarm")
+                                                                     .setContentTitle("Medical Reminder")
+                                                                     .setContentText("Alert Refill Your Medicine : "+document.get("med_name"))
+                                                                     .setAutoCancel(false)
+                                                                     .setSmallIcon(R.drawable.med)
+                                                                     .setDefaults(NotificationCompat.DEFAULT_ALL)
+                                                                     .setPriority(NotificationCompat.PRIORITY_HIGH);
+                                                             NotificationManagerCompat notificationManagerCompat= NotificationManagerCompat.from(getApplicationContext());
+                                                             notificationManagerCompat.notify(123 ,builder.build());
+
+                                                         }
+                                                    }
+                                                }
+                                            });
+
+
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                        }
+                                    });
+                            // update the medicine info || medicine ready to show
+                            Toast.makeText(context, "Thanks For Your Attention", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNeutralButton("Snooze", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Snooze
+                            Toast.makeText(context, "Snooze ... under maintains", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            builder1.create();
+
+            final AlertDialog alert = builder1.create();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                alert.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+            }else{
+                alert.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+            }
+            alert.show();
+
         }, 1000 );
 
 
         // set the next alarm
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                DatabaseFunctions databaseFunctions;
-                AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
-                databaseFunctions = appDataBase.databaseFunctions();
-                Date date = Calendar.getInstance().getTime();
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                List<MedicineReadyToShow> medicineReadyToShows = databaseFunctions.getTodayMedicines(dateFormat.format(date),username);
+        new Thread(() -> {
+            DatabaseFunctions databaseFunctions;
+            AppDataBase appDataBase = AppDataBase.getInstance(MainActivity.getContext());
+            databaseFunctions = appDataBase.databaseFunctions();
+            Date date = Calendar.getInstance().getTime();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            List<MedicineReadyToShow> medicineReadyToShows = databaseFunctions.getTodayMedicines(dateFormat.format(date),username);
 
-                manageTheAlarms(medicineReadyToShows);
+            manageTheAlarms(medicineReadyToShows);
 
-            }
         }).start();
 
         System.out.println("----------------------------------------- alarm working ------------------------------------------");
@@ -407,8 +483,5 @@ public class WorkManagerClass extends Worker {
         return minDate;
     }
 
-    private void openDialog() {
-        MyCustomDialoge myCustomDialoge= new MyCustomDialoge(context);
-        myCustomDialoge.show();
-    }
+
 }

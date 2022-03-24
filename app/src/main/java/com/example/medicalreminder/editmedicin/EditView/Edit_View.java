@@ -811,6 +811,7 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                 }
             }
         });
+
         periodofdays.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -821,8 +822,6 @@ public class Edit_View extends Fragment  implements EditViewInterface {
                     medicine.setFlag("period_of_days");
                     setperiodofdaysDilaoge();
                     setdaysfalse();
-
-
                 }
             }
         });
